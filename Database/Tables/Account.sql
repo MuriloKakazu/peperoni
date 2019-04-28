@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[Account]
+﻿CREATE TABLE [Account]
 (
-	[Id] CHAR(32) NOT NULL PRIMARY KEY, 
+	[Id] GUID NOT NULL PRIMARY KEY, 
     [Name] VARCHAR(128) NOT NULL, 
     [Phone] VARCHAR(9) NOT NULL, 
     [StreetNumber] INT NOT NULL, 

@@ -1,0 +1,8 @@
+﻿CREATE FUNCTION [GetOrders] (
+	@idList GUID_LIST READONLY
+)
+RETURNS TABLE AS RETURN (
+	SELECT *
+	FROM   [Order]
+	WHERE  Id IN (SELECT Id FROM @idList)
+)

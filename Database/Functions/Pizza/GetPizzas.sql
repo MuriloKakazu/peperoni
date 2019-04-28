@@ -1,0 +1,8 @@
+﻿CREATE FUNCTION [GetPizzas] (
+	@idList GUID_LIST READONLY
+)
+RETURNS TABLE AS RETURN (
+	SELECT *
+	FROM   [Pizza]
+	WHERE  Id IN (SELECT Id FROM @idList)
+)

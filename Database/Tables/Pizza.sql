@@ -1,10 +1,10 @@
-﻿CREATE TABLE [dbo].[Pizza]
+﻿CREATE TABLE [Pizza]
 (
-	[Id] CHAR(32) NOT NULL PRIMARY KEY, 
-    [OrderId] CHAR(32) NOT NULL, 
-    [FirstToppingId] CHAR(32) NOT NULL, 
-    [SecondToppingId] CHAR(32) NOT NULL, 
-    [BorderId] CHAR(32) NOT NULL,
+	[Id] GUID NOT NULL PRIMARY KEY, 
+    [OrderId] GUID NOT NULL, 
+    [FirstToppingId] GUID NOT NULL, 
+    [SecondToppingId] GUID NOT NULL, 
+    [BorderId] GUID NOT NULL,
     [Quantity] INT NOT NULL DEFAULT 0, 
     [UnitPrice] MONEY NOT NULL DEFAULT 0.00, 
     [TotalPrice] MONEY NULL DEFAULT 0.00

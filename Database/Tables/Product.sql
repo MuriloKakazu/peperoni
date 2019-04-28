@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[Product]
+﻿CREATE TABLE [Product]
 (
-	[Id] CHAR(32) NOT NULL PRIMARY KEY, 
+	[Id] GUID NOT NULL PRIMARY KEY, 
     [Name] VARCHAR(64) NOT NULL, 
     [Family] VARCHAR(32) NOT NULL,
     [ListPrice] MONEY NOT NULL DEFAULT 0.00

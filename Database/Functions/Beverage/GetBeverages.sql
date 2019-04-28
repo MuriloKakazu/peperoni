@@ -1,0 +1,8 @@
+﻿CREATE FUNCTION [GetBeverages] (
+	@idList GUID_LIST READONLY
+)
+RETURNS TABLE AS RETURN (
+	SELECT *
+	FROM   [Beverage]
+	WHERE  Id IN (SELECT Id FROM @idList)
+)

@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[Order]
+﻿CREATE TABLE [Order]
 (
-	[Id] CHAR(32) NOT NULL PRIMARY KEY, 
-    [AccountId] CHAR(32) NOT NULL, 
+	[Id] GUID NOT NULL PRIMARY KEY, 
+    [AccountId] GUID NOT NULL, 
     [Status] VARCHAR(32) NULL DEFAULT 'Enqueued', 
     [PaymentStatus] VARCHAR(32) NULL DEFAULT 'Unpaid', 
     [PlaceDate] DATETIME NULL, 

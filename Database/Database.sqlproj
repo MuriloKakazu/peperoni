@@ -74,6 +74,7 @@
     <Folder Include="Functions\Product" />
     <Folder Include="Functions\Pizza" />
     <Folder Include="Functions\Beverage" />
+    <Folder Include="Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Account.sql" />
@@ -86,10 +87,23 @@
     <Build Include="Constraints\Foreign Keys\Pizza\PizzaFirstToppingConstraint.sql" />
     <Build Include="Constraints\Foreign Keys\Pizza\PizzaSecondToppingConstraint.sql" />
     <Build Include="Constraints\Foreign Keys\Order\OrderAccountConstraint.sql" />
-    <Build Include="Functions\Account\GetAccountById.sql" />
-    <Build Include="Functions\Beverage\GetBeverageById.sql" />
-    <Build Include="Functions\Order\GetOrderById.sql" />
-    <Build Include="Functions\Pizza\GetPizzaById.sql" />
-    <Build Include="Functions\Product\GetProductById.sql" />
+    <Build Include="Functions\Account\GetAccount.sql" />
+    <Build Include="Functions\Beverage\GetBeverage.sql" />
+    <Build Include="Functions\Order\GetOrder.sql" />
+    <Build Include="Functions\Pizza\GetPizza.sql" />
+    <Build Include="Functions\Product\GetProduct.sql" />
+    <Build Include="Functions\Account\SearchAccountsByName.sql" />
+    <Build Include="Functions\Order\SearchOrdersByAccount.sql" />
+    <Build Include="Functions\Beverage\SearchBeveragesByOrder.sql" />
+    <Build Include="Functions\Pizza\SearchPizzasByOrder.sql" />
+    <Build Include="Functions\Product\SearchProductsByFamily.sql" />
+    <Build Include="Functions\Account\GetAccounts.sql" />
+    <Build Include="Types\GUID.sql" />
+    <Build Include="Functions\Beverage\GetBeverages.sql" />
+    <Build Include="Functions\Order\GetOrders.sql" />
+    <Build Include="Functions\Pizza\GetPizzas.sql" />
+    <Build Include="Functions\Product\GetProducts.sql" />
+    <Build Include="Functions\Order\GetOngoingOrders.sql" />
+    <Build Include="Types\GUID_LIST.sql" />
   </ItemGroup>
 </Project>
