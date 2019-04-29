@@ -4,12 +4,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{E1DA7B11-F305-42D8-B229-814B7BCCCAC9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1CDAF6A2-B159-4A86-863C-7F8542DD362D} = {1CDAF6A2-B159-4A86-863C-7F8542DD362D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{1CDAF6A2-B159-4A86-863C-7F8542DD362D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E6139334-3FBC-4C66-89B4-7CC7E3E5906C} = {E6139334-3FBC-4C66-89B4-7CC7E3E5906C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{6D7310A8-DC72-415A-82FB-8393102786F0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{895653E2-DCFC-4E6C-B8DF-9B0A63A309BE} = {895653E2-DCFC-4E6C-B8DF-9B0A63A309BE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{895653E2-DCFC-4E6C-B8DF-9B0A63A309BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E1DA7B11-F305-42D8-B229-814B7BCCCAC9} = {E1DA7B11-F305-42D8-B229-814B7BCCCAC9}
+	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{E6139334-3FBC-4C66-89B4-7CC7E3E5906C}"
 EndProject
