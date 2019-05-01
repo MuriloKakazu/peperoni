@@ -51,13 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\Beverage.cs" />
     <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="Model\Order.cs" />
-    <Compile Include="Model\Pizza.cs" />
     <Compile Include="Context\PizzaShopContext.cs" />
-    <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7A51A5C6-E07C-4679-AEA5-0AD1FCACCBA6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
