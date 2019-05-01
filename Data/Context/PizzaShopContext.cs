@@ -3,7 +3,7 @@ namespace Data.Context {
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using Model;
+    using Model.PizzaShop;
 
     public partial class PizzaShopContext : DbContext {
         public PizzaShopContext()
