@@ -1,8 +1,0 @@
-﻿CREATE FUNCTION [GetAccounts] (
-	@idList GUID_LIST READONLY
-)
-RETURNS TABLE AS RETURN (
-	SELECT *
-	FROM   [Account]
-	WHERE  Id IN (SELECT Id FROM @idList)
-)

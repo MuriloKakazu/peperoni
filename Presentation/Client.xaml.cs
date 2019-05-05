@@ -3,6 +3,7 @@ using Data.Encryption;
 using Data.Repository;
 using Domain.Service;
 using Newtonsoft.Json;
+using Presentation.Controllers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,9 +28,25 @@ namespace Presentation {
         public Client() {
             InitializeComponent();
 
-            using (var context = new PizzaShopContext()) {
-                var accounts = context.Accounts.Where(a => a.Name != null).ToList();
-            }
+            /* Account controller example */
+            var accountController = new AccountController();
+
+            var account = accountController.FetchAccount("1a4095c1-d9f2-4546-873e-3993d86371c6");
+            Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
+
+            account.Name = "Ms. Winter";
+            accountController.SaveAccount(account);
+
+            /* Order controller example */
+            var orderController = new OrderExplorerController();
+
+            var accountOrders = orderController.SearchOrdersByAccount(account);
+            Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
+
+            var anOrder = accountOrders.First();
+            anOrder.Status = "InProgress";
+
+            orderController.SaveOrder(anOrder);
         }
     }
 }

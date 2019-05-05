@@ -1,8 +1,0 @@
-﻿CREATE FUNCTION [GetOrder] (
-	@id GUID
-)
-RETURNS TABLE AS RETURN (
-	SELECT *
-	FROM   [Order]
-	WHERE  Id = @id
-)

@@ -97,6 +97,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\OrderExplorerController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountExplorerController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -131,10 +135,6 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{e1da7b11-f305-42d8-b229-814b7bcccac9}</Project>
       <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{7A51A5C6-E07C-4679-AEA5-0AD1FCACCBA6}</Project>
-      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

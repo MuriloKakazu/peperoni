@@ -1,8 +1,0 @@
-﻿CREATE FUNCTION [GetPizza] (
-	@id GUID
-)
-RETURNS TABLE AS RETURN (
-	SELECT *
-	FROM   [Pizza]
-	WHERE  Id = @id
-)

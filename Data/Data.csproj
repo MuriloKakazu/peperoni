@@ -54,15 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\PizzaShopContext.cs" />
+    <Compile Include="Context\PeperoniContext.cs" />
     <Compile Include="Encryption\Aes.cs" />
     <Compile Include="Encryption\Decrypt.cs" />
+    <Compile Include="Model\Geolocation\Address.cs" />
+    <Compile Include="Model\PizzaShop\Account.cs" />
+    <Compile Include="Model\PizzaShop\Beverage.cs" />
+    <Compile Include="Model\PizzaShop\Order.cs" />
+    <Compile Include="Model\PizzaShop\Pizza.cs" />
+    <Compile Include="Model\PizzaShop\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AesRepository.cs" />
     <Compile Include="Repository\ConnectionStringRepository.cs" />
     <Compile Include="Service\ConnectionService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -71,12 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{7A51A5C6-E07C-4679-AEA5-0AD1FCACCBA6}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
