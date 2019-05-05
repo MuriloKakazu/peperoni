@@ -1,3 +1,0 @@
-﻿CREATE TYPE [GUID_LIST] AS TABLE (
-	Id GUID
-)

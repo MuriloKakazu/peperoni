@@ -1,12 +1,12 @@
-namespace Data.Context {
+namespace Data.Model.PizzaShop {
+    using System;
     using System.Data.Entity;
-    using Model.PizzaShop;
-    using Data.Service;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
-    public partial class PizzaShopContext : DbContext {
-
-        public PizzaShopContext()
-            : base(new ConnectionService().GetConnectionStringForContext("peperoni")) {
+    public partial class Model1 : DbContext {
+        public Model1()
+            : base("name=Model11") {
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
@@ -84,6 +84,16 @@ namespace Data.Context {
                 .Property(e => e.TotalPrice)
                 .HasPrecision(19, 4);
 
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.Beverages)
+                .WithRequired(e => e.Order)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.Pizzas)
+                .WithRequired(e => e.Order)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Pizza>()
                 .Property(e => e.Id)
                 .IsFixedLength()
@@ -140,20 +150,20 @@ namespace Data.Context {
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
-                .HasMany(e => e.Borders)
-                .WithRequired(e => e.Border)
+                .HasMany(e => e.Pizzas)
+                .WithRequired(e => e.Product)
                 .HasForeignKey(e => e.BorderId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
-                .HasMany(e => e.FirstToppings)
-                .WithRequired(e => e.FirstTopping)
+                .HasMany(e => e.Pizzas1)
+                .WithRequired(e => e.Product1)
                 .HasForeignKey(e => e.FirstToppingId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
-                .HasMany(e => e.SecondToppings)
-                .WithRequired(e => e.SecondTopping)
+                .HasMany(e => e.Pizzas2)
+                .WithRequired(e => e.Product2)
                 .HasForeignKey(e => e.SecondToppingId)
                 .WillCascadeOnDelete(false);
         }

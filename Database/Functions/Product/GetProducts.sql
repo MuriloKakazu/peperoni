@@ -1,8 +1,0 @@
-﻿CREATE FUNCTION [GetProducts] (
-	@idList GUID_LIST READONLY
-)
-RETURNS TABLE AS RETURN (
-	SELECT *
-	FROM   [Product]
-	WHERE  Id IN (SELECT Id FROM @idList)
-)
