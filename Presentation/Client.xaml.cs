@@ -1,7 +1,11 @@
-﻿using Domain.Service;
+﻿using Data.Context;
+using Data.Encryption;
+using Data.Repository;
+using Domain.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +26,10 @@ namespace Presentation {
     public partial class Client : Window {
         public Client() {
             InitializeComponent();
+
+            using (var context = new PizzaShopContext()) {
+                var accounts = context.Accounts.Where(a => a.Name != null).ToList();
+            }
         }
     }
 }

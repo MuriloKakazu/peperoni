@@ -1,13 +1,12 @@
 namespace Data.Context {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using Model.PizzaShop;
+    using Data.Service;
 
     public partial class PizzaShopContext : DbContext {
+
         public PizzaShopContext()
-            : base("name=PizzaShopModel") {
+            : base(new ConnectionService().GetConnectionStringForContext("peperoni")) {
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
