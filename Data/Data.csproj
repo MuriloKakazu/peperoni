@@ -69,7 +69,6 @@
     <Compile Include="Service\ConnectionService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
