@@ -1,23 +1,22 @@
-﻿using Data.Context;
-using Data.Model.PizzaShop;
+﻿using Data.Model.PizzaShop;
 using Domain.Repository;
 using System;
 using System.Collections.Generic;
 
 namespace Presentation.Controllers {
     public class AccountExplorerController : AccountController {
-        private AccountRepository repository;
+        protected const int PAGE_SIZE = 20;
 
-        public AccountExplorerController() {
-            repository = new AccountRepository();
+        public AccountExplorerController() : 
+            base() {
         }
 
-        public List<Account> FetchAccounts(int page) {
-            return repository.GetAccounts(page, 25);
+        public ICollection<Account> FetchPage(int page) {
+            return Repository.Fetch(PAGE_SIZE, page * PAGE_SIZE);
         }
 
-        public List<Account> SearchAccountsByName(string name) {
-            return repository.FindAccountsByName(name);
+        public ICollection<Account> SearchAccountsByName(string name) {
+            return Repository.FindAccountsByName(name);
         }
     }
 }

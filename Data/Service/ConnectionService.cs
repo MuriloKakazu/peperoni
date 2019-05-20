@@ -1,8 +1,8 @@
-﻿using Data.Encryption;
-using Data.Repository;
+﻿using Infrastructure.Encryption;
+using Infrastructure.Repository;
 using System;
 
-namespace Data.Service {
+namespace Infrastructure.Service {
     public class ConnectionService {
        private AesRepository AesRepository { get; set; }
        private ConnectionStringRepository ConnectionStringRepository { get; set; }

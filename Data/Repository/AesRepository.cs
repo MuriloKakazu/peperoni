@@ -1,9 +1,9 @@
-﻿using Data.Encryption;
+﻿using Infrastructure.Encryption;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 
-namespace Data.Repository {
+namespace Infrastructure.Repository {
     public class AesRepository {
         private static string ApplicationPath => AppDomain.CurrentDomain.BaseDirectory;
 

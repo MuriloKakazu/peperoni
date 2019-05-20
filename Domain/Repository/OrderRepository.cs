@@ -1,61 +1,69 @@
-﻿using Data.Context;
-using Data.Model.PizzaShop;
+﻿using Data.Model.PizzaShop;
+using Domain.Builder;
+using Domain.Repository.Strategies;
+using Infrastructure.Builder;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Repository {
-    public class OrderRepository {
-        public List<Order> GetOrders(int page, int limit) {
-            using (var context = new PeperoniContext()) {
-                return context
-                    .Orders
-                    .OrderBy(order => order.Id)
-                    .Skip(limit * page)
-                    .Take(limit)
-                    .ToList();
-            }
+    public class OrderRepository : AbstractRepository<Order> {
+        public OrderRepository() : 
+            base("Order") {
         }
 
-        public List<Order> FindOrdersByAccount(Account account) {
-            using (var context = new PeperoniContext()) {
-                return context
-                    .Orders
-                    .Where(order =>
-                        order.AccountId == account.Id)
-                    .ToList();
-            }
+        public ICollection<Order> FindOrdersByAccount(string accountId) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("AccountId").WithValue(accountId).Build();
+
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE AccountId = @AccountId", parameter));
         }
 
-        public Order GetOrderById(string id) {
-            using (var context = new PeperoniContext()) {
-                return context
-                    .Orders
-                    .Where(
-                        order => order.Id == id)
-                    .FirstOrDefault();
+        public override Order Save(Order order) {
+            ISaveStrategy<Order> strategy;
+
+            if (String.IsNullOrWhiteSpace(order.Id)) {
+                strategy = new OrderInsertStrategy(this);
+            } else {
+                strategy = new OrderUpdateStrategy(this);
             }
+
+            return strategy.Save(order);
         }
 
-        public void SaveOrder(Order order) {
-            using (var context = new PeperoniContext()) {
-                context.Entry(order).State = String.IsNullOrWhiteSpace(order.Id)
-                    ? EntityState.Added
-                    : EntityState.Modified;
-
-                context.SaveChanges();
-            }
+        protected override Order Marshal(DataRow row) {
+            return new OrderBuilder(row).Build();
         }
 
-        public void DeleteOrder(Order order) {
-            using (var context = new PeperoniContext()) {
-                context.Entry(order).State = EntityState.Deleted;
+        public override ICollection<SqlParameter> GetParameters(Order order) {
+            return new List<SqlParameter> {
+                new ParameterBuilder<string>()
+                    .WithName("Id").WithValue(order.Id).Build(),
 
-                context.SaveChanges();
-            }
+                new ParameterBuilder<string>()
+                    .WithName("AccountId").WithValue(order.AccountId).Build(),
+
+                new ParameterBuilder<string>()
+                    .WithName("Status").WithValue(order.Status).Build(),
+
+                new ParameterBuilder<string>()
+                    .WithName("PaymentStatus").WithValue(order.PaymentStatus).Build(),
+
+                new ParameterBuilder<DateTime?>()
+                    .WithName("PlaceDate").WithValue(order.PlaceDate).Build(),
+
+                new ParameterBuilder<DateTime?>()
+                    .WithName("DeliveryDate").WithValue(order.DeliveryDate).Build(),
+
+                new ParameterBuilder<decimal?>()
+                    .WithName("TotalPrice").WithValue(order.TotalPrice).Build()
+            };
         }
     }
 }

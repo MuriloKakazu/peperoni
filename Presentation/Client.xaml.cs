@@ -1,6 +1,5 @@
-﻿using Data.Context;
-using Data.Encryption;
-using Data.Repository;
+﻿using Infrastructure.Encryption;
+using Infrastructure.Repository;
 using Domain.Service;
 using Newtonsoft.Json;
 using Presentation.Controllers;
@@ -19,6 +18,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Infrastructure.Data;
+using Domain.Builder;
+using Data.Model.PizzaShop;
+using Domain.Repository;
 
 namespace Presentation {
     /// <summary>
@@ -31,11 +34,11 @@ namespace Presentation {
             /* Account controller example */
             var accountController = new AccountController();
 
-            var account = accountController.FetchAccount("1a4095c1-d9f2-4546-873e-3993d86371c6");
+            var account = accountController.GetAccount("1a4095c1-d9f2-4546-873e-3993d86371c6");
             Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
-            account.Name = "Ms. Winter";
-            accountController.SaveAccount(account);
+            account.Name = "Mr. Winter";
+            account = accountController.SaveAccount(account);
 
             /* Order controller example */
             var orderController = new OrderExplorerController();

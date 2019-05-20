@@ -1,23 +1,22 @@
-﻿using Data.Context;
-using Data.Model.PizzaShop;
+﻿using Data.Model.PizzaShop;
 using Domain.Repository;
 using System;
 using System.Collections.Generic;
 
 namespace Presentation.Controllers {
     public class OrderExplorerController : OrderController {
-        private OrderRepository repository;
+        protected const int PAGE_SIZE = 20;
 
-        public OrderExplorerController() {
-            repository = new OrderRepository();
+        public OrderExplorerController() : 
+            base() {
         }
 
-        public List<Order> FetchOrders(int page) {
-            return repository.GetOrders(page, 25);
+        public ICollection<Order> FetchOrders(int page) {
+            return Repository.Fetch(PAGE_SIZE, page * PAGE_SIZE);
         }
 
-        public List<Order> SearchOrdersByAccount(Account account) {
-            return repository.FindOrdersByAccount(account);
+        public ICollection<Order> SearchOrdersByAccount(Account account) {
+            return Repository.FindOrdersByAccount(account.Id);
         }
     }
 }

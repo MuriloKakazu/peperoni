@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Data.Encryption {
+namespace Infrastructure.Encryption {
     [Serializable]
     public class Aes {
         private RijndaelManaged Rijndael = new RijndaelManaged();

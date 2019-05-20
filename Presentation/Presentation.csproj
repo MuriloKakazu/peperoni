@@ -128,9 +128,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
+    <ProjectReference Include="..\Data\Infrastructure.csproj">
       <Project>{1cdaf6a2-b159-4a86-863c-7f8542dd362d}</Project>
-      <Name>Data</Name>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{e1da7b11-f305-42d8-b229-814b7bcccac9}</Project>

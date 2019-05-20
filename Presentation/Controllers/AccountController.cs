@@ -1,26 +1,26 @@
-﻿using Data.Context;
-using Data.Model.PizzaShop;
+﻿using Data.Model.PizzaShop;
 using Domain.Repository;
 using System;
+using System.Collections.Generic;
 
 namespace Presentation.Controllers {
     public class AccountController {
-        private AccountRepository repository;
+        protected AccountRepository Repository { get; set; }
 
         public AccountController() {
-            repository = new AccountRepository();
+            Repository = new AccountRepository();
         }
 
-        public Account FetchAccount(string guid) {
-            return repository.GetAccountById(guid);
+        public Account GetAccount(string guid) {
+            return Repository.Get(guid);
         }
 
-        public void SaveAccount(Account account) {
-            repository.SaveAccount(account);
+        public Account SaveAccount(Account account) {
+            return Repository.Save(account);
         }
 
         public void DeleteAccount(Account account) {
-            repository.DeleteAccount(account);
+            Repository.Delete(account);
         }
     }
 }

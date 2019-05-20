@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Data.Encryption {
+namespace Infrastructure.Encryption {
     public static class Decrypt {
         public static Decryptor<string> Base64(string cipher) {
             return new Base64Decryptor(cipher);

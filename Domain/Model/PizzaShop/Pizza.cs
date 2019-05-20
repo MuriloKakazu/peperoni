@@ -1,16 +1,13 @@
 namespace Data.Model.PizzaShop {
+    using Infrastructure.Data;
     using Newtonsoft.Json;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
+    [Serializable]
     [Table("Pizza")]
-    public partial class Pizza {
-        [StringLength(36)]
-        public string Id { get; set; }
-
+    public partial class Pizza : AbstractEntity {
         [Required]
         [StringLength(36)]
         public string OrderId { get; set; }
@@ -36,15 +33,15 @@ namespace Data.Model.PizzaShop {
         public decimal? TotalPrice { get; set; }
 
         [JsonIgnore]
-        public virtual Order Order { get; set; }
+        public Order Order { get; set; }
 
         [JsonIgnore]
-        public virtual Product Border { get; set; }
+        public Product Border { get; set; }
 
         [JsonIgnore]
-        public virtual Product FirstTopping { get; set; }
+        public Product FirstTopping { get; set; }
 
         [JsonIgnore]
-        public virtual Product SecondTopping { get; set; }
+        public Product SecondTopping { get; set; }
     }
 }

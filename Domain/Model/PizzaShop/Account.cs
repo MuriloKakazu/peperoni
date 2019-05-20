@@ -1,21 +1,17 @@
 namespace Data.Model.PizzaShop {
+    using Infrastructure.Data;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Diagnostics.CodeAnalysis;
 
+    [Serializable]
     [Table("Account")]
-    public partial class Account {
-        [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public partial class Account : AbstractEntity {
         public Account() {
-            Orders = new HashSet<Order>();
+            Orders = new List<Order>();
         }
-
-        [StringLength(36)]
-        public string Id { get; set; }
 
         [Required]
         [StringLength(128)]
@@ -25,14 +21,13 @@ namespace Data.Model.PizzaShop {
         [StringLength(9)]
         public string Phone { get; set; }
 
-        public int StreetNumber { get; set; }
-
         [Required]
         [StringLength(8)]
         public string PostalCode { get; set; }
 
+        public int StreetNumber { get; set; }
+
         [JsonIgnore]
-        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

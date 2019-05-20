@@ -1,22 +1,18 @@
 namespace Data.Model.PizzaShop {
+    using Infrastructure.Data;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using System.Diagnostics.CodeAnalysis;
 
     [Table("Order")]
-    public partial class Order {
-        [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public partial class Order : AbstractEntity {
         public Order() {
-            Beverages = new HashSet<Beverage>();
-            Pizzas = new HashSet<Pizza>();
+            Account = new Account();
+            Pizzas = new List<Pizza>();
+            Beverages = new List<Beverage>();
         }
-
-        [StringLength(36)]
-        public string Id { get; set; }
 
         [Required]
         [StringLength(36)]
@@ -36,14 +32,12 @@ namespace Data.Model.PizzaShop {
         public decimal? TotalPrice { get; set; }
 
         [JsonIgnore]
-        public virtual Account Account { get; set; }
+        public Account Account { get; set; }
 
         [JsonIgnore]
-        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Beverage> Beverages { get; set; }
+        public ICollection<Pizza> Pizzas { get; set; }
 
         [JsonIgnore]
-        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pizza> Pizzas { get; set; }
+        public ICollection<Beverage> Beverages { get; set; }
     }
 }

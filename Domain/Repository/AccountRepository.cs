@@ -1,59 +1,61 @@
-﻿using Data.Context;
-using Data.Model.PizzaShop;
+﻿using Data.Model.PizzaShop;
+using Domain.Builder;
+using Domain.Repository.Strategies;
+using Infrastructure.Builder;
+using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Domain.Repository {
-    public class AccountRepository {
-        public List<Account> GetAccounts(int page, int limit) {
-            using (var context = new PeperoniContext()) {
-                return context
-                    .Accounts
-                    .OrderBy(account => account.Id)
-                    .Skip(limit * page)
-                    .Take(limit)
-                    .ToList();
-            }
+    public class AccountRepository : AbstractRepository<Account> {
+        public AccountRepository() :
+            base("Account") {
         }
 
-        public List<Account> FindAccountsByName(string name) {
-            using (var context = new PeperoniContext()) {
-                return context
-                    .Accounts
-                    .Where(account => 
-                        account.Name.ToLower().Contains(name.ToLower()))
-                    .ToList();
-            }
+        public ICollection<Account> FindAccountsByName(string name) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("Name").WithValue(name).Build();
+
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE Name LIKE '%@Name%'", parameter));
         }
 
-        public Account GetAccountById(string id) {
-            using (var context = new PeperoniContext()) {
-                return context
-                    .Accounts
-                    .Where(
-                        account => account.Id == id)
-                    .FirstOrDefault();
-            }
+        protected override Account Marshal(DataRow row) {
+            return new AccountBuilder(row).Build();
         }
 
-        public void SaveAccount(Account account) {
-            using (var context = new PeperoniContext()) {
-                context.Entry(account).State = String.IsNullOrWhiteSpace(account.Id)
-                    ? EntityState.Added
-                    : EntityState.Modified;
+        public override Account Save(Account account) {
+            ISaveStrategy<Account> strategy;
 
-                context.SaveChanges();
+            if (String.IsNullOrWhiteSpace(account.Id)) {
+                strategy = new AccountInsertStrategy(this);
+            } else {
+                strategy = new AccountUpdateStrategy(this);
             }
+
+            return strategy.Save(account);
         }
 
-        public void DeleteAccount(Account account) {
-            using (var context = new PeperoniContext()) {
-                context.Entry(account).State = EntityState.Deleted;
+        public override ICollection<SqlParameter> GetParameters(Account account) {
+            return new List<SqlParameter> {
+                new ParameterBuilder<string>()
+                    .WithName("Id").WithValue(account.Id).Build(),
 
-                context.SaveChanges();
-            }
+                new ParameterBuilder<string>()
+                    .WithName("Name").WithValue(account.Name).Build(),
+
+                new ParameterBuilder<string>()
+                    .WithName("Phone").WithValue(account.Phone).Build(),
+
+                new ParameterBuilder<string>()
+                    .WithName("PostalCode").WithValue(account.PostalCode).Build(),
+
+                new ParameterBuilder<int>()
+                    .WithName("StreetNumber").WithValue(account.StreetNumber).Build()
+            };
         }
     }
 }

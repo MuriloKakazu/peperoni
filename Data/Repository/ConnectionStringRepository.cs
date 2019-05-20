@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Data.Repository {
+namespace Infrastructure.Repository {
     public class ConnectionStringRepository {
         private static ConnectionStringSettingsCollection ConnectionStrings => ConfigurationManager.ConnectionStrings;
 

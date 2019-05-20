@@ -1,26 +1,25 @@
-﻿using Data.Context;
-using Data.Model.PizzaShop;
+﻿using Data.Model.PizzaShop;
 using Domain.Repository;
 using System;
 
 namespace Presentation.Controllers {
     public class OrderController {
-        private OrderRepository repository;
+        protected OrderRepository Repository { get; set; }
 
         public OrderController() {
-            repository = new OrderRepository();
+            Repository = new OrderRepository();
         }
 
         public Order FetchOrder(string guid) {
-            return repository.GetOrderById(guid);
+            return Repository.Get(guid);
         }
 
         public void SaveOrder(Order order) {
-            repository.SaveOrder(order);
+            Repository.Save(order);
         }
 
         public void DeleteOrder(Order order) {
-            repository.DeleteOrder(order);
+            Repository.Delete(order);
         }
     }
 }

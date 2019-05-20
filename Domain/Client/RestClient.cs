@@ -11,13 +11,13 @@ namespace Domain.Client {
         protected HttpClient Client { get; set; }
         protected HttpRequestMessage Request { get; set; }
         protected HttpResponseMessage Response { get; set; }
-        protected HashSet<HttpStatusCode> ExpectedStatuses { get; set; }
+        protected ICollection<HttpStatusCode> ExpectedStatuses { get; set; }
 
         public RestClient() {
             Client = new HttpClient();
             Request = new HttpRequestMessage();
             Response = new HttpResponseMessage();
-            ExpectedStatuses = new HashSet<HttpStatusCode>();
+            ExpectedStatuses = new List<HttpStatusCode>();
         }
 
         public RestClient<ResponseType> Header(string key, string value) {
@@ -41,7 +41,7 @@ namespace Domain.Client {
             return this;
         }
 
-        public RestClient<ResponseType> Expect(IEnumerable<HttpStatusCode> statusCodes) {
+        public RestClient<ResponseType> Expect(ICollection<HttpStatusCode> statusCodes) {
             foreach (var status in statusCodes) {
                 Expect(status);
             }
