@@ -22,6 +22,7 @@ using Infrastructure.Data;
 using Domain.Builder;
 using Data.Model.PizzaShop;
 using Domain.Repository;
+using Presentation.Pages;
 
 namespace Presentation {
     /// <summary>
@@ -50,6 +51,7 @@ namespace Presentation {
             anOrder.Status = "InProgress";
 
             orderController.SaveOrder(anOrder);
+            this.Content = new Home();
         }
     }
 }
