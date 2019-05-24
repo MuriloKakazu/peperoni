@@ -1,24 +1,28 @@
-﻿using Data.Model.PizzaShop;
-using Domain.Builder;
-using Domain.Engine;
-using Domain.Engine.Validator;
+﻿using Domain.Model.PizzaShop;
+using Domain.Rule.Validator;
 using Domain.Repository;
-using Domain.RuleBundle;
 using System;
+using Domain.Rule;
+using System.Linq;
 
 namespace Domain.Service {
     public class OrderService {
+        public static OrderService Instance { get; set; }
+        public static PriceService PriceService { get; set; }
         private OrderRepository Repository { get; set; }
 
-        public OrderService PlaceOrder(Order order) {
-            new NewOrderValidator(order).Validate();
-            new NewOrderRuleBundle(order).Apply();
+        static OrderService() {
+            Instance = new OrderService();
+            PriceService = PriceService.Instance;
+        }
 
-            Repository.Save(order);
+        public OrderService PlaceOrder(Order orderToPlace) {
+
+            new NewOrderValidator(orderToPlace).Validate();
+
+            Repository.Save(orderToPlace);
 
             return this;
         }
-
-
     }
 }

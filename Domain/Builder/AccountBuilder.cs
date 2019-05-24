@@ -1,5 +1,5 @@
-﻿using Data.Model.Geolocation;
-using Data.Model.PizzaShop;
+﻿using Domain.Model.Geolocation;
+using Domain.Model.PizzaShop;
 using Infrastructure.Util;
 using System;
 using System.Collections.Generic;

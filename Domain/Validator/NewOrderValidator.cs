@@ -1,7 +1,9 @@
-﻿using Data.Model.PizzaShop;
+﻿using Domain.Model.PizzaShop;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Domain.Engine.Validator {
+namespace Domain.Rule.Validator {
     public class NewOrderValidator {
         private List<Order> Orders { get; set; }
 
@@ -9,7 +11,7 @@ namespace Domain.Engine.Validator {
             Orders = new List<Order>();
         }
 
-        public NewOrderValidator(IEnumerable<Order> orders) : this() {
+        public NewOrderValidator(ICollection<Order> orders) : this() {
             Orders.AddRange(orders);
         }
 
@@ -19,17 +21,24 @@ namespace Domain.Engine.Validator {
 
         public NewOrderValidator Validate() {
             new RuleEngine<Order>(Orders)
-                .Apply(new HasAccount(), "Order must have an account")
-                .Execute();
+                .Apply(HasAccount, "O pedido deve estar associado a uma conta")
+                .Apply(HasItems, "O pedido precisa conter produtos")
+                .Apply(HasPrice, "O pedido precisa ter um preço válido")
+                .Run();
 
             return this;
         }
 
-        private class HasAccount : Predicate<Order> {
-            public bool IsValid(Order order) {
-                return
-                    order.AccountId != null;
-            }
+        bool HasAccount(Order order) {
+            return order.AccountId != null;
+        }
+
+        bool HasItems(Order order) {
+            return order.Beverages.Any() || order.Pizzas.Any();
+        }
+
+        bool HasPrice(Order order) {
+            return order.TotalPrice > 0;
         }
     }
 }

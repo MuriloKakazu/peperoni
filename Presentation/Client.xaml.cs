@@ -20,8 +20,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Infrastructure.Data;
 using Domain.Builder;
-using Data.Model.PizzaShop;
+using Domain.Model.PizzaShop;
 using Domain.Repository;
+using Domain.Rule.Validator;
 
 namespace Presentation {
     /// <summary>

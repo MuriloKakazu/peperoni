@@ -2,3 +2,5 @@
 	ADD CONSTRAINT [BeverageOrderConstraint]
 	FOREIGN KEY (OrderId)
 	REFERENCES [Order] (Id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
