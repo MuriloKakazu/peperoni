@@ -1,16 +1,18 @@
-﻿using Domain.Model.PizzaShop;
-using Domain.Builder;
-using Domain.Repository.Strategies;
-using Infrastructure.Builder;
+﻿using Infrastructure.Builder;
 using Infrastructure.Data;
+using Infrastructure.Repository;
+using Infrastructure.Repository.Strategies;
+using Domain.Builder;
+using Domain.Model.PizzaShop;
+using Domain.Repository.Strategies.Insert;
+using Domain.Repository.Strategies.Update;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 
 namespace Domain.Repository {
-    public class AccountRepository : AbstractRepository<Account> {
+    public class AccountRepository : AbstractEntityRepository<Account> {
         public AccountRepository() :
             base("Account") {
         }

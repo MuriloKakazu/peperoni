@@ -6,15 +6,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace Domain.Repository {
-    public abstract class AbstractRepository<T> : IRepository<T> where T : Entity {
+namespace Infrastructure.Repository {
+    public abstract class AbstractEntityRepository<T> : IEntityRepository<T> where T : Entity {
         protected string Entity { get; private set; }
 
         public abstract T Save(T entity);
         protected abstract T Marshal(DataRow row);
         public abstract ICollection<SqlParameter> GetParameters(T entity);
 
-        protected AbstractRepository(string entity) {
+        protected AbstractEntityRepository(string entity) {
             Entity = entity;
         }
 

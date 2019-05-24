@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Domain.Rule {
+namespace Infrastructure.Rule {
     public class RuleEngine<T> {
         private HashSet<string> AccumulatedErrors;
         private ICollection<T> Items;

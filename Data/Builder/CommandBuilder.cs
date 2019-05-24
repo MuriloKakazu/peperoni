@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 
 namespace Infrastructure.Builder {
-    public class CommandBuilder {
+    public class CommandBuilder : IBuilder<SqlCommand> {
         private SqlCommand Command;
 
         public CommandBuilder() {

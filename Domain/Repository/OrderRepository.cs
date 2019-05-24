@@ -1,8 +1,12 @@
-﻿using Domain.Model.PizzaShop;
-using Domain.Builder;
-using Domain.Repository.Strategies;
+﻿using Infrastructure.Data;
 using Infrastructure.Builder;
-using Infrastructure.Data;
+using Infrastructure.Repository;
+using Infrastructure.Repository.Strategies;
+using Domain.Builder;
+using Domain.Model.PizzaShop;
+using Domain.Repository.Strategies;
+using Domain.Repository.Strategies.Insert;
+using Domain.Repository.Strategies.Update;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Repository {
-    public class OrderRepository : AbstractRepository<Order> {
+    public class OrderRepository : AbstractEntityRepository<Order> {
         public OrderRepository() : 
             base("Order") {
         }
