@@ -1,6 +1,6 @@
-﻿using Data.Model.Geolocation;
-using Domain.Client;
-using Domain.Extension;
+﻿using Infrastructure.Client;
+using Infrastructure.Extension;
+using Domain.Model.Geolocation;
 using System;
 using System.Net;
 using System.Net.Http;

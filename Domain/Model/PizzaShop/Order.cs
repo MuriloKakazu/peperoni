@@ -1,4 +1,4 @@
-namespace Data.Model.PizzaShop {
+namespace Domain.Model.PizzaShop {
     using Infrastructure.Data;
     using Newtonsoft.Json;
     using System;
@@ -29,7 +29,7 @@ namespace Data.Model.PizzaShop {
         public DateTime? DeliveryDate { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal? TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         [JsonIgnore]
         public Account Account { get; set; }

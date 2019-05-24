@@ -6,5 +6,5 @@
     [PaymentStatus] VARCHAR(32) NULL DEFAULT 'Unpaid', 
     [PlaceDate] DATETIME NULL, 
     [DeliveryDate] DATETIME NULL, 
-    [TotalPrice] MONEY NULL DEFAULT 0.00
+    [TotalPrice] MONEY NOT NULL DEFAULT 0.00
 )

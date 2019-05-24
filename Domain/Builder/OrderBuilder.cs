@@ -1,4 +1,4 @@
-﻿using Data.Model.PizzaShop;
+﻿using Domain.Model.PizzaShop;
 using Infrastructure.Util;
 using System;
 using System.Collections.Generic;
