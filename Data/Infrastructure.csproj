@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Builder\CommandBuilder.cs" />
     <Compile Include="Builder\ParameterBuilder.cs" />
+    <Compile Include="Client\RestClient.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\AbstractEntity.cs" />
     <Compile Include="Data\DatabaseHelper.cs" />
@@ -63,6 +64,9 @@
     <Compile Include="Encryption\Aes.cs" />
     <Compile Include="Encryption\Decrypt.cs" />
     <Compile Include="Exceptions\DataIntegrityException.cs" />
+    <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="Extension\EnumFormattingExtension.cs" />
+    <Compile Include="Extension\StringFormattingExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AesRepository.cs" />
     <Compile Include="Repository\ConnectionStringRepository.cs" />
@@ -76,8 +80,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extension\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

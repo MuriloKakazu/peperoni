@@ -1,11 +1,11 @@
-﻿using Domain.Extension;
+﻿using Infrastructure.Extension;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
-namespace Domain.Client {
+namespace Infrastructure.Client {
 
     public class RestClient<ResponseType> {
         protected HttpClient Client { get; set; }

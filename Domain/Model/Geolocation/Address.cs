@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Data.Model.Geolocation {
+namespace Domain.Model.Geolocation {
     [Serializable]
     public class Address {
         public float Latitude { get; set; }

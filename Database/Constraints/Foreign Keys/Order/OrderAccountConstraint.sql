@@ -2,3 +2,5 @@
 	ADD CONSTRAINT [OrderAccountConstraint]
 	FOREIGN KEY (AccountId)
 	REFERENCES [Account] (Id)
+	ON UPDATE CASCADE 
+	ON DELETE CASCADE

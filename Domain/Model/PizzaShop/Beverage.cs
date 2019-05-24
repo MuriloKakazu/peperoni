@@ -1,4 +1,4 @@
-namespace Data.Model.PizzaShop {
+namespace Domain.Model.PizzaShop {
     using Infrastructure.Data;
     using Newtonsoft.Json;
     using System;

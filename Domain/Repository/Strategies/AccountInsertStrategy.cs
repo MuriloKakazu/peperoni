@@ -1,4 +1,4 @@
-﻿using Data.Model.PizzaShop;
+﻿using Domain.Model.PizzaShop;
 using Infrastructure.Builder;
 using Infrastructure.Data;
 

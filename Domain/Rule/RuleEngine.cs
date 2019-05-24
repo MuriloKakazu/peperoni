@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Domain.Engine {
-    public class RuleEngine<Type> {
-        private ICollection<string> AccumulatedErrors;
-        private List<Type> Items;
+namespace Domain.Rule {
+    public class RuleEngine<T> {
+        private HashSet<string> AccumulatedErrors;
+        private ICollection<T> Items;
 
-        public RuleEngine(List<Type> items) {
-            AccumulatedErrors = new List<string>();
+        public RuleEngine(ICollection<T> items) {
+            AccumulatedErrors = new HashSet<string>();
             Items = items;
         }
 
-        public RuleEngine(Type item) {
-            AccumulatedErrors = new List<string>();
-            Items = new List<Type> { item };
+        public RuleEngine(T item) {
+            AccumulatedErrors = new HashSet<string>();
+            Items = new List<T> { item };
         }
 
-        public RuleEngine<Type> Apply(Rule<Type> rule) {
+        public RuleEngine<T> Apply(Action<T> action) {
             foreach (var item in Items) {
-                rule.Apply(item);
+                action.Invoke(item);
             }
 
             return this;
         }
 
-        public RuleEngine<Type> Apply(Predicate<Type> predicate, string errorMessage) {
+        public RuleEngine<T> Apply(Predicate<T> predicate, string errorMessage) {
             foreach (var item in Items) {
-                if (!predicate.IsValid(item)) {
+                if (!predicate.Invoke(item)) {
                     AccumulatedErrors.Add(errorMessage);
                 }
             }
@@ -34,7 +34,7 @@ namespace Domain.Engine {
             return this;
         }
 
-        public RuleEngine<Type> Execute() {
+        public RuleEngine<T> Run() {
             if (AccumulatedErrors.Count > 0) {
                 throw new RuleEngineException(GetErrors());
             }
