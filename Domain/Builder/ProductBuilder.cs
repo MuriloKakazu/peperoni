@@ -1,5 +1,6 @@
-﻿using Domain.Model.PizzaShop;
-using Infrastructure.Util;
+﻿using Infrastructure.Util;
+using Infrastructure.Builder;
+using Domain.Model.PizzaShop;
 using System;
 using System.Data;
 

@@ -2,11 +2,11 @@
 using Infrastructure.Exceptions;
 using System;
 
-namespace Domain.Repository.Strategies {
+namespace Infrastructure.Repository.Strategies {
     public abstract class AbstractInsertStrategy<T> : ISaveStrategy<T> where T : Entity {
-        protected IRepository<T> Repository { get; set; }
+        protected IEntityRepository<T> Repository { get; set; }
 
-        public AbstractInsertStrategy(IRepository<T> repository) {
+        public AbstractInsertStrategy(IEntityRepository<T> repository) {
             Repository = repository;
         }
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace Domain.Repository {
-    public interface IRepository<T> where T : Entity {
+namespace Infrastructure.Repository {
+    public interface IEntityRepository<T> where T : Entity {
         bool Exists(string id);
         T Get(string id);
         T Save(T entity);
