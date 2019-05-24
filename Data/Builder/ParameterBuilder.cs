@@ -1,11 +1,10 @@
-﻿using Infrastructure.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
 namespace Infrastructure.Builder {
-    public class ParameterBuilder<T> {
+    public class ParameterBuilder<T> : IBuilder<SqlParameter> {
         private SqlParameter Parameter;
 
         public ParameterBuilder() {

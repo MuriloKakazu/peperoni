@@ -1,8 +1,7 @@
-﻿using Domain.Model.PizzaShop;
+﻿using Domain.Repository;
 using Domain.Rule.Validator;
-using Domain.Repository;
+using Domain.Model.PizzaShop;
 using System;
-using Domain.Rule;
 using System.Linq;
 
 namespace Domain.Service {

@@ -1,9 +1,10 @@
-﻿using Domain.Model.Geolocation;
+﻿using Infrastructure.Util;
+using Infrastructure.Builder;
+using Domain.Model.Geolocation;
 using Domain.Model.PizzaShop;
-using Infrastructure.Util;
 using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Collections.Generic;
 
 namespace Domain.Builder {
     public class AccountBuilder : IBuilder<Account> {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Repository.Strategies {
+namespace Infrastructure.Repository.Strategies {
     public interface ISaveStrategy<T> where T : Entity {
         T Save(T entity);
     }
