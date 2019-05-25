@@ -50,7 +50,6 @@ namespace Presentation {
 
             //var anOrder = accountOrders.First();
             //anOrder.Status = "InProgress";
-
             //orderController.SaveOrder(anOrder);
             this.Content = new Home();
         }

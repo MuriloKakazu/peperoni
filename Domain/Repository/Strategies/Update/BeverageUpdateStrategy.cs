@@ -16,10 +16,8 @@ namespace Domain.Repository.Strategies.Update {
                 .WithParameters(Repository.GetParameters(beverage))
                  .WithSql("UPDATE [Beverage] SET " +
                              "OrderId = @OrderId, " +
-                             "ProductId = @ProductId " +
+                             "ProductId = @ProductId, " +
                              "Quantity = @Quantity " +
-                             "UnitPrice = @UnitPrice " +
-                             "TotalPrice = @TotalPrice " +
                          "WHERE Id = @Id")
                 .Build();
 

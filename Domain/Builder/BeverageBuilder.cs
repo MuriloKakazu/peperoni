@@ -32,14 +32,6 @@ namespace Domain.Builder {
             Optional.Of(row["Quantity"])
                 .IfPresent(value => {
                     WithQuantity(Convert.ToInt32(value)); });
-
-            Optional.Of(row["UnitPrice"])
-                .IfPresent(value => {
-                    WithUnitPrice(Convert.ToDecimal(value)); });
-
-            Optional.Of(row["TotalPrice"])
-                .IfPresent(value => {
-                    WithTotalPrice(Convert.ToDecimal(value)); });
         }
 
         public BeverageBuilder WithId(string id) {
@@ -53,20 +45,6 @@ namespace Domain.Builder {
             Optional.Of(quantity)
                 .IfPresent(() => {
                     Beverage.Quantity = quantity; });
-            return this;
-        }
-
-        public BeverageBuilder WithUnitPrice(decimal unitPrice) {
-            Optional.Of(unitPrice)
-                .IfPresent(() => {
-                    Beverage.UnitPrice = unitPrice; });
-            return this;
-        }
-
-        public BeverageBuilder WithTotalPrice(decimal totalPrice) {
-            Optional.Of(totalPrice)
-                .IfPresent(() => {
-                    Beverage.TotalPrice = totalPrice; });
             return this;
         }
 

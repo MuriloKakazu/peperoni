@@ -19,10 +19,10 @@ namespace Domain.Repository {
 
         public ICollection<Account> FindAccountsByName(string name) {
             var parameter = new ParameterBuilder<string>()
-                .WithName("Name").WithValue(name).Build();
+                .WithName("Name").WithValue('%' + name + '%').Build();
 
             return Marshal(
-                Database.Query($"SELECT * FROM [{Entity}] WHERE Name LIKE '%@Name%'", parameter));
+                Database.Query($"SELECT * FROM [{Entity}] WHERE Name LIKE @Name", parameter));
         }
 
         protected override Account Marshal(DataRow row) {

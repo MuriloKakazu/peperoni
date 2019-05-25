@@ -21,22 +21,30 @@ namespace Infrastructure.Util {
         }
 
         public Optional<T> IfPresent(Action<T> action) {
-            action.Invoke(Value);
+            if (IsPresent) {
+                action.Invoke(Value);
+            }
             return this;
         }
 
         public Optional<T> IfPresent(Action action) {
-            action.Invoke();
+            if (IsPresent) {
+                action.Invoke();
+            }
             return this;
         }
 
         public Optional<T> IfNotPresent(Action<T> action) {
-            action.Invoke(Value);
+            if (!IsPresent) {
+                action.Invoke(Value);
+            }
             return this;
         }
 
         public Optional<T> IfNotPresent(Action action) {
-            action.Invoke();
+            if (!IsPresent) {
+                action.Invoke();
+            }
             return this;
         }
 

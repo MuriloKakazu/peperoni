@@ -14,8 +14,8 @@ namespace Domain.Repository.Strategies.Insert {
 
             var command = new CommandBuilder()
                 .WithParameters(Repository.GetParameters(pizza))
-                .WithSql("INSERT INTO [Pizza] (Id, OrderId, FirstToppingId, SecondToppingId, BorderId, Quantity, UnitPrice, TotalPrice) " +
-                         "VALUES (@Id, @OrderId, @FirstToppingId, @SecondToppingId, @BorderId, @Quantity, @UnitPrice, @TotalPrice)")
+                .WithSql("INSERT INTO [Pizza] (Id, OrderId, FirstToppingId, SecondToppingId, BorderId, Quantity) " +
+                         "VALUES (@Id, @OrderId, @FirstToppingId, @SecondToppingId, @BorderId, @Quantity)")
                 .Build();
 
             Database.Execute(command);
