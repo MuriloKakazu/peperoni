@@ -14,8 +14,8 @@ namespace Domain.Repository.Strategies.Insert {
 
             var command = new CommandBuilder()
                 .WithParameters(Repository.GetParameters(order))
-                .WithSql("INSERT INTO [Order] (Id, AccountId, Status, PaymentStatus, PlaceDate, DeliveryDate, TotalPrice) " +
-                         "VALUES (@Id, @AccountId, @Status, @PaymentStatus, @PlaceDate, @DeliveryDate, @TotalPrice)")
+                .WithSql("INSERT INTO [Order] (Id, AccountId, Status, PaymentStatus, PlaceDate, DeliveryDate) " +
+                         "VALUES (@Id, @AccountId, @Status, @PaymentStatus, @PlaceDate, @DeliveryDate)")
                 .Build();
 
             Database.Execute(command);

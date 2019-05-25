@@ -4,6 +4,7 @@ namespace Domain.Model.PizzaShop {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     [Serializable]
     [Table("Pizza")]
@@ -26,11 +27,9 @@ namespace Domain.Model.PizzaShop {
 
         public int Quantity { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal UnitPrice { get; set; }
+        public decimal UnitPrice { get => GetUnitPrice(); }
 
-        [Column(TypeName = "money")]
-        public decimal TotalPrice { get; set; }
+        public decimal TotalPrice { get => UnitPrice * Quantity; }
 
         [JsonIgnore]
         public Order Order { get; set; }
@@ -43,5 +42,20 @@ namespace Domain.Model.PizzaShop {
 
         [JsonIgnore]
         public Product SecondTopping { get; set; }
+
+        protected decimal GetUnitPrice() {
+            var borderPrice = GetBorderPrice();
+            var toppingPrice = GetToppingPrice();
+
+            return borderPrice + toppingPrice;
+        }
+
+        protected decimal GetBorderPrice() {
+            return (Border?.ListPrice).Value;
+        }
+
+        protected decimal GetToppingPrice() {
+            return new[] { FirstTopping, SecondTopping }.Max(t => (t?.ListPrice).Value);
+        }
     }
 }

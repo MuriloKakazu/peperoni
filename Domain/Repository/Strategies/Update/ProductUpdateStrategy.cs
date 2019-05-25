@@ -16,7 +16,7 @@ namespace Domain.Repository.Strategies.Update {
                 .WithParameters(Repository.GetParameters(product))
                  .WithSql("UPDATE [Product] SET " +
                              "Name = @Name, " +
-                             "Family = @Family " +
+                             "Family = @Family, " +
                              "ListPrice = @ListPrice " +
                          "WHERE Id = @Id")
                 .Build();

@@ -19,8 +19,7 @@ namespace Domain.Repository.Strategies.Update {
                              "Status = @Status, " +
                              "PaymentStatus = @PaymentStatus, " +
                              "PlaceDate = @PlaceDate, " +
-                             "DeliveryDate = @DeliveryDate, " +
-                             "TotalPrice = @TotalPrice " +
+                             "DeliveryDate = @DeliveryDate " +
                          "WHERE Id = @Id")
                 .Build();
 

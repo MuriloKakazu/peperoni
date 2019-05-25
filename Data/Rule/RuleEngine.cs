@@ -34,6 +34,40 @@ namespace Infrastructure.Rule {
             return this;
         }
 
+        public RuleEngine<T> Apply(Predicate<T> predicate, Action<T> action) {
+            foreach (var item in Items) {
+                if (predicate.Invoke(item)) {
+                    action.Invoke(item);
+                }
+            }
+
+            return this;
+        }
+
+        public RuleEngine<T> Apply(Predicate<T> predicate, Action<T> successAction, Action<T> failAction) {
+            foreach (var item in Items) {
+                if (predicate.Invoke(item)) {
+                    successAction.Invoke(item);
+                } else {
+                    failAction.Invoke(item);
+                }
+            }
+
+            return this;
+        }
+
+        public RuleEngine<T> Apply(Predicate<T> predicate, Action<T> successAction, string errorMessage) {
+            foreach (var item in Items) {
+                if (predicate.Invoke(item)) {
+                    successAction.Invoke(item);
+                } else {
+                    AccumulatedErrors.Add(errorMessage);
+                }
+            }
+
+            return this;
+        }
+
         public RuleEngine<T> Run() {
             if (AccumulatedErrors.Count > 0) {
                 throw new RuleEngineException(GetErrors());

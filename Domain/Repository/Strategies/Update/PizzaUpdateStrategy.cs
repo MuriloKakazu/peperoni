@@ -18,10 +18,8 @@ namespace Domain.Repository.Strategies.Update {
                              "OrderId = @OrderId, " +
                              "FirstToppingId = @FirstToppingId, " +
                              "SecondToppingId = @SecondToppingId, " +
-                             "BorderId = @BorderId " +
+                             "BorderId = @BorderId, " +
                              "Quantity = @Quantity " +
-                             "UnitPrice = @UnitPrice " +
-                             "TotalPrice = @TotalPrice " +
                          "WHERE Id = @Id")
                 .Build();
 

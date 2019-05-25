@@ -5,6 +5,5 @@
     [Status] VARCHAR(32) NULL DEFAULT 'Enqueued', 
     [PaymentStatus] VARCHAR(32) NULL DEFAULT 'Unpaid', 
     [PlaceDate] DATETIME NULL, 
-    [DeliveryDate] DATETIME NULL, 
-    [TotalPrice] MONEY NOT NULL DEFAULT 0.00
+    [DeliveryDate] DATETIME NULL
 )
