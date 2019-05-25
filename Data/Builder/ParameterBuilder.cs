@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Infrastructure.Util;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -27,7 +29,9 @@ namespace Infrastructure.Builder {
         }
 
         public ParameterBuilder<T> WithValue(T value) {
-            Parameter.Value = value;
+            Optional.Of(value)
+                .IfPresent(() => { Parameter.Value = value; })
+                .IfNotPresent(() => { Parameter.Value = DBNull.Value; });
             return this;
         }
 

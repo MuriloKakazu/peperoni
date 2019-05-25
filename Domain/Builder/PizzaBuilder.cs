@@ -32,14 +32,6 @@ namespace Domain.Builder {
                 .IfPresent(value => {
                     WithQuantity(Convert.ToInt32(value)); });
 
-            Optional.Of(row["UnitPrice"])
-                .IfPresent(value => {
-                    WithUnitPrice(Convert.ToDecimal(value)); });
-
-            Optional.Of(row["TotalPrice"])
-                .IfPresent(value => {
-                    WithTotalPrice(Convert.ToDecimal(value)); });
-
             Optional.Of(row["FirstToppingId"])
                 .IfPresent(value => {
                     WithFirstTopping(value as String); });
@@ -64,20 +56,6 @@ namespace Domain.Builder {
             Optional.Of(quantity)
                 .IfPresent(() => {
                     Pizza.Quantity = quantity; });
-            return this;
-        }
-
-        public PizzaBuilder WithUnitPrice(decimal unitPrice) {
-            Optional.Of(unitPrice)
-                .IfPresent(() => {
-                    Pizza.UnitPrice = unitPrice; });
-            return this;
-        }
-
-        public PizzaBuilder WithTotalPrice(decimal totalPrice) {
-            Optional.Of(totalPrice)
-                .IfPresent(() => {
-                    Pizza.TotalPrice = totalPrice; });
             return this;
         }
 

@@ -5,6 +5,7 @@ namespace Domain.Model.PizzaShop {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     [Table("Order")]
     public partial class Order : AbstractEntity {
@@ -29,7 +30,7 @@ namespace Domain.Model.PizzaShop {
         public DateTime? DeliveryDate { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal TotalPrice { get; set; }
+        public decimal TotalPrice { get => GetTotalPrice(); }
 
         [JsonIgnore]
         public Account Account { get; set; }
@@ -39,5 +40,10 @@ namespace Domain.Model.PizzaShop {
 
         [JsonIgnore]
         public ICollection<Beverage> Beverages { get; set; }
+
+        public decimal GetTotalPrice() {
+            return Pizzas.Sum(p => p.TotalPrice) +
+                Beverages.Sum(b => b.TotalPrice);
+        }
     }
 }
