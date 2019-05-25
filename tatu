@@ -1,0 +1,120 @@
+[33mcommit cacf7975020107f3ecc9a29ffc3560e1a7822682[m[33m ([m[1;36mHEAD -> [m[1;32mmoving-yet-again[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Fri May 24 20:23:03 2019 -0300
+
+    moved and renamed stuff
+
+[33mcommit 5535a112077acbc075abee720bd586eeb216074c[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun May 19 23:50:47 2019 -0300
+
+    refactoring to remove EF6, since professor prohibits, lol
+
+[33mcommit 440794f13b90c34717ac8fb2b027fef950e38237[m
+Merge: a1602f8 f6af565
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun May 5 20:41:58 2019 -0300
+
+    Merge branch 'master' of https://github.com/MuriloKakazu/peperoni
+
+[33mcommit a1602f87f5b7162a284eae5f7f4fda75b7b24d70[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun May 5 20:41:41 2019 -0300
+
+    remove unnecessary files
+
+[33mcommit f6af565da4eea28d75e45cb1a97e8123f5580751[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun May 5 20:33:46 2019 -0300
+
+    update readme
+
+[33mcommit 6bdcdeb9baf2e41ef0def8854618721aa582648f[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun May 5 20:20:51 2019 -0300
+
+    remove unnecessary files
+
+[33mcommit 8b77d1f91f8a171d70710d9afe9c5dcac843fc39[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun May 5 19:51:47 2019 -0300
+
+    refactoring + new controllers and repositores
+
+[33mcommit 9dfd7b0d95aa8ecbafbb0defcdba0f5cd2351b4a[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sat May 4 22:20:00 2019 -0300
+
+    remove extra layer
+
+[33mcommit 002b7d074d0f3f2e2ba3678198fa779b5262c584[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sat May 4 21:59:54 2019 -0300
+
+    added connection service and encryption
+
+[33mcommit 7377ab2681978add685f79f37e7235049f4fe53b[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Wed May 1 21:09:02 2019 -0300
+
+    update readme
+    
+    ### Why
+    Inform that this project is a college assignment
+
+[33mcommit 22df09b2d823e57fa465cdf43c316d8d521c0708[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Wed May 1 17:04:09 2019 -0300
+
+    created model, address service and rest client
+
+[33mcommit 383356fc17aa7e3cec21848ef648f8fe2a1528dd[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Mon Apr 29 23:22:15 2019 -0300
+
+    introducing model layer
+
+[33mcommit 34953647598feb506ae6f8cd630d5712d3172e25[m
+Merge: 16ac253 b9eba9a
+Author: Murilo Parra Pires <33543667+mupapi@users.noreply.github.com>
+Date:   Mon Apr 29 15:12:01 2019 -0300
+
+    Merge pull request #1 from MuriloKakazu/add-functions
+    
+    added functions and tweaked tables
+
+[33mcommit b9eba9a6a31c2a9305555120763b49acda81843d[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun Apr 28 16:51:33 2019 -0300
+
+    added more functions and types
+
+[33mcommit 918b57d1a2c3ae6078f2b542cd27b50eb8e1eec5[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun Apr 28 03:23:27 2019 -0300
+
+    added functions and tweaked tables
+
+[33mcommit 16ac253461ba654c4d6ca82d308a92dba83dc8f1[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Sun Apr 28 02:43:22 2019 -0300
+
+    introducing database schema
+
+[33mcommit dcac705797590f39d284b543d3b924822f9a8cbe[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Wed Apr 17 20:21:22 2019 -0300
+
+    add layers to solution
+
+[33mcommit f92c609c85a83e3579e9e5fb53d8ccda327533fd[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Tue Apr 16 22:12:09 2019 -0300
+
+    update readme
+
+[33mcommit 68d401bde9614002bb3adce0de08e88eed5c8908[m
+Author: Murilo Kakazu <yuri.kakazu@gmail.com>
+Date:   Tue Apr 16 22:07:00 2019 -0300
+
+    Initial commit

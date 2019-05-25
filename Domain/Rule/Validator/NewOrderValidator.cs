@@ -1,4 +1,5 @@
-﻿using Domain.Model.PizzaShop;
+﻿using Infrastructure.Rule;
+using Domain.Model.PizzaShop;
 using System;
 using System.Collections.Generic;
 using System.Linq;

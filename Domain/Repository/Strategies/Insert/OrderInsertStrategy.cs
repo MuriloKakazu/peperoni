@@ -1,8 +1,9 @@
-﻿using Domain.Model.PizzaShop;
+﻿using Infrastructure.Data;
 using Infrastructure.Builder;
-using Infrastructure.Data;
+using Infrastructure.Repository.Strategies;
+using Domain.Model.PizzaShop;
 
-namespace Domain.Repository.Strategies {
+namespace Domain.Repository.Strategies.Insert {
     public class OrderInsertStrategy : AbstractInsertStrategy<Order> {
         public OrderInsertStrategy(OrderRepository repository) : 
             base(repository) {

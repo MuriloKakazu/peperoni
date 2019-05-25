@@ -1,8 +1,9 @@
-﻿using Domain.Model.PizzaShop;
+﻿using Infrastructure.Data;
 using Infrastructure.Builder;
-using Infrastructure.Data;
+using Infrastructure.Repository.Strategies;
+using Domain.Model.PizzaShop;
 
-namespace Domain.Repository.Strategies {
+namespace Domain.Repository.Strategies.Update {
     internal class OrderUpdateStrategy : AbstractUpdateStrategy<Order> {
         public OrderUpdateStrategy(OrderRepository repository) : 
             base(repository) {
