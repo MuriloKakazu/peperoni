@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 		{E6139334-3FBC-4C66-89B4-7CC7E3E5906C} = {E6139334-3FBC-4C66-89B4-7CC7E3E5906C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Data\Infrastructure.csproj", "{1CDAF6A2-B159-4A86-863C-7F8542DD362D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{1CDAF6A2-B159-4A86-863C-7F8542DD362D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E6139334-3FBC-4C66-89B4-7CC7E3E5906C} = {E6139334-3FBC-4C66-89B4-7CC7E3E5906C}
 	EndProjectSection
