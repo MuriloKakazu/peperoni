@@ -21,10 +21,10 @@ namespace Domain.Rule.Validator {
         }
 
         public NewOrderValidator Validate() {
-            new RuleEngine<Order>(Orders)
-                .Apply(HasAccount, "O pedido deve estar associado a uma conta")
-                .Apply(HasItems, "O pedido precisa conter produtos")
-                .Apply(HasPrice, "O pedido precisa ter um preço válido")
+            new Validator<Order>(Orders)
+                .Ensure(HasAccount, "O pedido deve estar associado a uma conta")
+                .Ensure(HasItems, "O pedido precisa conter produtos")
+                .Ensure(HasPrice, "O pedido precisa ter um preço válido")
                 .Run();
 
             return this;

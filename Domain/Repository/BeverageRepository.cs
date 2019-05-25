@@ -16,8 +16,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Repository {
     public class BeverageRepository : AbstractEntityRepository<Beverage> {
+        protected override ISaveStrategy<Beverage> InsertStrategy { get; set; }
+        protected override ISaveStrategy<Beverage> UpdateStrategy { get; set; }
+
         public BeverageRepository() : 
             base("Beverage") {
+
+            InsertStrategy = new BeverageInsertStrategy(this);
+            UpdateStrategy = new BeverageUpdateStrategy(this);
         }
 
         public ICollection<Beverage> FindBeveragesByOrder(string orderId) {
@@ -26,18 +32,6 @@ namespace Domain.Repository {
 
             return Marshal(
                 Database.Query($"SELECT * FROM [{Entity}] WHERE OrderId = @OrderId", parameter));
-        }
-
-        public override Beverage Save(Beverage beverage) {
-            ISaveStrategy<Beverage> strategy;
-
-            if (String.IsNullOrWhiteSpace(beverage.Id)) {
-                strategy = new BeverageInsertStrategy(this);
-            } else {
-                strategy = new BeverageUpdateStrategy(this);
-            }
-
-            return strategy.Save(beverage);
         }
 
         protected override Beverage Marshal(DataRow row) {

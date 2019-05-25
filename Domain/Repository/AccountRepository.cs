@@ -13,8 +13,14 @@ using System.Data.SqlClient;
 
 namespace Domain.Repository {
     public class AccountRepository : AbstractEntityRepository<Account> {
+        protected override ISaveStrategy<Account> InsertStrategy { get; set; }
+        protected override ISaveStrategy<Account> UpdateStrategy { get; set; }
+
         public AccountRepository() :
             base("Account") {
+
+            InsertStrategy = new AccountInsertStrategy(this);
+            UpdateStrategy = new AccountUpdateStrategy(this);
         }
 
         public ICollection<Account> FindAccountsByName(string name) {
@@ -29,18 +35,6 @@ namespace Domain.Repository {
             return new AccountBuilder(row)
                 .FetchOrders()
                 .Build();
-        }
-
-        public override Account Save(Account account) {
-            ISaveStrategy<Account> strategy;
-
-            if (String.IsNullOrWhiteSpace(account.Id)) {
-                strategy = new AccountInsertStrategy(this);
-            } else {
-                strategy = new AccountUpdateStrategy(this);
-            }
-
-            return strategy.Save(account);
         }
 
         public override ICollection<SqlParameter> GetParameters(Account account) {
