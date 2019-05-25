@@ -24,6 +24,7 @@ namespace Presentation.Pages
         {
             InitializeComponent();
             userImage.Source = new BitmapImage(new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}\assets\images\avatar-panda.png"));
+            
         }
 
         private void ToggleMenuSection(object sender, MouseButtonEventArgs e) {
@@ -53,6 +54,18 @@ namespace Presentation.Pages
             label.Visibility = label.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        
+        private void changeFrameContent(object sender, MouseButtonEventArgs e) {
+            myFrame.Content = new AccountSelection();
+        }
+
+        private void previousPage(object sender, RoutedEventArgs e) {
+            myFrame.NavigationService.GoBack();
+        }
+
+        private void nextPage(object sender, RoutedEventArgs e) {
+            if(myFrame.NavigationService.CanGoForward) {
+                myFrame.NavigationService.GoForward();
+            }
+        }
     }
 }

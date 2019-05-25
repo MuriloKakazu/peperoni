@@ -1,0 +1,26 @@
+﻿<Page x:Class="Presentation.Pages.AccountSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Presentation.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="AccountSelection">
+
+    <Grid >
+        <DockPanel >
+            <DockPanel Margin="10" DockPanel.Dock="Top" >
+                <Label VerticalAlignment="Top" Margin="0 0 10 0" FontSize="17px">
+                    Nome da conta
+                </Label>
+                <TextBox x:Name="accountNameInput" FontSize="16px" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyDown="TextBox_KeyDown" />
+            </DockPanel>
+            
+            <Button VerticalAlignment="Top" MaxWidth="160px" DockPanel.Dock="Bottom" Margin="10 5 10 10">
+                Nova Conta
+            </Button>
+            <ListView x:Name="accountListView"  Margin="10" DockPanel.Dock="Top"/>
+        </DockPanel>
+    </Grid>
+</Page>

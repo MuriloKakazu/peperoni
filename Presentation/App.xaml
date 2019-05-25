@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:Presentation"
              StartupUri="Client.xaml">
     <Application.Resources>
-         
+        <ControlTemplate x:Key="Page" TargetType="Page">
+            <Grid>
+                <Button Height="100" Width="100" >
+                    OK
+                </Button>
+                <Button Height="100" Width="100" >
+                    OK
+                </Button>
+            </Grid>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

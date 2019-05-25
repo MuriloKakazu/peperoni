@@ -33,25 +33,25 @@ namespace Presentation {
         public Client() {
             InitializeComponent();
 
-            /* Account controller example */
-            var accountController = new AccountController();
+            ///* Account controller example */
+            //var accountController = new AccountController();
 
-            var account = accountController.GetAccount("1a4095c1-d9f2-4546-873e-3993d86371c6");
-            Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
+            //var account = accountController.GetAccount("1a4095c1-d9f2-4546-873e-3993d86371c6");
+            //Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
-            account.Name = "Mr. Winter";
-            account = accountController.SaveAccount(account);
+            //account.Name = "Mr. Winter";
+            //account = accountController.SaveAccount(account);
 
-            /* Order controller example */
-            var orderController = new OrderExplorerController();
+            ///* Order controller example */
+            //var orderController = new OrderExplorerController();
 
-            var accountOrders = orderController.SearchOrdersByAccount(account);
-            Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
+            //var accountOrders = orderController.SearchOrdersByAccount(account);
+            //Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
 
-            var anOrder = accountOrders.First();
-            anOrder.Status = "InProgress";
+            //var anOrder = accountOrders.First();
+            //anOrder.Status = "InProgress";
 
-            orderController.SaveOrder(anOrder);
+            //orderController.SaveOrder(anOrder);
             this.Content = new Home();
         }
     }

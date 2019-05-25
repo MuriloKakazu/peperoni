@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Home">
-
     <Grid>
         <DockPanel Background="#FFFBFAEC" >
             <DockPanel HorizontalAlignment="Left" Background="#FFEAE9E8" MinWidth="150" DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True">
@@ -25,7 +24,7 @@
                                 <Label Content="Pedidos" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                                 <Label Content=">" FontSize="16"  HorizontalAlignment="Right" Margin="8 0 4 0"/>
                             </DockPanel>
-                            <Label Content="Novo" FontSize="13" Padding="20 5 0 5"/>
+                            <Label Content="Novo" FontSize="13" Padding="20 5 0 5" MouseLeftButtonDown="changeFrameContent"/>
                             <Label Content="Buscar" FontSize="13" Padding="20 5 0 5" />
                             <Label Content="Cancelar" FontSize="13" Padding="20 5 0 5"/>
                         </StackPanel>
@@ -52,11 +51,19 @@
                 </ScrollViewer>
                 <Label Content="Version 1.0.0.1" DockPanel.Dock="Bottom" VerticalAlignment="Bottom"/>
             </DockPanel>
-            <Grid HorizontalAlignment="Right">
-                <Frame Name="myFrame">
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Button HorizontalAlignment="Left" Margin="5" Click="previousPage" Width="60">
+                        Previous
+                    </Button>
+                    <Button HorizontalAlignment="Left" Margin="5" Click="nextPage" Width="60">
+                        Next
+                    </Button>
+                </DockPanel>
+                <Frame Name="myFrame" NavigationUIVisibility="Hidden">
 
                 </Frame>
-            </Grid>
+            </DockPanel>
         </DockPanel>
     </Grid>
 </Page>
