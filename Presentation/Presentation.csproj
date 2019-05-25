@@ -95,6 +95,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountExplorerController.cs" />
+    <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -42,7 +42,10 @@ namespace Domain.Repository {
         }
 
         protected override Order Marshal(DataRow row) {
-            return new OrderBuilder(row).Build();
+            return new OrderBuilder(row)
+                .FetchPizzas()
+                .FetchBeverages()
+                .Build();
         }
 
         public override ICollection<SqlParameter> GetParameters(Order order) {

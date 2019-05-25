@@ -18,11 +18,11 @@ namespace Infrastructure.Repository {
             Entity = entity;
         }
 
-        public bool Exists(string id) {
+        public virtual bool Exists(string id) {
             return Get(new string[] { id }).Any();
         }
 
-        public T Get(string id) {
+        public virtual T Get(string id) {
             var idParameter = new ParameterBuilder<string>()
                 .WithName("Id").WithValue(id).Build();
 
@@ -30,7 +30,7 @@ namespace Infrastructure.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] WHERE Id = @Id", idParameter).FirstOrDefault());
         }
 
-        public ICollection<T> Get(params string[] ids) {
+        public virtual ICollection<T> Get(params string[] ids) {
             var idParameter = new ParameterBuilder<string>()
                 .WithName("Ids").WithValue(Flatten.Strings(ids)).Build();
 
@@ -38,7 +38,7 @@ namespace Infrastructure.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] WHERE Id IN (@Ids)", idParameter));
         }
 
-        public ICollection<T> Fetch(int limit = 100, int offset = 0) {
+        public virtual ICollection<T> Fetch(int limit = 100, int offset = 0) {
             var limitParameter = new ParameterBuilder<int>()
                 .WithName("Limit").WithValue(limit).Build();
 
@@ -49,7 +49,7 @@ namespace Infrastructure.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] ORDER BY Id LIMIT @Limit OFFSET @Offset", limitParameter, offsetParameter));
         }
 
-        public void Delete(T entity) {
+        public virtual void Delete(T entity) {
             var idParameter = new ParameterBuilder<string>()
                 .WithName("Id").WithValue(entity.Id).Build();
 

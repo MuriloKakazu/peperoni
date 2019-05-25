@@ -26,7 +26,9 @@ namespace Domain.Repository {
         }
 
         protected override Account Marshal(DataRow row) {
-            return new AccountBuilder(row).Build();
+            return new AccountBuilder(row)
+                .FetchOrders()
+                .Build();
         }
 
         public override Account Save(Account account) {

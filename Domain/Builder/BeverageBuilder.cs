@@ -3,6 +3,7 @@ using Infrastructure.Builder;
 using Domain.Model.PizzaShop;
 using System;
 using System.Data;
+using Domain.Repository;
 
 namespace Domain.Builder {
     public class BeverageBuilder : IBuilder<Beverage> {
@@ -60,6 +61,11 @@ namespace Domain.Builder {
                 .IfPresent(() => {
                     Beverage.Order = order; });
             return this;
+        }
+
+        public BeverageBuilder FetchProduct() {
+            var product = new ProductRepository().Get(Beverage.ProductId);
+            return WithProduct(product);
         }
 
         public BeverageBuilder WithProduct(string productId) {
