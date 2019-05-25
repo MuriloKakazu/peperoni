@@ -1,6 +1,9 @@
 ﻿using Infrastructure.Builder;
 using Infrastructure.Data;
+using Infrastructure.Repository.Strategies;
+using Infrastructure.Rule;
 using Infrastructure.Util;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,8 +12,9 @@ using System.Linq;
 namespace Infrastructure.Repository {
     public abstract class AbstractEntityRepository<T> : IEntityRepository<T> where T : Entity {
         protected string Entity { get; private set; }
+        protected abstract ISaveStrategy<T> InsertStrategy { get; set; }
+        protected abstract ISaveStrategy<T> UpdateStrategy { get; set; }
 
-        public abstract T Save(T entity);
         protected abstract T Marshal(DataRow row);
         public abstract ICollection<SqlParameter> GetParameters(T entity);
 
@@ -47,6 +51,15 @@ namespace Infrastructure.Repository {
 
             return Marshal(
                 Database.Query($"SELECT * FROM [{Entity}] ORDER BY Id LIMIT @Limit OFFSET @Offset", limitParameter, offsetParameter));
+        }
+
+        public virtual T Save(T entity) {
+            return On<T>.Value(entity)
+                .When(entity.HasId())
+                    .Then(() => { UpdateStrategy.Save(entity); })
+                .Else()
+                    .Then(() => { InsertStrategy.Save(entity); })
+                .Result();
         }
 
         public virtual void Delete(T entity) {

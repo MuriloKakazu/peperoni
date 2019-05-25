@@ -17,8 +17,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Repository {
     public class OrderRepository : AbstractEntityRepository<Order> {
+        protected override ISaveStrategy<Order> InsertStrategy { get; set; }
+        protected override ISaveStrategy<Order> UpdateStrategy { get; set; }
+
         public OrderRepository() : 
             base("Order") {
+
+            InsertStrategy = new OrderInsertStrategy(this);
+            UpdateStrategy = new OrderUpdateStrategy(this);
         }
 
         public ICollection<Order> FindOrdersByAccount(string accountId) {
@@ -27,18 +33,6 @@ namespace Domain.Repository {
 
             return Marshal(
                 Database.Query($"SELECT * FROM [{Entity}] WHERE AccountId = @AccountId", parameter));
-        }
-
-        public override Order Save(Order order) {
-            ISaveStrategy<Order> strategy;
-
-            if (String.IsNullOrWhiteSpace(order.Id)) {
-                strategy = new OrderInsertStrategy(this);
-            } else {
-                strategy = new OrderUpdateStrategy(this);
-            }
-
-            return strategy.Save(order);
         }
 
         protected override Order Marshal(DataRow row) {

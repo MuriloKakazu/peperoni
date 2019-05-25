@@ -16,8 +16,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Repository {
     public class ProductRepository : AbstractEntityRepository<Product> {
+        protected override ISaveStrategy<Product> InsertStrategy { get; set; }
+        protected override ISaveStrategy<Product> UpdateStrategy { get; set; }
+
         public ProductRepository() : 
-            base("Product") { 
+            base("Product") {
+
+            InsertStrategy = new ProductInsertStrategy(this);
+            UpdateStrategy = new ProductUpdateStrategy(this);
         }
 
         public ICollection<Product> FindByFamily(string family) {
@@ -26,18 +32,6 @@ namespace Domain.Repository {
 
             return Marshal(
                 Database.Query($"SELECT * FROM [{Entity}] WHERE Family = @Family", parameter));
-        }
-
-        public override Product Save(Product product) {
-            ISaveStrategy<Product> strategy;
-
-            if (String.IsNullOrWhiteSpace(product.Id)) {
-                strategy = new ProductInsertStrategy(this);
-            } else {
-                strategy = new ProductUpdateStrategy(this);
-            }
-
-            return strategy.Save(product);
         }
 
         protected override Product Marshal(DataRow row) {
