@@ -31,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -65,13 +59,22 @@
     <Compile Include="Model\PizzaShop\Order.cs" />
     <Compile Include="Model\PizzaShop\Pizza.cs" />
     <Compile Include="Model\PizzaShop\Product.cs" />
+    <Compile Include="Repository\BeverageRepository.cs" />
+    <Compile Include="Repository\PizzaRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\Strategies\Insert\BeverageInsertStrategy.cs" />
     <Compile Include="Repository\Strategies\Insert\OrderInsertStrategy.cs" />
+    <Compile Include="Repository\Strategies\Insert\PizzaInsertStrategy.cs" />
+    <Compile Include="Repository\Strategies\Insert\ProductInsertStrategy.cs" />
+    <Compile Include="Repository\Strategies\Update\BeverageUpdateStrategy.cs" />
     <Compile Include="Repository\Strategies\Update\OrderUpdateStrategy.cs" />
     <Compile Include="Repository\Strategies\Update\AccountUpdateStrategy.cs" />
     <Compile Include="Repository\Strategies\Insert\AccountInsertStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\Strategies\Update\PizzaUpdateStrategy.cs" />
+    <Compile Include="Repository\Strategies\Update\ProductUpdateStrategy.cs" />
     <Compile Include="Service\PriceService.cs" />
     <Compile Include="Rule\Validator\NewOrderValidator.cs" />
     <Compile Include="Service\AddressService.cs" />
