@@ -5,6 +5,7 @@ using Domain.Model.PizzaShop;
 using System;
 using System.Data;
 using System.Collections.Generic;
+using Domain.Repository;
 
 namespace Domain.Builder {
     public class AccountBuilder : IBuilder<Account> {
@@ -82,6 +83,11 @@ namespace Domain.Builder {
             return this;
         }
 
+        public AccountBuilder FetchOrders() {
+            var orders = new OrderRepository().FindOrdersByAccount(Account.Id);
+            return WithOrders(orders);
+        }
+
         public AccountBuilder WithOrders(ICollection<Order> orders) {
             foreach (var order in orders) {
                 WithOrder(order);
@@ -92,7 +98,9 @@ namespace Domain.Builder {
         public AccountBuilder WithOrder(Order order) {
             Optional<Order>.Of(order)
                 .IfPresent(() => {
-                    Account.Orders.Add(order); });
+                    Account.Orders.Add(order);
+                    order.Account = Account;
+                });
             return this;
         }
 

@@ -20,6 +20,14 @@ namespace Domain.Repository {
             base("Pizza") {
         }
 
+        public ICollection<Pizza> FindPizzasByOrder(string orderId) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("OrderId").WithValue(orderId).Build();
+
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE OrderId = @OrderId", parameter));
+        }
+
         public override Pizza Save(Pizza pizza) {
             ISaveStrategy<Pizza> strategy;
 
@@ -33,7 +41,9 @@ namespace Domain.Repository {
         }
 
         protected override Pizza Marshal(DataRow row) {
-            return new PizzaBuilder(row).Build();
+            return new PizzaBuilder(row)
+                .FetchProducts()
+                .Build();
         }
 
         public override ICollection<SqlParameter> GetParameters(Pizza pizza) {

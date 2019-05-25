@@ -3,6 +3,7 @@ using Domain.Model.PizzaShop;
 using Domain.Repository.Strategies.Insert;
 using Domain.Repository.Strategies.Update;
 using Infrastructure.Builder;
+using Infrastructure.Data;
 using Infrastructure.Repository;
 using Infrastructure.Repository.Strategies;
 using System;
@@ -19,6 +20,14 @@ namespace Domain.Repository {
             base("Beverage") {
         }
 
+        public ICollection<Beverage> FindBeveragesByOrder(string orderId) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("OrderId").WithValue(orderId).Build();
+
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE OrderId = @OrderId", parameter));
+        }
+
         public override Beverage Save(Beverage beverage) {
             ISaveStrategy<Beverage> strategy;
 
@@ -32,7 +41,9 @@ namespace Domain.Repository {
         }
 
         protected override Beverage Marshal(DataRow row) {
-            return new BeverageBuilder(row).Build();
+            return new BeverageBuilder(row)
+                .FetchProduct()
+                .Build();
         }
 
         public override ICollection<SqlParameter> GetParameters(Beverage beverage) {
