@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Presentation.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1024"
-      Title="About" Background="White">
+      Title="About" Background="#F9F2E0">
 
     <Grid Margin="10">
         <DockPanel>

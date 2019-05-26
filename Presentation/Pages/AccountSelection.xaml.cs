@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Domain.Repository;
 using Domain.Model.PizzaShop;
+using Presentation.Components;
 
 namespace Presentation.Pages {
     /// <summary>
@@ -37,6 +38,10 @@ namespace Presentation.Pages {
 
         private void generateOrder_Click(object sender, RoutedEventArgs e) {
             NavigationService.Navigate(new OrderCreation((Account)accountListView.SelectedItem));
+        }
+
+        private void NewAccount_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new AccountView());
         }
     }
 }

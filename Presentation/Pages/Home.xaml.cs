@@ -29,6 +29,7 @@ namespace Presentation.Pages
 
         void LoadAssets() {
             ApplicationImage.Source = FindImage.ByName("home-app");
+            SidebarHeader.Background = new ImageBrush(FindImage.ByName("sidebar-header-background"));
         }
 
         private void ToggleMenuSection(object sender, MouseButtonEventArgs e) {
