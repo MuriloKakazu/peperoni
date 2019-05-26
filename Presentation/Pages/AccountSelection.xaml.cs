@@ -24,7 +24,9 @@ namespace Presentation.Pages {
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e) {
-            accountListView.ItemsSource = new AccountRepository().FindAccountsByName(accountNameInput.Text);
+            if(accountNameInput.Text.Length >= 3) {
+                accountListView.ItemsSource = new AccountRepository().FindAccountsByName(accountNameInput.Text);
+            }
         }
     }
 }

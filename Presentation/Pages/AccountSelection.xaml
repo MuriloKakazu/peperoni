@@ -20,7 +20,15 @@
             <Button VerticalAlignment="Top" MaxWidth="160px" DockPanel.Dock="Bottom" Margin="10 5 10 10">
                 Nova Conta
             </Button>
-            <ListView x:Name="accountListView"  Margin="10" DockPanel.Dock="Top"/>
+            <ListView x:Name="accountListView"  Margin="10" DockPanel.Dock="Top" SelectionMode="Single" >
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" >
+                        <GridViewColumn Header="Nome" Width="120" DisplayMemberBinding="{Binding Path=Name}" />
+                        <GridViewColumn Header="Telefone" Width="200" DisplayMemberBinding="{Binding Path=Phone}" />
+                        <GridViewColumn Header="CEP" Width="200" DisplayMemberBinding="{Binding Path=PostalCode}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </DockPanel>
     </Grid>
 </Page>

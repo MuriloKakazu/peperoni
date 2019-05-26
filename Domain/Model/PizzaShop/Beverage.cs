@@ -18,9 +18,22 @@ namespace Domain.Model.PizzaShop {
 
         public int Quantity { get; set; }
 
-        public decimal UnitPrice { get => (Product?.ListPrice).Value; }
+        public decimal UnitPrice {
+            get {
+                return (Product?.ListPrice).Value;
+            }
+            set {
+                UnitPrice = value;
+            }
+        }
 
-        public decimal TotalPrice { get => UnitPrice * Quantity; }
+        public decimal TotalPrice {
+            get {
+                return UnitPrice * Quantity;
+            } set {
+                TotalPrice = value;
+            }
+         }
 
         [JsonIgnore]
         public Order Order { get; set; }
