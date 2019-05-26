@@ -81,6 +81,9 @@
     <Compile Include="Components\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Banner.xaml.cs">
+      <DependentUpon>Banner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Util\FindImage.cs" />
     <Compile Include="Util\InputValidator.cs" />
     <Page Include="Client.xaml">
@@ -96,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Components\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Banner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using Presentation.Util;
+﻿using Presentation.Components;
+using Presentation.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,12 @@ namespace Presentation.Pages
     {
         public Home() {
             InitializeComponent();
-            myFrame.NavigationService.Navigate(new AccountSelection());
+            ShowBanner();
             LoadAssets();
+        }
+
+        private void ShowBanner() {
+            myFrame.NavigationService.Navigate(new Banner());
         }
 
         void LoadAssets() {
@@ -71,6 +76,14 @@ namespace Presentation.Pages
 
         private void AboutSection_Clicked(object sender, MouseButtonEventArgs e) {
             myFrame.Content = new About();
+        }
+
+        private void NewAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            myFrame.NavigationService.Navigate(new AccountView());
+        }
+
+        private void SearchAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            myFrame.NavigationService.Navigate(new AccountSelection());
         }
     }
 }
