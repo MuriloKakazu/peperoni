@@ -5,16 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentation.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="About">
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="About" Background="White">
 
-    <Grid>
+    <Grid Margin="10">
         <DockPanel>
-            <DockPanel>
-                <StackPanel>
-                    <Label Content="Sobre" />
-                </StackPanel>
-            </DockPanel>
+            <StackPanel>
+                <Label Content="Sobre" FontSize="18" FontWeight="Bold" />
+                <DockPanel>
+                    <Image x:Name="AboutAppImage" Width="150" Height="150" Margin="10" />
+                    <Label Content="Projeto: Peperoni" DockPanel.Dock="Top" Margin="5" FontSize="14" />
+                    <TextBlock Text="Peperoni é um client de pizzaria dirigido a domínio conectado a um SQL Server na Amazon Web Services, e um trabalho de Engenharia de Computação para a Faculdade de Tecnologia Termomecanica desenvolvido em Maio de 2019." TextTrimming="WordEllipsis" TextWrapping="Wrap" Margin="10" DockPanel.Dock="Bottom" />
+                </DockPanel>
+                <Label Content="Equipe" FontSize="18" FontWeight="Bold" />
+                <DockPanel>
+                    <Image x:Name="AboutMuyukaImage" Width="150" Height="150" Margin="10" />
+                    <Label Content="Backend: Murilo Yuri Kakazu - 081170039" DockPanel.Dock="Top" Margin="5" FontSize="14" />
+                    <TextBlock Text="Responsável pela arquitetura em camadas do backend, aplicação de regras de domínio e infraestrutura e padronização do uso de patterns como Rules Engine, Model, Controller, Service, Repository, Builder, Client, Extension, Utility, etc." TextTrimming="WordEllipsis" TextWrapping="Wrap" DockPanel.Dock="Bottom" Margin="10,5" />
+                </DockPanel>
+                <DockPanel>
+                    <Image x:Name="AboutMupapiImage" Width="150" Height="150" Margin="10" />
+                    <Label Content="Frontend: Murilo Parra Pires - 081170017" DockPanel.Dock="Top" Margin="5" FontSize="14" />
+                    <TextBlock Text="TO DO" TextTrimming="WordEllipsis" TextWrapping="Wrap" DockPanel.Dock="Bottom" Margin="10,5" />
+                </DockPanel>
+            </StackPanel>
         </DockPanel>
     </Grid>
 </Page>
