@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,13 @@ namespace Presentation.Pages {
     public partial class About : Page {
         public About() {
             InitializeComponent();
+            LoadAssets();
+        }
+
+        void LoadAssets() {
+            AboutAppImage.Source = FindImage.ByName("about-app");
+            AboutMuyukaImage.Source = FindImage.ByName("about-muyuka");
+            AboutMupapiImage.Source = FindImage.ByName("about-mupapi");
         }
     }
 }

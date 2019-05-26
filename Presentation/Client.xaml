@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Client 🍕" Height="450" Width="800">
+        Title="Client 🍕" Height="768" Width="1024" MaxWidth="1024" MaxHeight="768">
     <Grid>
         
     </Grid>
