@@ -20,6 +20,13 @@ namespace Infrastructure.Util {
             return new Optional<T>(value);
         }
 
+        public R IfPresent<R>(Func<T, R> action) {
+            if (IsPresent) {
+                return action.Invoke(Value);
+            }
+            return default(R);
+        }
+
         public Optional<T> IfPresent(Action<T> action) {
             if (IsPresent) {
                 action.Invoke(Value);
@@ -32,6 +39,13 @@ namespace Infrastructure.Util {
                 action.Invoke();
             }
             return this;
+        }
+
+        public R IfNotPresent<R>(Func<T, R> action) {
+            if (!IsPresent) {
+                return action.Invoke(Value);
+            }
+            return default(R);
         }
 
         public Optional<T> IfNotPresent(Action<T> action) {

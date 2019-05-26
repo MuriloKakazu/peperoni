@@ -1,7 +1,7 @@
 ﻿using Domain.Model.PizzaShop;
 using Infrastructure.Rule;
+using Infrastructure.Util;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Domain.Rule.Validator {
     public class AccountValidator : EntityValidator<Account> {
@@ -26,24 +26,24 @@ namespace Domain.Rule.Validator {
             return this;
         }
 
+        bool HasValidName(Account account) {
+            return Regex.Pattern(@"[A-Za-z]").Matches(account.Name);
+        }
+
         bool HasValidStreetNumber(Account account) {
             return account.StreetNumber > 0;
         }
 
         bool HasValidStreetName(Account account) {
-            return new Regex(@"[A-Za-z]").IsMatch(account.StreetName);
-        }
-
-        bool HasValidName(Account account) {
-            return new Regex(@"[A-Za-z]").IsMatch(account.Name);
+            return Regex.Pattern(@"[A-Za-z]").Matches(account.StreetName);
         }
 
         bool HasValidPhone(Account account) {
-            return new Regex(@"^\d{10,11}$").IsMatch(account.Phone);
+            return Regex.Pattern(@"^\d{10,11}$").Matches(account.Phone);
         }
 
         bool HasValidPostalCode(Account account) {
-            return new Regex(@"^\d{8}$").IsMatch(account.PostalCode);
+            return Regex.Pattern(@"^\d{8}$").Matches(account.PostalCode);
         }
     }
 }
