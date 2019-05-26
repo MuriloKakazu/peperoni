@@ -22,6 +22,7 @@ using Infrastructure.Data;
 using Domain.Builder;
 using Domain.Model.PizzaShop;
 using Domain.Repository;
+using Presentation.Pages;
 using Domain.Rule.Validator;
 
 namespace Presentation {
@@ -32,18 +33,19 @@ namespace Presentation {
         public Client() {
             InitializeComponent();
 
-            /* Account controller example */
-            var accountController = new AccountController();
-
+            ///* Account controller example */
+            //var accountController = new AccountController();
             var account = accountController.Retrieve("1a4095c1-d9f2-4546-873e-3993d86371c6");
             Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
             account.Name = "Mr. Winter";
             account = accountController.Update(account);
 
-            /* Order controller example */
-            var orderController = new OrderExplorerController();
+            ///* Order controller example */
+            //var orderController = new OrderExplorerController();
 
+
+            this.Content = new Home();
             var newOrder = new OrderBuilder()
                 .WithAccount(account.Id)
                 .WithStatus("Enqueued")

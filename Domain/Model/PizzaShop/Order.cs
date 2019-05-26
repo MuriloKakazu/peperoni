@@ -30,7 +30,14 @@ namespace Domain.Model.PizzaShop {
         public DateTime? DeliveryDate { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal TotalPrice { get => GetTotalPrice(); }
+        public decimal TotalPrice {
+            get {
+                return GetTotalPrice();
+            }
+            set {
+                TotalPrice = value;
+            }
+        }
 
         [JsonIgnore]
         public Account Account { get; set; }
