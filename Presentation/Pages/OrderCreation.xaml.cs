@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Model.PizzaShop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Presentation.Pages
     /// </summary>
     public partial class OrderCreation : Page
     {
-        public OrderCreation()
+        Account account { get; set; }
+        public OrderCreation(Account account)
         {
+            this.account = account;
             InitializeComponent();
+            AccountName.Content = account.Name;
         }
     }
 }

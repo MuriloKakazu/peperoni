@@ -7,12 +7,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OrderCreation">
-    <DockPanel LastChildFill="True">
-        <DockPanel DockPanel.Dock="Top" LastChildFill="True" Margin="15">
-            <Label DockPanel.Dock="Left">
-                Nome da conta
+    <DockPanel LastChildFill="True" Margin="15 10 15 15">
+        <DockPanel DockPanel.Dock="Top">
+            <Label DockPanel.Dock="Left" FontSize="25">
+                Nome da conta: 
             </Label>
-            <TextBox DockPanel.Dock="Left" Height="40" IsReadOnly="True"/>
+            <Label x:Name="AccountName" DockPanel.Dock="Left" Height="40" FontSize="25"/>
         </DockPanel>
         <ListView>
             

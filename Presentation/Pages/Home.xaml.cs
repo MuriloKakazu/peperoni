@@ -23,6 +23,7 @@ namespace Presentation.Pages
         public Home()
         {
             InitializeComponent();
+            myFrame.NavigationService.Navigate(new AccountSelection());
             userImage.Source = new BitmapImage(new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}\assets\images\avatar-panda.png"));
             
         }
@@ -55,16 +56,12 @@ namespace Presentation.Pages
         }
 
         private void changeFrameContent(object sender, MouseButtonEventArgs e) {
-            myFrame.Content = new AccountSelection();
+            myFrame.NavigationService.Navigate(new AccountSelection());
         }
 
         private void previousPage(object sender, RoutedEventArgs e) {
-            myFrame.NavigationService.GoBack();
-        }
-
-        private void nextPage(object sender, RoutedEventArgs e) {
-            if(myFrame.NavigationService.CanGoForward) {
-                myFrame.NavigationService.GoForward();
+            if(myFrame.NavigationService.CanGoBack) {
+                myFrame.NavigationService.GoBack();
             }
         }
     }
