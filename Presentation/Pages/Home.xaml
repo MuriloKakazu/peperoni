@@ -11,8 +11,8 @@
         <DockPanel Background="#FFFBFAEC" >
             <DockPanel HorizontalAlignment="Left" Background="#FFEAE9E8" MinWidth="150" DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True">
                 <StackPanel Uid="user-avatar" DockPanel.Dock="Top">
-                    <Image Name="userImage" Height="90" Width="90" Margin="0 15 0 0"/>
-                    <Label Content="Joãozinho" FontSize="15" HorizontalAlignment="Center"/>
+                    <Image Name="ApplicationImage" Height="90" Width="90" Margin="0 15 0 0"/>
+                    <Label Content="Peperoni" FontSize="15" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" Height="430" CanContentScroll="True" DockPanel.Dock="Top">
                     <StackPanel x:Name="menu" CanVerticallyScroll="True">
@@ -46,6 +46,9 @@
                         </StackPanel>
                         <StackPanel x:Name="configsSection" Background="#FFFDF7E4">
                             <Label Content="Configurações" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
+                        </StackPanel>
+                        <StackPanel x:Name="aboutSection" Background="#FFFDF7E4" MouseLeftButtonUp="AboutSection_Clicked">
+                            <Label Content="Sobre" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>

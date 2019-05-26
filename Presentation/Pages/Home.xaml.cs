@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,14 @@ namespace Presentation.Pages
     /// </summary>
     public partial class Home : Page
     {
-        public Home()
-        {
+        public Home() {
             InitializeComponent();
             myFrame.NavigationService.Navigate(new AccountSelection());
-            userImage.Source = new BitmapImage(new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}\assets\images\avatar-panda.png"));
-            
+            LoadAssets();
+        }
+
+        void LoadAssets() {
+            ApplicationImage.Source = FindImage.ByName("home-app");
         }
 
         private void ToggleMenuSection(object sender, MouseButtonEventArgs e) {
@@ -63,6 +66,10 @@ namespace Presentation.Pages
             if(myFrame.NavigationService.CanGoBack) {
                 myFrame.NavigationService.GoBack();
             }
+        }
+
+        private void AboutSection_Clicked(object sender, MouseButtonEventArgs e) {
+            myFrame.Content = new About();
         }
     }
 }
