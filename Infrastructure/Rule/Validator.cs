@@ -24,7 +24,8 @@ namespace Infrastructure.Rule {
         }
 
         public Validator<T> Ensure(Predicate<T> condition, string errorMessage) {
-            void accumulate() { AccumulatedErrors.Add(errorMessage); }
+            Action accumulate = () =>
+                AccumulatedErrors.Add(errorMessage);
 
             On<T>.Values(Items)
                 .WhenEachNot(condition)

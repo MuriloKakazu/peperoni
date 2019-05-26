@@ -34,7 +34,7 @@ namespace Presentation {
             InitializeComponent();
 
             ///* Account controller example */
-            //var accountController = new AccountController();
+            var accountController = new AccountController();
             var account = accountController.Retrieve("1a4095c1-d9f2-4546-873e-3993d86371c6");
             Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
@@ -42,7 +42,7 @@ namespace Presentation {
             account = accountController.Update(account);
 
             ///* Order controller example */
-            //var orderController = new OrderExplorerController();
+            var orderController = new OrderExplorerController();
 
 
             this.Content = new Home();
