@@ -44,31 +44,31 @@ namespace Presentation {
             ///* Order controller example */
             var orderController = new OrderExplorerController();
 
+            //var newOrder = new OrderBuilder()
+            //    .WithAccount(account.Id)
+            //    .WithStatus("Enqueued")
+            //    .WithPaymentStatus("Unpaid")
+            //    .PlacedOn(DateTime.Today)
+            //    .DeliveredOn(null)
+            //    .Build();
 
-            this.Content = new Home();
-            var newOrder = new OrderBuilder()
-                .WithAccount(account.Id)
-                .WithStatus("Enqueued")
-                .WithPaymentStatus("Unpaid")
-                .PlacedOn(DateTime.Today)
-                .DeliveredOn(null)
-                .Build();
-
-            orderController.Create(newOrder);
+            //orderController.Create(newOrder);
 
             var accountOrders = orderController.SearchByAccount(account);
             Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
 
-            var anOrder = accountOrders.First();
-            anOrder.Status = "Enqueued";
+            //var anOrder = accountOrders.First();
+            //anOrder.Status = "Enqueued";
 
-            orderController.Update(anOrder);
-            Console.WriteLine($"Saved order: {JsonConvert.SerializeObject(anOrder, Formatting.Indented)}");
+            //orderController.Update(anOrder);
+            //Console.WriteLine($"Saved order: {JsonConvert.SerializeObject(anOrder, Formatting.Indented)}");
 
             /* Account Explorer controller example */
             var accountExplorer = new AccountExplorerController();
             var foundAccounts = accountExplorer.SearchByName("Mr");
             Console.WriteLine($"Found accounts: {JsonConvert.SerializeObject(foundAccounts, Formatting.Indented)}");
+
+            this.Content = new Home();
         }
     }
 }
