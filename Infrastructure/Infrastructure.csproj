@@ -61,6 +61,7 @@
     <Compile Include="Encryption\Decrypt.cs" />
     <Compile Include="Exceptions\DataIntegrityException.cs" />
     <Compile Include="Exceptions\QueryException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="Extension\EnumFormattingExtension.cs" />
     <Compile Include="Extension\PredicateExtension.cs" />

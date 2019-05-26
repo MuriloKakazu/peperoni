@@ -5,22 +5,24 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Presentation.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="768" d:DesignWidth="1024"
       Title="Home">
     <Grid>
         <DockPanel Background="#FFFBFAEC" >
-            <DockPanel HorizontalAlignment="Left" Background="#FFEAE9E8" MinWidth="150" DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True">
-                <StackPanel Uid="user-avatar" DockPanel.Dock="Top">
-                    <Image Name="ApplicationImage" Height="90" Width="90" Margin="0 15 0 0"/>
+            <DockPanel x:Name="Sidebar" HorizontalAlignment="Left" Background="#FFFBEECB" MinWidth="150" DockPanel.Dock="Left" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.IsSharedSizeScope="True">
+                <DockPanel x:Name="SidebarHeader" Uid="user-avatar" DockPanel.Dock="Top" Margin="0" Width="150" Height="150">
+                    <Image Name="ApplicationImage" Height="100" Width="100" DockPanel.Dock="Top"/>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top" Background="#FFEFA87F">
                     <Label Content="Peperoni" FontSize="15" HorizontalAlignment="Center"/>
-                </StackPanel>
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" Height="430" CanContentScroll="True" DockPanel.Dock="Top">
-                    <StackPanel x:Name="menu" CanVerticallyScroll="True">
-                        <StackPanel Background="#FFFDF7E4" >
+                </DockPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True" DockPanel.Dock="Top">
+                    <StackPanel x:Name="menu" CanVerticallyScroll="True" Background="#FFEADFDA">
+                        <StackPanel Background="#FFEDCFC0" >
                             <Label x:Name="configsLabel" Content="Visão Geral" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                         </StackPanel>
                         <StackPanel x:Name="orderSection">
-                            <DockPanel Background="#FFFDF7E4" MouseLeftButtonDown="ToggleMenuSection">
+                            <DockPanel Background="#FFEDCFC0" MouseLeftButtonDown="ToggleMenuSection">
                                 <Label Content="Pedidos" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                                 <Label Content=">" FontSize="16"  HorizontalAlignment="Right" Margin="8 0 4 0"/>
                             </DockPanel>
@@ -29,7 +31,7 @@
                             <Label Content="Cancelar" FontSize="13" Padding="20 5 0 5"/>
                         </StackPanel>
                         <StackPanel x:Name="customerSection">
-                            <DockPanel Background="#FFFDF7E4" MouseLeftButtonDown="ToggleMenuSection">
+                            <DockPanel Background="#FFEDCFC0" MouseLeftButtonDown="ToggleMenuSection">
                                 <Label Content="Clientes" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                                 <Label Content=">" FontSize="16"  HorizontalAlignment="Right" Margin="8 0 4 0"/>
                             </DockPanel>
@@ -37,17 +39,17 @@
                             <Label Content="Buscar" FontSize="13" Padding="20 5 0 5"/>
                         </StackPanel>
                         <StackPanel x:Name="productSection">
-                            <DockPanel Background="#FFFDF7E4"  MouseLeftButtonDown="ToggleMenuSection">
+                            <DockPanel Background="#FFEDCFC0"  MouseLeftButtonDown="ToggleMenuSection">
                                 <Label Content="Produtos" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                                 <Label Content=">" FontSize="16"  HorizontalAlignment="Right" Margin="8 0 4 0"/>
                             </DockPanel>
                             <Label Content="Pizzas" FontSize="13" Padding="20 5 0 5"/>
                             <Label Content="Acompanhamentos" FontSize="13" Padding="20 5 0 5"/>
                         </StackPanel>
-                        <StackPanel x:Name="configsSection" Background="#FFFDF7E4">
+                        <StackPanel x:Name="configsSection" Background="#FFEDCFC0">
                             <Label Content="Configurações" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                         </StackPanel>
-                        <StackPanel x:Name="aboutSection" Background="#FFFDF7E4" MouseLeftButtonUp="AboutSection_Clicked">
+                        <StackPanel x:Name="aboutSection" Background="#FFEDCFC0" MouseLeftButtonUp="AboutSection_Clicked">
                             <Label Content="Sobre" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                         </StackPanel>
                     </StackPanel>
@@ -55,12 +57,12 @@
                 <Label Content="Version 1.0.0.1" DockPanel.Dock="Bottom" VerticalAlignment="Bottom"/>
             </DockPanel>
             <DockPanel>
-                <DockPanel DockPanel.Dock="Top">
-                    <Button HorizontalAlignment="Left" Margin="5" Click="previousPage" Width="60">
+                <DockPanel DockPanel.Dock="Top" Background="#FFF9F2E0">
+                    <Button HorizontalAlignment="Left" Margin="5" Click="previousPage" Padding="10,1">
                         Voltar
                     </Button>
                 </DockPanel>
-                <Frame Name="myFrame" NavigationUIVisibility="Hidden">
+                <Frame Name="myFrame" NavigationUIVisibility="Hidden" Background="#FFF9F2E0">
 
                 </Frame>
             </DockPanel>

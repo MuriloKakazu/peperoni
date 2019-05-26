@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.Model.PizzaShop;
 using Domain.Repository;
 using Domain.Rule.Validator;
@@ -25,14 +26,17 @@ namespace Domain.Service {
             return Repository.FindAccountsByName(name);
         }
 
-        public Account CreateAccount(Account account) {
+        public Account SaveAccount(Account account) {
             new AccountValidator(account).Validate();
             return Repository.Save(account);
         }
 
+        public Account CreateAccount(Account account) {
+            return SaveAccount(account);
+        }
+
         public Account UpdateAccount(Account account) {
-            new AccountValidator(account).Validate();
-            return Repository.Save(account);
+            return SaveAccount(account);
         }
 
         public void DeleteAccount(Account account) {
