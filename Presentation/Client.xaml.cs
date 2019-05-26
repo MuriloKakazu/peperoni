@@ -45,13 +45,32 @@ namespace Presentation {
             ///* Order controller example */
             //var orderController = new OrderExplorerController();
 
-            //var accountOrders = orderController.SearchOrdersByAccount(account);
-            //Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
 
-            //var anOrder = accountOrders.First();
-            //anOrder.Status = "InProgress";
-            //orderController.SaveOrder(anOrder);
             this.Content = new Home();
+            var newOrder = new OrderBuilder()
+                .WithAccount(account.Id)
+                .WithStatus("Enqueued")
+                .WithPaymentStatus("Unpaid")
+                .PlacedOn(DateTime.Today)
+                .DeliveredOn(null)
+                .Build();
+
+            orderController.SaveOrder(newOrder);
+
+            var accountOrders = orderController.SearchOrdersByAccount(account);
+            Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
+
+            var anOrder = accountOrders.First();
+            anOrder.Status = "Enqueued";
+
+            orderController.SaveOrder(anOrder);
+            Console.WriteLine($"Saved order: {JsonConvert.SerializeObject(anOrder, Formatting.Indented)}");
+
+            /* Account Explorer controller example */
+            var accountExplorer = new AccountExplorerController();
+            var foundAccounts = accountExplorer.SearchByName("Mr");
+            Console.WriteLine($"Found accounts: {JsonConvert.SerializeObject(foundAccounts, Formatting.Indented)}");
         }
     }
 }
+

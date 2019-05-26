@@ -1,6 +1,9 @@
 ﻿using Infrastructure.Builder;
 using Infrastructure.Data;
+using Infrastructure.Repository.Strategies;
+using Infrastructure.Rule;
 using Infrastructure.Util;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,8 +12,9 @@ using System.Linq;
 namespace Infrastructure.Repository {
     public abstract class AbstractEntityRepository<T> : IEntityRepository<T> where T : Entity {
         protected string Entity { get; private set; }
+        protected abstract ISaveStrategy<T> InsertStrategy { get; set; }
+        protected abstract ISaveStrategy<T> UpdateStrategy { get; set; }
 
-        public abstract T Save(T entity);
         protected abstract T Marshal(DataRow row);
         public abstract ICollection<SqlParameter> GetParameters(T entity);
 
@@ -18,11 +22,11 @@ namespace Infrastructure.Repository {
             Entity = entity;
         }
 
-        public bool Exists(string id) {
+        public virtual bool Exists(string id) {
             return Get(new string[] { id }).Any();
         }
 
-        public T Get(string id) {
+        public virtual T Get(string id) {
             var idParameter = new ParameterBuilder<string>()
                 .WithName("Id").WithValue(id).Build();
 
@@ -30,7 +34,7 @@ namespace Infrastructure.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] WHERE Id = @Id", idParameter).FirstOrDefault());
         }
 
-        public ICollection<T> Get(params string[] ids) {
+        public virtual ICollection<T> Get(params string[] ids) {
             var idParameter = new ParameterBuilder<string>()
                 .WithName("Ids").WithValue(Flatten.Strings(ids)).Build();
 
@@ -38,7 +42,7 @@ namespace Infrastructure.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] WHERE Id IN (@Ids)", idParameter));
         }
 
-        public ICollection<T> Fetch(int limit = 100, int offset = 0) {
+        public virtual ICollection<T> Fetch(int limit = 100, int offset = 0) {
             var limitParameter = new ParameterBuilder<int>()
                 .WithName("Limit").WithValue(limit).Build();
 
@@ -49,7 +53,16 @@ namespace Infrastructure.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] ORDER BY Id LIMIT @Limit OFFSET @Offset", limitParameter, offsetParameter));
         }
 
-        public void Delete(T entity) {
+        public virtual T Save(T entity) {
+            return On<T>.Value(entity)
+                .When(entity.HasId())
+                    .Then(() => { UpdateStrategy.Save(entity); })
+                .Else()
+                    .Then(() => { InsertStrategy.Save(entity); })
+                .Result();
+        }
+
+        public virtual void Delete(T entity) {
             var idParameter = new ParameterBuilder<string>()
                 .WithName("Id").WithValue(entity.Id).Build();
 

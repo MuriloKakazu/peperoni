@@ -3,6 +3,7 @@ using Domain.Model.PizzaShop;
 using Domain.Repository.Strategies.Insert;
 using Domain.Repository.Strategies.Update;
 using Infrastructure.Builder;
+using Infrastructure.Data;
 using Infrastructure.Repository;
 using Infrastructure.Repository.Strategies;
 using System;
@@ -14,21 +15,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Repository {
-    class ProductRepository : AbstractEntityRepository<Product> {
+    public class ProductRepository : AbstractEntityRepository<Product> {
+        protected override ISaveStrategy<Product> InsertStrategy { get; set; }
+        protected override ISaveStrategy<Product> UpdateStrategy { get; set; }
+
         public ProductRepository() : 
-            base("Product") { 
+            base("Product") {
+
+            InsertStrategy = new ProductInsertStrategy(this);
+            UpdateStrategy = new ProductUpdateStrategy(this);
         }
 
-        public override Product Save(Product product) {
-            ISaveStrategy<Product> strategy;
+        public ICollection<Product> FindByFamily(string family) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("Family").WithValue(family).Build();
 
-            if (String.IsNullOrWhiteSpace(product.Id)) {
-                strategy = new ProductInsertStrategy(this);
-            } else {
-                strategy = new ProductUpdateStrategy(this);
-            }
-
-            return strategy.Save(product);
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE Family = @Family", parameter));
         }
 
         protected override Product Marshal(DataRow row) {

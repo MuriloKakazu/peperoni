@@ -3,6 +3,7 @@ using Domain.Model.PizzaShop;
 using Domain.Repository.Strategies.Insert;
 using Domain.Repository.Strategies.Update;
 using Infrastructure.Builder;
+using Infrastructure.Data;
 using Infrastructure.Repository;
 using Infrastructure.Repository.Strategies;
 using System;
@@ -15,24 +16,28 @@ using System.Threading.Tasks;
 
 namespace Domain.Repository {
     public class BeverageRepository : AbstractEntityRepository<Beverage> {
+        protected override ISaveStrategy<Beverage> InsertStrategy { get; set; }
+        protected override ISaveStrategy<Beverage> UpdateStrategy { get; set; }
+
         public BeverageRepository() : 
             base("Beverage") {
+
+            InsertStrategy = new BeverageInsertStrategy(this);
+            UpdateStrategy = new BeverageUpdateStrategy(this);
         }
 
-        public override Beverage Save(Beverage beverage) {
-            ISaveStrategy<Beverage> strategy;
+        public ICollection<Beverage> FindBeveragesByOrder(string orderId) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("OrderId").WithValue(orderId).Build();
 
-            if (String.IsNullOrWhiteSpace(beverage.Id)) {
-                strategy = new BeverageInsertStrategy(this);
-            } else {
-                strategy = new BeverageUpdateStrategy(this);
-            }
-
-            return strategy.Save(beverage);
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE OrderId = @OrderId", parameter));
         }
 
         protected override Beverage Marshal(DataRow row) {
-            return new BeverageBuilder(row).Build();
+            return new BeverageBuilder(row)
+                .FetchProduct()
+                .Build();
         }
 
         public override ICollection<SqlParameter> GetParameters(Beverage beverage) {

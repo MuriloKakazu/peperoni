@@ -14,8 +14,8 @@ namespace Domain.Repository.Strategies.Insert {
 
             var command = new CommandBuilder()
                 .WithParameters(Repository.GetParameters(account))
-                .WithSql("INSERT INTO [Account] (Id, Name, Phone, PostalCode, StreetNumber) " +
-                         "VALUES (@Id, @Name, @Phone, @PostalCode, @StreetNumber)")
+                .WithSql("INSERT INTO [Account] (Id, Name, Phone, PostalCode, StreetName, StreetNumber) " +
+                         "VALUES (@Id, @Name, @Phone, @PostalCode, @StreetName, @StreetNumber)")
                 .Build();
 
             Database.Execute(command);

@@ -1,27 +1,42 @@
 ﻿using Domain.Repository;
 using Domain.Rule.Validator;
 using Domain.Model.PizzaShop;
-using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Domain.Service {
     public class OrderService {
         public static OrderService Instance { get; set; }
-        public static PriceService PriceService { get; set; }
-        private OrderRepository Repository { get; set; }
+        private static OrderRepository Repository { get; set; }
 
         static OrderService() {
             Instance = new OrderService();
-            PriceService = PriceService.Instance;
+            Repository = new OrderRepository();
         }
 
-        public OrderService PlaceOrder(Order orderToPlace) {
+        public Order GetOrder(string guid) {
+            return Repository.Get(guid);
+        }
 
-            new NewOrderValidator(orderToPlace).Validate();
+        public ICollection<Order> FetchOrders(int pageSize, int offset) {
+            return Repository.Fetch(pageSize, offset);
+        }
 
-            Repository.Save(orderToPlace);
+        public ICollection<Order> FindOrdersByAccount(string accountId) {
+            return Repository.FindOrdersByAccount(accountId);
+        }
 
-            return this;
+        public Order PlaceOrder(Order order) {
+            new OrderValidator(order).Validate();
+            return Repository.Save(order);
+        }
+
+        public Order UpdateOrder(Order order) {
+            new OrderValidator(order).Validate();
+            return Repository.Save(order);
+        }
+
+        public void DeleteOrder(Order order) {
+            Repository.Delete(order);
         }
     }
 }

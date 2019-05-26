@@ -1,6 +1,4 @@
 ﻿using Domain.Model.PizzaShop;
-using Domain.Repository;
-using System;
 using System.Collections.Generic;
 
 namespace Presentation.Controllers {
@@ -12,11 +10,11 @@ namespace Presentation.Controllers {
         }
 
         public ICollection<Account> FetchPage(int page) {
-            return Repository.Fetch(PAGE_SIZE, page * PAGE_SIZE);
+            return Service.FetchAccounts(PAGE_SIZE, page * PAGE_SIZE);
         }
 
-        public ICollection<Account> SearchAccountsByName(string name) {
-            return Repository.FindAccountsByName(name);
+        public ICollection<Account> SearchByName(string name) {
+            return Service.FindAccountsByName(name);
         }
     }
 }

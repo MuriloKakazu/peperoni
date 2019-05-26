@@ -119,10 +119,12 @@
     <Compile Include="Pages\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BeverageController.cs" />
     <Compile Include="Controllers\OrderExplorerController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountExplorerController.cs" />
+    <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -152,7 +154,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Infrastructure.csproj">
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{1cdaf6a2-b159-4a86-863c-7f8542dd362d}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
