@@ -64,8 +64,11 @@ namespace Domain.Builder {
         }
 
         public BeverageBuilder FetchProduct() {
-            var product = new ProductRepository().Get(Beverage.ProductId);
-            return WithProduct(product);
+            Optional.Of(Beverage.ProductId).IfPresent(() => {
+                var product = new ProductRepository().Get(Beverage.ProductId);
+                WithProduct(product);
+            });
+            return this;
         }
 
         public BeverageBuilder WithProduct(string productId) {

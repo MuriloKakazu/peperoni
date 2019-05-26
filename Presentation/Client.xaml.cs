@@ -65,7 +65,7 @@ namespace Presentation {
 
             /* Account Explorer controller example */
             var accountExplorer = new AccountExplorerController();
-            var foundAccounts = accountExplorer.SearchAccountsByName("Mr");
+            var foundAccounts = accountExplorer.SearchByName("Mr");
             Console.WriteLine($"Found accounts: {JsonConvert.SerializeObject(foundAccounts, Formatting.Indented)}");
         }
     }

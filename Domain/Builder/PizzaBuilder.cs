@@ -76,10 +76,20 @@ namespace Domain.Builder {
 
         public PizzaBuilder FetchProducts() {
             var productRepository = new ProductRepository();
-            return this
-                .WithFirstTopping(productRepository.Get(Pizza.FirstToppingId))
-                .WithSecondTopping(productRepository.Get(Pizza.SecondToppingId))
-                .WithBorder(productRepository.Get(Pizza.BorderId));
+
+            Optional.Of(Pizza.FirstToppingId).IfPresent(() => {
+                WithFirstTopping(productRepository.Get(Pizza.FirstToppingId));
+            });
+
+            Optional.Of(Pizza.SecondToppingId).IfPresent(() => {
+                WithSecondTopping(productRepository.Get(Pizza.SecondToppingId));
+            });
+
+            Optional.Of(Pizza.BorderId).IfPresent(() => {
+                WithBorder(productRepository.Get(Pizza.BorderId));
+            });
+
+            return this;
         }
 
         public PizzaBuilder WithFirstTopping(string toppingId) {

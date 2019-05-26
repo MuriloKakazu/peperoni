@@ -84,8 +84,11 @@ namespace Domain.Builder {
         }
 
         public AccountBuilder FetchOrders() {
-            var orders = new OrderRepository().FindOrdersByAccount(Account.Id);
-            return WithOrders(orders);
+            Optional.Of(Account.Id).IfPresent(() => {
+                var orders = new OrderRepository().FindOrdersByAccount(Account.Id);
+                WithOrders(orders);
+            });
+            return this;
         }
 
         public AccountBuilder WithOrders(ICollection<Order> orders) {

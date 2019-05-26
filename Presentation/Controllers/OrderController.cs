@@ -1,25 +1,28 @@
 ﻿using Domain.Model.PizzaShop;
-using Domain.Repository;
-using System;
+using Domain.Service;
 
 namespace Presentation.Controllers {
     public class OrderController {
-        protected OrderRepository Repository { get; set; }
+        protected OrderService Service { get; set; }
 
         public OrderController() {
-            Repository = new OrderRepository();
+            Service = new OrderService();
         }
 
-        public Order FetchOrder(string guid) {
-            return Repository.Get(guid);
+        public Order Retrieve(string guid) {
+            return Service.GetOrder(guid);
         }
 
-        public void SaveOrder(Order order) {
-            Repository.Save(order);
+        public Order Create(Order order) {
+            return Service.PlaceOrder(order);
         }
 
-        public void DeleteOrder(Order order) {
-            Repository.Delete(order);
+        public Order Update(Order order) {
+            return Service.UpdateOrder(order);
+        }
+
+        public void Delete(Order order) {
+            Service.DeleteOrder(order);
         }
     }
 }

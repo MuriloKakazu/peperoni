@@ -18,6 +18,7 @@ namespace Domain.Repository.Strategies.Update {
                              "Name = @Name, " +
                              "Phone = @Phone, " +
                              "PostalCode = @PostalCode, " +
+                             "StreetName = @StreetName, " +
                              "StreetNumber = @StreetNumber " +
                          "WHERE Id = @Id")
                 .Build();
