@@ -1,5 +1,6 @@
 ﻿using Domain.Model.PizzaShop;
 using Infrastructure.Rule;
+using Infrastructure.Util;
 using System.Collections.Generic;
 
 namespace Domain.Rule.Validator {
@@ -23,11 +24,11 @@ namespace Domain.Rule.Validator {
         }
 
         bool HasName(Product product) {
-            return product.Name != null;
+            return Regex.Pattern(@"[A-Za-z]").Matches(product.Name);
         }
 
         bool HasFamily(Product product) {
-            return product.Name != null;
+            return Regex.Pattern(@"[A-Za-z]").Matches(product.Family);
         }
 
         bool HasPrice(Product product) {

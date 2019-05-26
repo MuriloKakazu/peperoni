@@ -25,6 +25,14 @@ namespace Domain.Service {
             return Repository.FindOrdersByAccount(accountId);
         }
 
+        public ICollection<Order> FindOrdersByStatus(string status) {
+            return Repository.FindOrdersByStatus(status);
+        }
+
+        public ICollection<Order> FindOngoingOrders() {
+            return Repository.FindOrdersByStatus("Ongoing");
+        }
+
         public Order PlaceOrder(Order order) {
             new OrderValidator(order).Validate();
             return Repository.Save(order);

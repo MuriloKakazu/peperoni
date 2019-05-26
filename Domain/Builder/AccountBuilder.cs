@@ -6,6 +6,7 @@ using System;
 using System.Data;
 using System.Collections.Generic;
 using Domain.Repository;
+using Domain.Service;
 
 namespace Domain.Builder {
     public class AccountBuilder : IBuilder<Account> {
@@ -21,25 +22,31 @@ namespace Domain.Builder {
         }
 
         public AccountBuilder(DataRow row) : this() {
-            Optional.Of(row["Id"])
-                .IfPresent(value => {
-                    WithId(value as String); });
+            Optional.Of(row).IfPresent(() => {
+                Optional.Of(row["Id"])
+                    .IfPresent(value => {
+                        WithId(value as String); });
 
-            Optional.Of(row["Name"])
-                .IfPresent(value => {
-                    WithName(value as String); });
+                Optional.Of(row["Name"])
+                    .IfPresent(value => {
+                        WithName(value as String); });
 
-            Optional.Of(row["Phone"])
-                .IfPresent(value => {
-                    WithPhone(value as String); });
+                Optional.Of(row["Phone"])
+                    .IfPresent(value => {
+                        WithPhone(value as String); });
 
-            Optional.Of(row["PostalCode"])
-                .IfPresent(value => {
-                    WithPostalCode(value as String); });
+                Optional.Of(row["PostalCode"])
+                    .IfPresent(value => {
+                        WithPostalCode(value as String);});
 
-            Optional.Of(row["StreetNumber"])
-                .IfPresent(value => {
-                    WithStreetNumber(Convert.ToInt32(value)); });
+                Optional.Of(row["StreetName"])
+                    .IfPresent(value => {
+                        WithStreetName(value as String); });
+
+                Optional.Of(row["StreetNumber"])
+                    .IfPresent(value => {
+                        WithStreetNumber(Convert.ToInt32(value)); });
+            });
         }
 
         public AccountBuilder WithId(string id) {
@@ -76,6 +83,13 @@ namespace Domain.Builder {
             return this;
         }
 
+        public AccountBuilder WithStreetName(string streetName) {
+            Optional.Of(streetName)
+                .IfPresent(() => {
+                    Account.StreetName = streetName; });
+            return this;
+        }
+
         public AccountBuilder WithStreetNumber(int streetNumber) {
             Optional.Of(streetNumber)
                 .IfPresent(() => {
@@ -85,7 +99,7 @@ namespace Domain.Builder {
 
         public AccountBuilder FetchOrders() {
             Optional.Of(Account.Id).IfPresent(() => {
-                var orders = new OrderRepository().FindOrdersByAccount(Account.Id);
+                var orders = OrderService.Instance.FindOrdersByAccount(Account.Id);
                 WithOrders(orders);
             });
             return this;
