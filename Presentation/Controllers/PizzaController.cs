@@ -1,39 +1,39 @@
 ﻿using Domain.Model.PizzaShop;
-using Domain.Repository;
-using System;
+using Domain.Service;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Presentation.Controllers {
     public class PizzaController {
-        protected PizzaRepository PizzaRepository { get; set; }
-        protected ProductRepository ProductRepository { get; set; }
+        protected PizzaService PizzaService { get; set; }
+        protected ProductService ProductService { get; set; }
 
         public PizzaController() {
-            PizzaRepository = new PizzaRepository();
-            ProductRepository = new ProductRepository();
+            PizzaService = new PizzaService();
+            ProductService = new ProductService();
         }
 
         public ICollection<Product> GetAvailableBorders() {
-            return ProductRepository.FindByFamily("Border");
+            return ProductService.FindAvailableBorders();
         }
 
         public ICollection<Product> GetAvailableToppings() {
-            return ProductRepository.FindByFamily("Topping");
+            return ProductService.FindAvailableToppings();
         }
 
-        public Pizza GetPizza(string guid) {
-            return PizzaRepository.Get(guid);
+        public Pizza Retrieve(string guid) {
+            return PizzaService.GetPizza(guid);
         }
 
-        public Pizza SavePizza(Pizza pizza) {
-            return PizzaRepository.Save(pizza);
+        public Pizza Create(Pizza pizza) {
+            return PizzaService.CreatePizza(pizza);
         }
 
-        public void DeletePizza(Pizza pizza) {
-            PizzaRepository.Delete(pizza);
+        public Pizza Update(Pizza pizza) {
+            return PizzaService.UpdatePizza(pizza);
+        }
+
+        public void Delete(Pizza pizza) {
+            PizzaService.DeletePizza(pizza);
         }
     }
 }

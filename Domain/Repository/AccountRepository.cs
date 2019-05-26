@@ -51,6 +51,9 @@ namespace Domain.Repository {
                 new ParameterBuilder<string>()
                     .WithName("PostalCode").WithValue(account.PostalCode).Build(),
 
+                new ParameterBuilder<string>()
+                    .WithName("StreetName").WithValue(account.StreetName).Build(),
+
                 new ParameterBuilder<int>()
                     .WithName("StreetNumber").WithValue(account.StreetNumber).Build()
             };

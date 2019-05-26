@@ -1,27 +1,20 @@
 ﻿using Infrastructure.Rule;
 using Domain.Model.PizzaShop;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.Rule.Validator {
-    public class NewOrderValidator {
-        private List<Order> Orders { get; set; }
-
-        private NewOrderValidator() {
-            Orders = new List<Order>();
+    public class OrderValidator : EntityValidator<Order> {
+        public OrderValidator(ICollection<Order> orders) : 
+            base(orders) {
         }
 
-        public NewOrderValidator(ICollection<Order> orders) : this() {
-            Orders.AddRange(orders);
+        public OrderValidator(Order order) : 
+            base(order) {
         }
 
-        public NewOrderValidator(Order order) : this() {
-            Orders.Add(order);
-        }
-
-        public NewOrderValidator Validate() {
-            new Validator<Order>(Orders)
+        public override EntityValidator<Order> Validate() {
+            new Validator<Order>(Entities)
                 .Ensure(HasAccount, "O pedido deve estar associado a uma conta")
                 .Ensure(HasItems, "O pedido precisa conter produtos")
                 .Ensure(HasPrice, "O pedido precisa ter um preço válido")

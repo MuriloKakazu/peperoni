@@ -91,6 +91,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BeverageController.cs" />
     <Compile Include="Controllers\OrderExplorerController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\AccountController.cs" />

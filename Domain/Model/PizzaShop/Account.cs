@@ -18,13 +18,18 @@ namespace Domain.Model.PizzaShop {
         public string Name { get; set; }
 
         [Required]
-        [StringLength(9)]
+        [StringLength(11)]
         public string Phone { get; set; }
 
         [Required]
         [StringLength(8)]
         public string PostalCode { get; set; }
 
+        [Required]
+        [StringLength(256)]
+        public string StreetName { get; set; }
+
+        [Required]
         public int StreetNumber { get; set; }
 
         [JsonIgnore]

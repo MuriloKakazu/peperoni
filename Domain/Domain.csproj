@@ -75,10 +75,17 @@
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\Strategies\Update\PizzaUpdateStrategy.cs" />
     <Compile Include="Repository\Strategies\Update\ProductUpdateStrategy.cs" />
-    <Compile Include="Service\PriceService.cs" />
-    <Compile Include="Rule\Validator\NewOrderValidator.cs" />
+    <Compile Include="Rule\Validator\AccountValidator.cs" />
+    <Compile Include="Rule\Validator\BeverageValidator.cs" />
+    <Compile Include="Rule\Validator\PizzaValidator.cs" />
+    <Compile Include="Rule\Validator\ProductValidator.cs" />
+    <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Rule\Validator\OrderValidator.cs" />
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\BeverageService.cs" />
     <Compile Include="Service\OrderService.cs" />
+    <Compile Include="Service\PizzaService.cs" />
+    <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -94,8 +94,11 @@ namespace Domain.Builder {
         }
 
         public OrderBuilder FetchPizzas() {
-            var pizzas = new PizzaRepository().FindPizzasByOrder(Order.Id);
-            return WithPizzas(pizzas);
+            Optional.Of(Order.Id).IfPresent(() => {
+                var pizzas = new PizzaRepository().FindPizzasByOrder(Order.Id);
+                WithPizzas(pizzas);
+            });
+            return this;
         }
 
         public OrderBuilder WithPizza(Pizza pizza) {
@@ -115,8 +118,11 @@ namespace Domain.Builder {
         }
 
         public OrderBuilder FetchBeverages() {
-            var pizzas = new BeverageRepository().FindBeveragesByOrder(Order.Id);
-            return WithBeverages(pizzas);
+            Optional.Of(Order.Id).IfPresent(() => {
+                var pizzas = new BeverageRepository().FindBeveragesByOrder(Order.Id);
+                WithBeverages(pizzas);
+            });
+            return this;
         }
 
         public OrderBuilder WithBeverage(Beverage beverage) {
