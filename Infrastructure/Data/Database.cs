@@ -54,9 +54,9 @@ namespace Infrastructure.Data {
                     command.Connection = Connection;
             });
 
-            return RunOverConnection(() => {
-                return command.ExecuteNonQuery();
-            });
+            return RunOverConnection(() => 
+                command.ExecuteNonQuery()
+            );
         }
 
         public static ICollection<DataRow> Query(string sql) {
@@ -83,9 +83,9 @@ namespace Infrastructure.Data {
                     command.Connection = Connection;
             });
 
-            return RunOverConnection(() => {
-                return DatabaseHelper.GetAllRowsFromFirstTable(command);
-            });
+            return RunOverConnection(() => 
+                DatabaseHelper.QueryRows(command)
+            );
         }
 
         private static T RunOverConnection<T>(Func<T> function) {

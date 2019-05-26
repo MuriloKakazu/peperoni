@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Domain.Repository;
+using Domain.Service;
 
 namespace Domain.Builder {
     public class OrderBuilder : IBuilder<Order> {
@@ -95,7 +96,7 @@ namespace Domain.Builder {
 
         public OrderBuilder FetchPizzas() {
             Optional.Of(Order.Id).IfPresent(() => {
-                var pizzas = new PizzaRepository().FindPizzasByOrder(Order.Id);
+                var pizzas = PizzaService.Instance.FindPizzasByOrder(Order.Id);
                 WithPizzas(pizzas);
             });
             return this;
@@ -119,7 +120,7 @@ namespace Domain.Builder {
 
         public OrderBuilder FetchBeverages() {
             Optional.Of(Order.Id).IfPresent(() => {
-                var pizzas = new BeverageRepository().FindBeveragesByOrder(Order.Id);
+                var pizzas = BeverageService.Instance.FindBeveragesByOrder(Order.Id);
                 WithBeverages(pizzas);
             });
             return this;

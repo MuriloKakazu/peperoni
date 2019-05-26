@@ -35,6 +35,14 @@ namespace Domain.Repository {
                 Database.Query($"SELECT * FROM [{Entity}] WHERE AccountId = @AccountId", parameter));
         }
 
+        public ICollection<Order> FindOrdersByStatus(string status) {
+            var parameter = new ParameterBuilder<string>()
+                .WithName("Status").WithValue(status).Build();
+
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE Status = @Status", parameter));
+        }
+
         protected override Order Marshal(DataRow row) {
             return new OrderBuilder(row)
                 .FetchPizzas()

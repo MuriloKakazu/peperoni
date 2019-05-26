@@ -4,6 +4,7 @@ using Domain.Model.PizzaShop;
 using System;
 using System.Data;
 using Domain.Repository;
+using Domain.Service;
 
 namespace Domain.Builder {
     public class BeverageBuilder : IBuilder<Beverage> {
@@ -65,7 +66,7 @@ namespace Domain.Builder {
 
         public BeverageBuilder FetchProduct() {
             Optional.Of(Beverage.ProductId).IfPresent(() => {
-                var product = new ProductRepository().Get(Beverage.ProductId);
+                var product = ProductService.Instance.GetProduct(Beverage.ProductId);
                 WithProduct(product);
             });
             return this;

@@ -35,12 +35,11 @@ namespace Presentation {
 
             ///* Account controller example */
             //var accountController = new AccountController();
+            var account = accountController.Retrieve("1a4095c1-d9f2-4546-873e-3993d86371c6");
+            Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
-            //var account = accountController.GetAccount("1a4095c1-d9f2-4546-873e-3993d86371c6");
-            //Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
-
-            //account.Name = "Mr. Winter";
-            //account = accountController.SaveAccount(account);
+            account.Name = "Mr. Winter";
+            account = accountController.Update(account);
 
             ///* Order controller example */
             //var orderController = new OrderExplorerController();
@@ -55,15 +54,15 @@ namespace Presentation {
                 .DeliveredOn(null)
                 .Build();
 
-            orderController.SaveOrder(newOrder);
+            orderController.Create(newOrder);
 
-            var accountOrders = orderController.SearchOrdersByAccount(account);
+            var accountOrders = orderController.SearchByAccount(account);
             Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
 
             var anOrder = accountOrders.First();
             anOrder.Status = "Enqueued";
 
-            orderController.SaveOrder(anOrder);
+            orderController.Update(anOrder);
             Console.WriteLine($"Saved order: {JsonConvert.SerializeObject(anOrder, Formatting.Indented)}");
 
             /* Account Explorer controller example */
