@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Domain.Repository;
+using Domain.Model.PizzaShop;
 
 namespace Presentation.Pages {
     /// <summary>
@@ -21,12 +22,21 @@ namespace Presentation.Pages {
     public partial class AccountSelection : Page {
         public AccountSelection() {
             InitializeComponent();
+            generateOrder.IsEnabled = false;
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e) {
             if(accountNameInput.Text.Length >= 3) {
                 accountListView.ItemsSource = new AccountRepository().FindAccountsByName(accountNameInput.Text);
             }
+        }
+
+        private void accountListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            generateOrder.IsEnabled = accountListView.SelectedIndex != -1;
+        }
+
+        private void generateOrder_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new OrderCreation((Account)accountListView.SelectedItem));
         }
     }
 }

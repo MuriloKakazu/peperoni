@@ -57,10 +57,7 @@
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top">
                     <Button HorizontalAlignment="Left" Margin="5" Click="previousPage" Width="60">
-                        Previous
-                    </Button>
-                    <Button HorizontalAlignment="Left" Margin="5" Click="nextPage" Width="60">
-                        Next
+                        Voltar
                     </Button>
                 </DockPanel>
                 <Frame Name="myFrame" NavigationUIVisibility="Hidden">

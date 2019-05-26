@@ -16,11 +16,18 @@
                 </Label>
                 <TextBox x:Name="accountNameInput" FontSize="16px" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyDown="TextBox_KeyDown" />
             </DockPanel>
+
+
+            <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+                <Button  MinWidth="120" Margin="10 5 10 10">
+                    Nova Conta
+                </Button>
+                <Button  x:Name="generateOrder"  MinWidth="120px" DockPanel.Dock="Bottom" Margin="10 5 10 10" Click="generateOrder_Click">
+                    Criar pedido
+                </Button>
+            </DockPanel>
             
-            <Button VerticalAlignment="Top" MaxWidth="160px" DockPanel.Dock="Bottom" Margin="10 5 10 10">
-                Nova Conta
-            </Button>
-            <ListView x:Name="accountListView"  Margin="10" DockPanel.Dock="Top" SelectionMode="Single" >
+            <ListView x:Name="accountListView"  Margin="10" DockPanel.Dock="Top" SelectionMode="Single" SelectionChanged="accountListView_SelectionChanged" >
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" >
                         <GridViewColumn Header="Nome" Width="120" DisplayMemberBinding="{Binding Path=Name}" />
