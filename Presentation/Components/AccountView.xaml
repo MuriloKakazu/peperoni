@@ -12,11 +12,11 @@
             <DockPanel DockPanel.Dock="Top" Margin="10">
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Nome:" MinWidth="100" />
-                    <TextBox x:Name="Name" DockPanel.Dock="Right" />
+                    <TextBox x:Name="Name" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Telefone:" MinWidth="100" />
-                    <TextBox x:Name="Phone" DockPanel.Dock="Right" />
+                    <TextBox x:Name="Phone" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
                 </DockPanel>
             </DockPanel>
             <Label Content="Endereço" FontSize="16" DockPanel.Dock="Top" />
@@ -24,35 +24,35 @@
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="CEP:" MinWidth="100" />
                     <Button x:Name="SearchPostalCode" Content="Pesquisar" DockPanel.Dock="Right" Margin="5,0,0,0" Padding="5,1" Click="SearchPostalCode_Click" />
-                    <TextBox x:Name="PostalCode" Margin="0,0,5,0" />
+                    <TextBox x:Name="PostalCode" Margin="0,0,5,0" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="País:" MinWidth="100" />
-                    <Label x:Name="Country" />
+                    <Label x:Name="Country" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Estado:" MinWidth="100" />
-                    <Label x:Name="State" />
+                    <Label x:Name="State" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Bairro:" MinWidth="100" />
-                    <Label x:Name="Neighborhood" />
+                    <Label x:Name="Neighborhood" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Cidade:" MinWidth="100" />
-                    <Label x:Name="City" />
+                    <Label x:Name="City" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Rua:" MinWidth="100" />
-                    <TextBox x:Name="StreetName" />
+                    <TextBox x:Name="StreetName" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Logradouro:" MinWidth="100" />
-                    <TextBox x:Name="StreetNumber" DockPanel.Dock="Right" />
+                    <TextBox x:Name="StreetNumber" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Complemento:" MinWidth="100" />
-                    <TextBox x:Name="ComplementaryInfo" DockPanel.Dock="Right" />
+                    <TextBox x:Name="ComplementaryInfo" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Bottom">
                     <Button x:Name="Save" Content="Salvar" DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="Save_Click"/>

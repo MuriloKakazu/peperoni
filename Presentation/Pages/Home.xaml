@@ -35,8 +35,8 @@
                                 <Label Content="Clientes" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                                 <Label Content=">" FontSize="16"  HorizontalAlignment="Right" Margin="8 0 4 0"/>
                             </DockPanel>
-                            <Label Content="Novo" FontSize="13" Padding="20 5 0 5"/>
-                            <Label Content="Buscar" FontSize="13" Padding="20 5 0 5"/>
+                            <Label x:Name="NewAccount" Content="Novo" FontSize="13" Padding="20 5 0 5" MouseLeftButtonDown="NewAccount_MouseLeftButtonDown"/>
+                            <Label x:Name="SearchAccount" Content="Buscar" FontSize="13" Padding="20 5 0 5" MouseLeftButtonDown="SearchAccount_MouseLeftButtonDown"/>
                         </StackPanel>
                         <StackPanel x:Name="productSection">
                             <DockPanel Background="#FFEDCFC0"  MouseLeftButtonDown="ToggleMenuSection">
@@ -63,7 +63,6 @@
                     </Button>
                 </DockPanel>
                 <Frame Name="myFrame" NavigationUIVisibility="Hidden" Background="#FFF9F2E0">
-
                 </Frame>
             </DockPanel>
         </DockPanel>
