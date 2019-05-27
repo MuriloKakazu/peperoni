@@ -18,5 +18,9 @@ namespace Domain.Model.PizzaShop {
 
         [Column(TypeName = "money")]
         public decimal ListPrice { get; set; }
+
+        public override string ToString() {
+            return $"{Name}";
+        }
     }
 }
