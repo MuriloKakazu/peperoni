@@ -1,4 +1,5 @@
-﻿using Domain.Model.PizzaShop;
+﻿using Domain.Builder;
+using Domain.Model.PizzaShop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,21 @@ namespace Presentation.Pages
     public partial class OrderCreation : Page
     {
         Account account { get; set; }
-        public OrderCreation(Account account)
+        OrderBuilder builder { get; set; }
+        public OrderCreation(Account account) : this()
         {
             this.account = account;
+            builder.WithAccount(account);
             InitializeComponent();
             AccountName.Content = account.Name;
+        }
+
+        protected OrderCreation() {
+            this.builder = new OrderBuilder();
+        }
+
+        private void showPizzaCreationPopup(object sender, RoutedEventArgs e) {
+            new PizzaCreationPopup(builder).ShowDialog();
         }
     }
 }

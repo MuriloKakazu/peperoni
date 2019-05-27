@@ -14,8 +14,25 @@
             </Label>
             <Label x:Name="AccountName" DockPanel.Dock="Left" Height="40" FontSize="25"/>
         </DockPanel>
-        <ListView>
-            
+        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <Button  MinWidth="160" Margin="10">
+                Remover itens selecionados
+            </Button>
+            <Button  x:Name="AddBeveragesButton" Margin="10" MinWidth="170px">
+                Adicionar acompanhamentos
+            </Button>
+            <Button  x:Name="AddPizzasButton" Margin="10" MinWidth="130px" Click="showPizzaCreationPopup">
+                Adicionar pizzas
+            </Button>
+        </DockPanel>
+        <ListView x:Name="OrderItemsListView" DockPanel.Dock="Top">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" >
+                    <GridViewColumn Header="Nome" Width="120" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="Quantidade" Width="200" DisplayMemberBinding="{Binding Path=Phone}" />
+                    <GridViewColumn Header="Preço" Width="200" DisplayMemberBinding="{Binding Path=PostalCode}" />
+                </GridView>
+            </ListView.View>
         </ListView>
     </DockPanel>
 </Page>
