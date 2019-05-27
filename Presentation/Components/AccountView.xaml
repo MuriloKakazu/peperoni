@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Presentation.Components.AccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentation.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="#F9F2E0" >
+    <Grid Margin="10">
+        <DockPanel Grid.Column="0" x:Name="LeftColumn" DockPanel.Dock="Left" Margin="5" LastChildFill="False">
+            <Label x:Name="Header" DockPanel.Dock="Top" Content="Conta" FontSize="16" />
+            <DockPanel DockPanel.Dock="Top" Margin="10">
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Nome:" MinWidth="100" />
+                    <TextBox x:Name="Name" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Telefone:" MinWidth="100" />
+                    <TextBox x:Name="Phone" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                </DockPanel>
+            </DockPanel>
+            <Label Content="Endereço" FontSize="16" DockPanel.Dock="Top" />
+            <DockPanel DockPanel.Dock="Top" Margin="10">
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="CEP:" MinWidth="100" />
+                    <Button x:Name="SearchPostalCode" Content="Pesquisar" DockPanel.Dock="Right" Margin="5,0,0,0" Padding="5,1" Click="SearchPostalCode_Click" />
+                    <TextBox x:Name="PostalCode" Margin="0,0,5,0" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="País:" MinWidth="100" />
+                    <Label x:Name="Country" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Estado:" MinWidth="100" />
+                    <Label x:Name="State" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Bairro:" MinWidth="100" />
+                    <Label x:Name="Neighborhood" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Cidade:" MinWidth="100" />
+                    <Label x:Name="City" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Rua:" MinWidth="100" />
+                    <TextBox x:Name="StreetName" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Logradouro:" MinWidth="100" />
+                    <TextBox x:Name="StreetNumber" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                    <Label Content="Complemento:" MinWidth="100" />
+                    <TextBox x:Name="ComplementaryInfo" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                </DockPanel>
+                <DockPanel Margin="5,2" DockPanel.Dock="Bottom">
+                    <Button x:Name="Save" Content="Salvar" DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="Save_Click"/>
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

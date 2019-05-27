@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,16 +41,10 @@ namespace Infrastructure.Rule {
 
         public Validator<T> Run() {
             if (AccumulatedErrors.Count > 0) {
-                throw new RuleValidatorException(GetErrors());
+                throw new ValidationException(GetErrors());
             }
 
             return this;
-        }
-
-        public class RuleValidatorException : Exception {
-            public RuleValidatorException(string message)
-                : base(message) {
-            }
         }
     }
 }
