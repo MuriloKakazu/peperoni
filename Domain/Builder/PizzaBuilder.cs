@@ -12,9 +12,6 @@ namespace Domain.Builder {
 
         public PizzaBuilder() {
             Pizza = new Pizza();
-            Pizza.Border = new Product();
-            Pizza.FirstTopping = new Product();
-            Pizza.SecondTopping = new Product();
         }
 
         public PizzaBuilder(Pizza pizza) : this() {
@@ -64,14 +61,14 @@ namespace Domain.Builder {
         public PizzaBuilder WithOrder(string orderId) {
             Optional.Of(orderId)
                 .IfPresent(() => {
-                    Pizza.OrderId = orderId; });
+                    Pizza.SetOrder(orderId); });
             return this;
         }
 
         public PizzaBuilder WithOrder(Order order) {
             Optional.Of(order)
                 .IfPresent(() => {
-                    Pizza.Order = order; });
+                    Pizza.SetOrder(order); });
             return this;
         }
 
@@ -96,42 +93,42 @@ namespace Domain.Builder {
         public PizzaBuilder WithFirstTopping(string toppingId) {
             Optional.Of(toppingId)
                 .IfPresent(() => {
-                    Pizza.FirstToppingId = toppingId; });
+                    Pizza.SetFirstTopping(toppingId); });
             return this;
         }
 
         public PizzaBuilder WithFirstTopping(Product topping) {
             Optional.Of(topping)
                 .IfPresent(() => {
-                    Pizza.FirstTopping = topping; });
+                    Pizza.SetFirstTopping(topping); });
             return this;
         }
 
         public PizzaBuilder WithSecondTopping(string toppingId) {
             Optional.Of(toppingId)
                 .IfPresent(() => {
-                    Pizza.SecondToppingId = toppingId; });
+                    Pizza.SetSecondTopping(toppingId); });
             return this;
         }
 
         public PizzaBuilder WithSecondTopping(Product topping) {
             Optional.Of(topping)
                 .IfPresent(() => {
-                    Pizza.SecondTopping = topping; });
+                    Pizza.SetSecondTopping(topping); });
             return this;
         }
 
         public PizzaBuilder WithBorder(string borderId) {
             Optional.Of(borderId)
                 .IfPresent(() => {
-                    Pizza.BorderId = borderId; });
+                    Pizza.SetBorder(borderId); });
             return this;
         }
 
         public PizzaBuilder WithBorder(Product border) {
             Optional.Of(border)
                 .IfPresent(() => {
-                    Pizza.Border = border; });
+                    Pizza.SetBorder(border); });
             return this;
         }
 

@@ -9,10 +9,6 @@ namespace Domain.Model.PizzaShop {
     [Serializable]
     [Table("Account")]
     public partial class Account : AbstractEntity {
-        public Account() {
-            Orders = new List<Order>();
-        }
-
         [Required]
         [StringLength(128)]
         public string Name { get; set; }
@@ -34,5 +30,13 @@ namespace Domain.Model.PizzaShop {
 
         [JsonIgnore]
         public ICollection<Order> Orders { get; set; }
+
+        public Account() {
+            Orders = new List<Order>();
+        }
+
+        public override string ToString() {
+            return $"{Name}";
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Domain.Rule.Validator {
         }
 
         bool HasItems(Order order) {
-            return order.Beverages.Any() || order.Pizzas.Any();
+            return order.GetBeverages().Any() || order.GetPizzas().Any();
         }
 
         bool HasPrice(Order order) {

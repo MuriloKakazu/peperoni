@@ -23,8 +23,7 @@ namespace Domain.Builder {
 
             Optional.Of(row["Name"])
                 .IfPresent(value => {
-                    WithName(value as String);
-                });
+                    WithName(value as String); });
 
             Optional.Of(row["Family"])
                 .IfPresent(value => {

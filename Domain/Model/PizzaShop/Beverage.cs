@@ -1,5 +1,6 @@
 namespace Domain.Model.PizzaShop {
     using Infrastructure.Data;
+    using Infrastructure.Rule;
     using Newtonsoft.Json;
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,11 @@ namespace Domain.Model.PizzaShop {
     public partial class Beverage : AbstractEntity {
         [Required]
         [StringLength(36)]
-        public string OrderId { get; set; }
+        public string OrderId { get; private set; }
 
         [Required]
         [StringLength(36)]
-        public string ProductId { get; set; }
+        public string ProductId { get; private set; }
 
         public int Quantity { get; set; }
 
@@ -36,9 +37,55 @@ namespace Domain.Model.PizzaShop {
          }
 
         [JsonIgnore]
-        public Order Order { get; set; }
+        public Order Order { get; private set; }
 
         [JsonIgnore]
-        public Product Product { get; set; }
+        public Product Product { get; private set; }
+
+        public Beverage() {
+            Order = new Order();
+            Product = new Product();
+        }
+
+        public Beverage SetOrder(Order order) {
+            OrderId = order.Id;
+            Order = order;
+            return this;
+        }
+
+        public Beverage SetOrder(string orderId) {
+            OrderId = orderId;
+            Order = null;
+            return this;
+        }
+
+        public Beverage SetProduct(Product product) {
+            ProductId = product.Id;
+            Product = product;
+            return this;
+        }
+
+        public Beverage SetProduct(string productId) {
+            ProductId = productId;
+            Product = null;
+            return this;
+        }
+
+        protected void ValidateProduct(Product product) {
+            new Validator<Product>(product)
+                .Ensure(product.Family == "Drink", "A bebida do pedido deve ser uma bebida válida")
+                .Run();
+        }
+
+        public bool IsSimilarTo(Beverage beverage) {
+            return
+                this.ProductId == beverage.ProductId;
+        }
+
+        public override string ToString() {
+            return Product != null
+                ? Product.Name
+                : "Bebida";
+        }
     }
 }

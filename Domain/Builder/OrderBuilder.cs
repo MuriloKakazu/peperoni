@@ -4,7 +4,6 @@ using Domain.Model.PizzaShop;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Domain.Repository;
 using Domain.Service;
 
 namespace Domain.Builder {
@@ -55,14 +54,14 @@ namespace Domain.Builder {
         public OrderBuilder WithAccount(Account account) {
             Optional.Of(account)
                 .IfPresent(() => {
-                    Order.Account = account; });
+                    Order.SetAccount(account); });
             return this;
         }
 
         public OrderBuilder WithAccount(string accountId) {
             Optional.Of(accountId)
                 .IfPresent(() => {
-                    Order.AccountId = accountId; });
+                    Order.SetAccount(accountId); });
             return this;
         }
 
@@ -105,8 +104,8 @@ namespace Domain.Builder {
         public OrderBuilder WithPizza(Pizza pizza) {
             Optional.Of(pizza)
                 .IfPresent(() => {
-                    Order.Pizzas.Add(pizza);
-                    pizza.Order = Order;
+                    Order.AddPizza(pizza);
+                    pizza.SetOrder(Order);
                 });
             return this;
         }
@@ -129,8 +128,8 @@ namespace Domain.Builder {
         public OrderBuilder WithBeverage(Beverage beverage) {
             Optional.Of(beverage)
                 .IfPresent(() => {
-                    Order.Beverages.Add(beverage);
-                    beverage.Order = Order;
+                    Order.AddBeverage(beverage);
+                    beverage.SetOrder(Order);
                 });
             return this;
         }

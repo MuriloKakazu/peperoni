@@ -11,7 +11,7 @@ namespace Domain.Builder {
         private Beverage Beverage { get; set; }
 
         public BeverageBuilder() {
-            Beverage.Order = new Order();
+            Beverage = new Beverage();
         }
 
         public BeverageBuilder(Beverage beverage) : this() {
@@ -53,14 +53,14 @@ namespace Domain.Builder {
         public BeverageBuilder WithOrder(string orderId) {
             Optional.Of(orderId)
                 .IfPresent(() => {
-                    Beverage.OrderId = orderId; });
+                    Beverage.SetOrder(orderId); });
             return this;
         }
 
         public BeverageBuilder WithOrder(Order order) {
             Optional.Of(order)
                 .IfPresent(() => {
-                    Beverage.Order = order; });
+                    Beverage.SetOrder(order); });
             return this;
         }
 
@@ -75,14 +75,14 @@ namespace Domain.Builder {
         public BeverageBuilder WithProduct(string productId) {
             Optional.Of(productId)
                 .IfPresent(() => {
-                    Beverage.ProductId = productId; });
+                    Beverage.SetProduct(productId); });
             return this;
         }
 
         public BeverageBuilder WithProduct(Product product) {
             Optional.Of(product)
                 .IfPresent(() => {
-                    Beverage.Product = product; });
+                    Beverage.SetProduct(product); });
             return this;
         }
 

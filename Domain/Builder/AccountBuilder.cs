@@ -14,7 +14,6 @@ namespace Domain.Builder {
 
         public AccountBuilder() {
             Account = new Account();
-            Account.Orders = new List<Order>();
         }
 
         public AccountBuilder(Account account) : this() {
@@ -116,7 +115,7 @@ namespace Domain.Builder {
             Optional<Order>.Of(order)
                 .IfPresent(() => {
                     Account.Orders.Add(order);
-                    order.Account = Account;
+                    order.SetAccount(Account);
                 });
             return this;
         }
