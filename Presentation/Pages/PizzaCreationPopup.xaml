@@ -1,0 +1,53 @@
+﻿<Window x:Class="Presentation.Pages.PizzaCreationPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation.Pages"
+        mc:Ignorable="d"
+        Title="OrderItemCreation" Height="400" Width="550">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="5">
+            <StackPanel Margin="10 0" Width="200" Height="96">
+                <Label>Sabor</Label>
+                <ComboBox x:Name="cbFirstTopping" SelectionChanged="updateFirstTopping"/>
+                <Label>2º Sabor</Label>
+                <ComboBox x:Name="cbSecondTopping" SelectionChanged="UpdateSecondTopping"/>
+            </StackPanel>
+            <StackPanel MinWidth="130" Margin="10 0" Width="130" Height="96">
+                <Label>Borda</Label>
+                <ComboBox x:Name="cbBorder" SelectionChanged="UpdateBorder"/>
+                <Label>Preço (R$)</Label>
+                <Label x:Name="PizzaPrice"></Label>
+            </StackPanel>
+            <StackPanel MinWidth="130" Margin="10 0">
+                <Label>Quantidade </Label>
+                <TextBox x:Name="txtQuantity" TextChanged="UpdateQuantity" LostFocus="validateQuantity"/>
+                <Button  MinWidth="80" Margin="0 32 0 0" Click="AddPizza">
+                    Adicionar
+                </Button>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <Button  MinWidth="80" Margin="10" Click="Close">
+                Cancelar
+            </Button>
+            <Button  x:Name="OK" Margin="10" MinWidth="80px" DockPanel.Dock="Bottom" Click="CommitAndClose" >
+                OK
+            </Button>
+        </DockPanel>
+        <DockPanel Margin="5">
+            <ListView x:Name="PizzaListView">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" >
+                        <GridViewColumn Header="Sabor" Width="140" DisplayMemberBinding="{Binding Path=FirstTopping.Name}" />
+                        <GridViewColumn Header="2º Sabor" Width="140" DisplayMemberBinding="{Binding Path=SecondTopping.Name}" />
+                        <GridViewColumn Header="Borda" Width="120" DisplayMemberBinding="{Binding Path=Border.Name}" />
+                        <GridViewColumn Header="Qnt." Width="60" DisplayMemberBinding="{Binding Path=Quantity}" />
+                        <GridViewColumn Header="R$ Total" Width="70" DisplayMemberBinding="{Binding Path=TotalPrice}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </DockPanel>
+</Window>
