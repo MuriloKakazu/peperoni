@@ -1,6 +1,8 @@
 ﻿using Domain.Model.PizzaShop;
 using Domain.Repository;
 using Domain.Rule.Validator;
+using Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Service {
@@ -25,6 +27,10 @@ namespace Domain.Service {
             return Repository.FindByFamily(family);
         }
 
+        public ICollection<Product> FindByFilters(ICollection<Filter> filters) {
+            return Repository.Filter(filters);
+        }
+
         public ICollection<Product> FindAvailableBorders() {
             return FindProductsByFamily("Border");
         }
@@ -38,11 +44,14 @@ namespace Domain.Service {
         }
 
         public Product CreateProduct(Product product) {
-            new ProductValidator(product).Validate();
-            return Repository.Save(product);
+            return SaveProduct(product);
         }
 
         public Product UpdateProduct(Product product) {
+            return SaveProduct(product);
+        }
+
+        public Product SaveProduct(Product product) {
             new ProductValidator(product).Validate();
             return Repository.Save(product);
         }

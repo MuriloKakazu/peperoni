@@ -55,7 +55,10 @@ namespace Domain.Repository {
                     .WithName("StreetName").WithValue(account.StreetName).Build(),
 
                 new ParameterBuilder<int>()
-                    .WithName("StreetNumber").WithValue(account.StreetNumber).Build()
+                    .WithName("StreetNumber").WithValue(account.StreetNumber).Build(),
+
+                new ParameterBuilder<string>()
+                    .WithName("ComplementaryAddress").WithValue(account.ComplementaryAddress).Build()
             };
         }
     }

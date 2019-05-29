@@ -85,5 +85,9 @@ namespace Presentation.Pages
         private void SearchAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             myFrame.NavigationService.Navigate(new AccountSelection());
         }
+
+        private void ExploreProducts_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            myFrame.NavigationService.Navigate(new ProductView());
+        }
     }
 }

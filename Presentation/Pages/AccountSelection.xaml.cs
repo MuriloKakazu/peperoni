@@ -34,6 +34,7 @@ namespace Presentation.Pages {
 
         private void accountListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             generateOrder.IsEnabled = accountListView.SelectedIndex != -1;
+            EditAccount.IsEnabled = accountListView.SelectedIndex != -1;
         }
 
         private void generateOrder_Click(object sender, RoutedEventArgs e) {
@@ -42,6 +43,10 @@ namespace Presentation.Pages {
 
         private void NewAccount_Click(object sender, RoutedEventArgs e) {
             NavigationService.Navigate(new AccountView());
+        }
+
+        private void EditAccount_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new AccountView(accountListView.SelectedItem as Account));
         }
     }
 }

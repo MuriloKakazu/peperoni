@@ -50,7 +50,15 @@ namespace Infrastructure.Repository {
                 .WithName("Offset").WithValue(offset).Build();
 
             return Marshal(
-                Database.Query($"SELECT * FROM [{Entity}] ORDER BY Id LIMIT @Limit OFFSET @Offset", limitParameter, offsetParameter));
+                Database.Query($"SELECT * FROM [{Entity}] ORDER BY Id OFFSET {offset} ROWS FETCH NEXT {limit} ROWS ONLY", limitParameter, offsetParameter));
+        }
+
+        public virtual ICollection<T> Filter(ICollection<Filter> filters) {
+            var parameters = Pluck.Field<SqlParameter>("Parameter").From(filters);
+            var queryFilters = Flatten.Filters(filters);
+
+            return Marshal(
+                Database.Query($"SELECT * FROM [{Entity}] WHERE {queryFilters}", parameters));
         }
 
         public virtual T Save(T entity) {

@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Presentation.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="#F9F2E0" >
+             d:DesignHeight="768" d:DesignWidth="1024" Background="#F9F2E0" >
     <Grid Margin="10">
         <DockPanel Grid.Column="0" x:Name="LeftColumn" DockPanel.Dock="Left" Margin="5" LastChildFill="False">
             <Label x:Name="Header" DockPanel.Dock="Top" Content="Conta" FontSize="16" />
             <DockPanel DockPanel.Dock="Top" Margin="10">
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Nome:" MinWidth="100" />
-                    <TextBox x:Name="Name" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                    <TextBox x:Name="Name" DockPanel.Dock="Right" VerticalContentAlignment="Center" TextChanged="Name_TextChanged" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Telefone:" MinWidth="100" />
-                    <TextBox x:Name="Phone" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                    <TextBox x:Name="Phone" DockPanel.Dock="Right" VerticalContentAlignment="Center" TextChanged="Phone_TextChanged" />
                 </DockPanel>
             </DockPanel>
             <Label Content="Endereço" FontSize="16" DockPanel.Dock="Top" />
@@ -24,7 +24,7 @@
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="CEP:" MinWidth="100" />
                     <Button x:Name="SearchPostalCode" Content="Pesquisar" DockPanel.Dock="Right" Margin="5,0,0,0" Padding="5,1" Click="SearchPostalCode_Click" />
-                    <TextBox x:Name="PostalCode" Margin="0,0,5,0" VerticalContentAlignment="Center" />
+                    <TextBox x:Name="PostalCode" Margin="0,0,5,0" VerticalContentAlignment="Center" TextChanged="PostalCode_TextChanged" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="País:" MinWidth="100" />
@@ -44,18 +44,67 @@
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Rua:" MinWidth="100" />
-                    <TextBox x:Name="StreetName" VerticalContentAlignment="Center" />
+                    <TextBox x:Name="StreetName" VerticalContentAlignment="Center" TextChanged="StreetName_TextChanged" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
-                    <Label Content="Logradouro:" MinWidth="100" />
-                    <TextBox x:Name="StreetNumber" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                    <Label Content="Nº da rua:" MinWidth="100" />
+                    <TextBox x:Name="StreetNumber" DockPanel.Dock="Right" VerticalContentAlignment="Center" TextChanged="StreetNumber_TextChanged" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Top">
                     <Label Content="Complemento:" MinWidth="100" />
-                    <TextBox x:Name="ComplementaryInfo" DockPanel.Dock="Right" VerticalContentAlignment="Center" />
+                    <TextBox x:Name="ComplementaryInfo" DockPanel.Dock="Right" VerticalContentAlignment="Center" TextChanged="ComplementaryInfo_TextChanged" />
                 </DockPanel>
                 <DockPanel Margin="5,2" DockPanel.Dock="Bottom">
                     <Button x:Name="Save" Content="Salvar" DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="Save_Click"/>
+                </DockPanel>
+                <DockPanel x:Name="OrdersPanel" DockPanel.Dock="Top" Margin="5" Visibility="Collapsed">
+                    <Label DockPanel.Dock="Top" Margin="5" Content="Pedidos:"/>
+                    <ListView x:Name="OrdersList" SelectionMode="Single" DockPanel.Dock="Top" Margin="5">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView x:Name="OrdersGrid" AllowsColumnReorder="False">
+                                <GridViewColumn Header="Preço" Width="100" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=TotalPrice, StringFormat='{}{0:C}'}" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Status" Width="120" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Status}" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Status de Pagamento" Width="200" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=PaymentStatus}" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Data de Criação" Width="200" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=PlaceDate, StringFormat='dd-MM-yyyy'}" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Data de Entrega" Width="200" >
+                                    <GridViewColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=DeliveryDate, StringFormat='dd-MM-yyyy'}" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </DockPanel>

@@ -1,6 +1,8 @@
 ﻿using Domain.Model.Geolocation;
 using Domain.Model.PizzaShop;
 using Domain.Service;
+using Infrastructure.Data;
+using System.Collections.Generic;
 
 namespace Presentation.Controllers {
     public class AccountController {
@@ -18,6 +20,10 @@ namespace Presentation.Controllers {
 
         public Account Retrieve(string guid) {
             return Service.GetAccount(guid);
+        }
+
+        public ICollection<Account> Filter(ICollection<Filter> filters) {
+            return Service.FindByFilters(filters);
         }
 
         public Account Save(Account account) {

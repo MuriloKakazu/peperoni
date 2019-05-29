@@ -28,6 +28,9 @@ namespace Domain.Model.PizzaShop {
         [Required]
         public int StreetNumber { get; set; }
 
+        [StringLength(1024)]
+        public string ComplementaryAddress { get; set; }
+
         [JsonIgnore]
         public ICollection<Order> Orders { get; set; }
 
