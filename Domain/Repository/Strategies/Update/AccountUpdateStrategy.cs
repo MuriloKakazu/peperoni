@@ -19,7 +19,8 @@ namespace Domain.Repository.Strategies.Update {
                              "Phone = @Phone, " +
                              "PostalCode = @PostalCode, " +
                              "StreetName = @StreetName, " +
-                             "StreetNumber = @StreetNumber " +
+                             "StreetNumber = @StreetNumber, " +
+                             "ComplementaryAddress = @ComplementaryAddress " +
                          "WHERE Id = @Id")
                 .Build();
 

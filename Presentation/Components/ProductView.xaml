@@ -1,0 +1,33 @@
+﻿<UserControl x:Name="Component" x:Class="Presentation.Components.ProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentation.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="#F9F2E0" Loaded="Component_Loaded">
+    <Grid Margin="10">
+        <DockPanel Margin="5">
+            <Label x:Name="Header" DockPanel.Dock="Top" Content="Produto" FontSize="16" FontWeight="Bold"/>
+            <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                <Label Content="Nome:" MinWidth="100" DockPanel.Dock="Left" />
+                <TextBox x:Name="Name" DockPanel.Dock="Left" VerticalContentAlignment="Center" TextChanged="Name_TextChanged" />
+            </DockPanel>
+            <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                <Label Content="Família:" MinWidth="100" DockPanel.Dock="Left" />
+                <ComboBox x:Name="Family" DockPanel.Dock="Left" VerticalContentAlignment="Center" SelectionChanged="Family_SelectionChanged" />
+            </DockPanel>
+            <DockPanel Margin="5,2" DockPanel.Dock="Top">
+                <Label Content="Preço:" MinWidth="100" DockPanel.Dock="Left" />
+                <TextBox x:Name="Price" DockPanel.Dock="Left" VerticalContentAlignment="Center" TextChanged="Price_TextChanged" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Bottom">
+                <Button x:Name="Save" Content="Salvar" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinWidth="100" Click="Save_Click" Margin="5" />
+                <Button x:Name="Delete" Content="Remover" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" MinWidth="100" Margin="5" Click="Delete_Click" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <DataGrid x:Name="DataGrid" DockPanel.Dock="Top" Margin="10" SelectionChanged="DataGrid_SelectionChanged" IsReadOnly="True"/>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

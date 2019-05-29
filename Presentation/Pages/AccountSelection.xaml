@@ -17,13 +17,15 @@
                 <TextBox x:Name="accountNameInput" FontSize="16px" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" KeyDown="TextBox_KeyDown" />
             </DockPanel>
 
-
             <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-                <Button x:Name="NewAccount"  MinWidth="120" Margin="10 5 10 10" Click="NewAccount_Click">
-                    Nova Conta
-                </Button>
-                <Button  x:Name="generateOrder"  MinWidth="120px" DockPanel.Dock="Bottom" Margin="10 5 10 10" Click="generateOrder_Click">
+                <Button  x:Name="generateOrder"  MinWidth="120px" DockPanel.Dock="Right" Margin="10 5 10 10" Click="generateOrder_Click">
                     Criar pedido
+                </Button>
+                <Button  x:Name="EditAccount" MinWidth="120px" DockPanel.Dock="Right" Margin="10 5 10 10" Click="EditAccount_Click">
+                    Editar conta
+                </Button>
+                <Button x:Name="NewAccount" MinWidth="120" Margin="10 5 10 10" Click="NewAccount_Click" DockPanel.Dock="Right">
+                    Nova conta
                 </Button>
             </DockPanel>
             

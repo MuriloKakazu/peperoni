@@ -94,5 +94,9 @@ namespace Presentation.Pages
         private void OrderSearch_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             myFrame.NavigationService.Navigate(new OrderSearch());
         }
+
+        private void ExploreProducts_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            myFrame.NavigationService.Navigate(new ProductView());
+        }
     }
 }

@@ -96,6 +96,12 @@
     <Compile Include="Components\Banner.xaml.cs">
       <DependentUpon>Banner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductExplorerController.cs" />
+    <Compile Include="Mapper\FamilyMapper.cs" />
     <Compile Include="Util\FindImage.cs" />
     <Compile Include="Util\InputValidator.cs" />
     <Compile Include="Util\MessageUtils.cs" />
@@ -124,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\Windows\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,7 +212,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">

@@ -1,6 +1,7 @@
 ﻿using Domain.Model.PizzaShop;
 using Domain.Repository;
 using Domain.Rule.Validator;
+using Infrastructure.Data;
 using System.Collections.Generic;
 
 namespace Domain.Service {
@@ -19,6 +20,10 @@ namespace Domain.Service {
 
         public ICollection<Beverage> FetchBeverages(int pageSize, int offset) {
             return Repository.Fetch(pageSize, offset);
+        }
+
+        public ICollection<Beverage> FindByFilters(ICollection<Filter> filters) {
+            return Repository.Filter(filters);
         }
 
         public ICollection<Beverage> FindBeveragesByOrder(string orderId) {

@@ -1,6 +1,8 @@
 ﻿using Domain.Model.PizzaShop;
 using Domain.Service;
 using System.Linq;
+using Infrastructure.Data;
+using System.Collections.Generic;
 
 namespace Presentation.Controllers {
     public class OrderController {
@@ -16,6 +18,10 @@ namespace Presentation.Controllers {
 
         public Order Retrieve(string guid) {
             return OrderService.GetOrder(guid);
+        }
+
+        public ICollection<Order> Filter(ICollection<Filter> filters) {
+            return Service.FindByFilters(filters);
         }
 
         public Order Create(Order order) {

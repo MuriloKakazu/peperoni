@@ -42,8 +42,7 @@
                                 <Label Content="Produtos" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
                                 <Label Content=">" FontSize="16"  HorizontalAlignment="Right" Margin="8 0 4 0"/>
                             </DockPanel>
-                            <Label Content="Pizzas" FontSize="13" Padding="20 5 0 5"/>
-                            <Label Content="Acompanhamentos" FontSize="13" Padding="20 5 0 5"/>
+                            <Label x:Name="ExploreProducts" Content="Buscar" FontSize="13" Padding="20 5 0 5" MouseLeftButtonDown="ExploreProducts_MouseLeftButtonDown"/>
                         </StackPanel>
                         <StackPanel x:Name="configsSection" Background="#FFEDCFC0">
                             <Label Content="Configurações" FontSize="16" HorizontalAlignment="Left" Margin="0 5 0 5"/>
