@@ -103,7 +103,10 @@ namespace Presentation.Pages {
             if(AlreadyAddedSimilar(pizza)) {
                 MessageUtils.ShowError($"A pizza {pizza} já foi adicionada ao pedido");
             } else {
-                pizzas.Add(builder.Build());
+                if(pizza.SecondToppingId == null) {
+                    builder.WithSecondTopping(pizza.FirstTopping);
+                }
+                pizzas.Add(pizza);
                 builder = new PizzaBuilder().WithQuantity(Int32.Parse(txtQuantity.Text));
                 ResetForm();
             }
@@ -116,7 +119,6 @@ namespace Presentation.Pages {
         }
 
         private void ResetForm() {
-            
             ClearInputs();
         }
 

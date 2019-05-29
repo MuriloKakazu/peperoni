@@ -78,8 +78,12 @@ namespace Presentation.Pages
         }
 
         private void FinishOrder(object sender, RoutedEventArgs e) {
-            Order order = builder.Build();
-            controller.Create(order);
+            Order order = builder.WithStatus("Ongoing")
+                                 .WithPaymentStatus("Unpaid")
+                                 .PlacedOn(DateTime.Now)
+                                 .Build();
+            controller.DeepCreate(order);
+
             MessageUtils.ShowMessage("Pedido criado com sucesso!");
             NavigationService.Navigate(new Overview());
         }

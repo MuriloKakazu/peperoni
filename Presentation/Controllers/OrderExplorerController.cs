@@ -10,11 +10,11 @@ namespace Presentation.Controllers {
         }
 
         public ICollection<Order> FetchPage(int page) {
-            return Service.FetchOrders(PAGE_SIZE, page * PAGE_SIZE);
+            return OrderService.FetchOrders(PAGE_SIZE, page * PAGE_SIZE);
         }
 
         public ICollection<Order> SearchByAccount(Account account) {
-            return Service.FindOrdersByAccount(account.Id);
+            return OrderService.FindOrdersByAccount(account.Id);
         }
     }
 }

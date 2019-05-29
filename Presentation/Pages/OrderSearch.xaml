@@ -1,0 +1,53 @@
+﻿<Page x:Class="Presentation.Pages.OrderSearch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Presentation.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="OrderSearch">
+
+    <DockPanel >
+        <DockPanel Margin="10" DockPanel.Dock="Top" LastChildFill="False" HorizontalAlignment="Center">
+            
+            <StackPanel Margin="10 0" MinWidth="180">
+                <Label VerticalAlignment="Top" Margin="0 0 10 0" FontSize="17px">
+                    Status do pedido
+                </Label>
+                <ComboBox x:Name="ComboOrderStatus"  FontSize="16px" HorizontalContentAlignment="Center" SelectionChanged="ComboOrderStatus_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="10 0" MinWidth="180">
+                <Label VerticalAlignment="Top" Margin="0 0 10 0" FontSize="17px">
+                    Status do pagamento
+                </Label>
+                <ComboBox x:Name="ComboPaymentStatus" MinWidth="120" FontSize="16px" HorizontalContentAlignment="Center"  />
+            </StackPanel>
+            <StackPanel Margin="10 0">
+                <Label VerticalAlignment="Top" Margin="0 0 10 0" FontSize="17px">
+                    Status do pagamento
+                </Label>
+                <DatePicker x:Name="CreatedDatePicker" MinWidth="140" FontSize="16px"  />
+            </StackPanel>
+        </DockPanel>
+
+
+        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <Button x:Name="ShowOrderButton" MinWidth="160" Margin="40 0 40 30" FontSize="26" Click="ShowOrderButton_Click">
+                Ver Pedido
+            </Button>
+        </DockPanel>
+
+        <ListView x:Name="OrderListView"  Margin="40 0" DockPanel.Dock="Top" SelectionMode="Single">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" >
+                    <GridViewColumn Header="Nome da conta" Width="180" DisplayMemberBinding="{Binding Path=Account.Name}" />
+                    <GridViewColumn Header="Data" Width="120" DisplayMemberBinding="{Binding Path=PlaceDate}" />
+                    <GridViewColumn Header="Status do pedido" Width="120" DisplayMemberBinding="{Binding Path=Status}" />
+                    <GridViewColumn Header="Status do pagamento" Width="130" DisplayMemberBinding="{Binding Path=PaymentStatus}" />
+                    <GridViewColumn Header="Valor total do pedido" Width="120" DisplayMemberBinding="{Binding Path=TotalPrice}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</Page>

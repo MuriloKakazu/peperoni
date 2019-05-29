@@ -30,9 +30,11 @@
             <ListView x:Name="accountListView"  Margin="10" DockPanel.Dock="Top" SelectionMode="Single" SelectionChanged="accountListView_SelectionChanged" >
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" >
-                        <GridViewColumn Header="Nome" Width="120" DisplayMemberBinding="{Binding Path=Name}" />
-                        <GridViewColumn Header="Telefone" Width="200" DisplayMemberBinding="{Binding Path=Phone}" />
-                        <GridViewColumn Header="CEP" Width="200" DisplayMemberBinding="{Binding Path=PostalCode}" />
+                        <GridViewColumn Header="Nome" Width="200" DisplayMemberBinding="{Binding Path=Name}" />
+                        <GridViewColumn Header="Telefone" Width="120" DisplayMemberBinding="{Binding Path=Phone}" />
+                        <GridViewColumn Header="CEP" Width="120" DisplayMemberBinding="{Binding Path=PostalCode}" />
+                        <GridViewColumn Header="Rua" Width="200" DisplayMemberBinding="{Binding Path=StreetName}" />
+                        <GridViewColumn Header="Número" Width="120" DisplayMemberBinding="{Binding Path=StreetNumber}" />
                     </GridView>
                 </ListView.View>
             </ListView>
