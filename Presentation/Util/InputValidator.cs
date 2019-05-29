@@ -1,5 +1,7 @@
-﻿using System;
+using Infrastructure.Exceptions;
 using Infrastructure.Util;
+using System;
+using System.Globalization;
 
 namespace Presentation.Util
 {
@@ -14,6 +16,16 @@ namespace Presentation.Util
 
         public static bool IsWord(string value) {
             return Regex.Pattern(@"\p{L}").Matches(value);
+        }
+
+        public static decimal EnsureDecimal(string value) {
+            decimal result;
+
+            if (!Decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out result)) {
+                throw new ValidationException("O valor deve ser um número!");
+            }
+
+            return result;
         }
     }
 }

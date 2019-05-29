@@ -1,5 +1,6 @@
 ﻿using Domain.Model.PizzaShop;
 using Domain.Service;
+using Infrastructure.Data;
 using System.Collections.Generic;
 
 namespace Presentation.Controllers {
@@ -18,6 +19,10 @@ namespace Presentation.Controllers {
 
         public Beverage Retrieve(string guid) {
             return BeverageService.GetBeverage(guid);
+        }
+
+        public ICollection<Beverage> Filter(ICollection<Filter> filters) {
+            return BeverageService.FindByFilters(filters);
         }
 
         public Beverage Create(Beverage beverage) {

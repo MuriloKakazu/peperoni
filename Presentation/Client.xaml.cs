@@ -24,6 +24,8 @@ using Domain.Model.PizzaShop;
 using Domain.Repository;
 using Presentation.Pages;
 using Domain.Rule.Validator;
+using System.Security.Cryptography;
+using Infrastructure.Builder;
 
 namespace Presentation {
     /// <summary>
@@ -33,16 +35,23 @@ namespace Presentation {
         public Client() {
             InitializeComponent();
 
-            ///* Account controller example */
+            /* Account controller example */
             var accountController = new AccountController();
             var account = accountController.Retrieve("1a4095c1-d9f2-4546-873e-3993d86371c6");
             Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
-            account.Name = "Mr. Winter";
-            account = accountController.Update(account);
+            //account.Name = "Mr. Winter";
+            //account = accountController.Update(account);
+
+            ICollection<Filter> filters = new List<Filter> {
+                new FilterBuilder().WithKey("Name").WithValue("Mr. Winter").Build(),
+                new FilterBuilder().WithKey("Phone").WithValue("119909190").Build(),
+            };
+
+            var accountTest = new AccountRepository().Filter(filters);
 
             ///* Order controller example */
-            var orderController = new OrderExplorerController();
+            //var orderController = new OrderExplorerController();
 
             //var newOrder = new OrderBuilder()
             //    .WithAccount(account.Id)
@@ -54,8 +63,8 @@ namespace Presentation {
 
             //orderController.Create(newOrder);
 
-            var accountOrders = orderController.SearchByAccount(account);
-            Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
+            //var accountOrders = orderController.SearchByAccount(account);
+            //Console.WriteLine($"Fetched orders: {JsonConvert.SerializeObject(accountOrders, Formatting.Indented)}");
 
             //var anOrder = accountOrders.First();
             //anOrder.Status = "Enqueued";
@@ -64,9 +73,9 @@ namespace Presentation {
             //Console.WriteLine($"Saved order: {JsonConvert.SerializeObject(anOrder, Formatting.Indented)}");
 
             /* Account Explorer controller example */
-            var accountExplorer = new AccountExplorerController();
-            var foundAccounts = accountExplorer.SearchByName("Mr");
-            Console.WriteLine($"Found accounts: {JsonConvert.SerializeObject(foundAccounts, Formatting.Indented)}");
+            //var accountExplorer = new AccountExplorerController();
+            //var foundAccounts = accountExplorer.SearchByName("Mr");
+            //Console.WriteLine($"Found accounts: {JsonConvert.SerializeObject(foundAccounts, Formatting.Indented)}");
 
             this.Content = new Home();
         }

@@ -38,6 +38,10 @@ namespace Domain.Builder {
                     .IfPresent(value => {
                         WithPostalCode(value as String);});
 
+                Optional.Of(row["ComplementaryAddress"])
+                    .IfPresent(value => {
+                        WithComplementaryAddress(value as String); });
+
                 Optional.Of(row["StreetName"])
                     .IfPresent(value => {
                         WithStreetName(value as String); });
@@ -47,6 +51,7 @@ namespace Domain.Builder {
                         WithStreetNumber(Convert.ToInt32(value)); });
             });
         }
+
 
         public AccountBuilder WithId(string id) {
             Optional.Of(id)
@@ -72,7 +77,16 @@ namespace Domain.Builder {
         public AccountBuilder WithAddress(Address address) {
             return
                  WithPostalCode(address.PostalCode)
-                .WithStreetNumber(Convert.ToInt32(address.HouseNumber));
+                .WithStreetNumber(Convert.ToInt32(address.HouseNumber))
+                .WithStreetName(address.Street)
+                .WithComplementaryAddress(address.Additional);
+        }
+
+        public AccountBuilder WithComplementaryAddress(string complementary) {
+            Optional.Of(complementary)
+                .IfPresent(() => {
+                    Account.ComplementaryAddress = complementary; });
+            return this;
         }
 
         public AccountBuilder WithPostalCode(string postalCode) {

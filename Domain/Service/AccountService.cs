@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Domain.Model.PizzaShop;
 using Domain.Repository;
 using Domain.Rule.Validator;
+using Infrastructure.Data;
 
 namespace Domain.Service {
     public class AccountService {
@@ -20,6 +21,10 @@ namespace Domain.Service {
 
         public ICollection<Account> FetchAccounts(int pageSize, int offset) {
             return Repository.Fetch(pageSize, offset);
+        }
+
+        public ICollection<Account> FindByFilters(ICollection<Filter> filters) {
+            return Repository.Filter(filters);
         }
 
         public ICollection<Account> FindAccountsByName(string name) {

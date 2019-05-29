@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\CommandBuilder.cs" />
+    <Compile Include="Builder\FilterBuilder.cs" />
     <Compile Include="Builder\IBuilder.cs" />
     <Compile Include="Builder\ParameterBuilder.cs" />
     <Compile Include="Client\RestClient.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Data\AbstractEntity.cs" />
     <Compile Include="Data\DatabaseHelper.cs" />
     <Compile Include="Data\Entity.cs" />
+    <Compile Include="Data\Filter.cs" />
     <Compile Include="Encryption\Aes.cs" />
     <Compile Include="Encryption\Decrypt.cs" />
     <Compile Include="Exceptions\DataIntegrityException.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Service\ConnectionService.cs" />
     <Compile Include="Util\Flatten.cs" />
     <Compile Include="Util\Optional.cs" />
+    <Compile Include="Util\Pluck.cs" />
     <Compile Include="Util\Regex.cs" />
   </ItemGroup>
   <ItemGroup>
