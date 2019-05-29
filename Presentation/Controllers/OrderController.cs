@@ -1,18 +1,23 @@
 ﻿using Domain.Model.PizzaShop;
 using Domain.Service;
+using System.Linq;
 using Infrastructure.Data;
 using System.Collections.Generic;
 
 namespace Presentation.Controllers {
     public class OrderController {
-        protected OrderService Service { get; set; }
+        protected OrderService OrderService { get; set; }
+        protected PizzaService PizzaService { get; set; }
+        protected BeverageService BeverageService { get; set; }
 
         public OrderController() {
-            Service = new OrderService();
+            OrderService    = new OrderService();
+            PizzaService    = new PizzaService();
+            BeverageService = new BeverageService();
         }
 
         public Order Retrieve(string guid) {
-            return Service.GetOrder(guid);
+            return OrderService.GetOrder(guid);
         }
 
         public ICollection<Order> Filter(ICollection<Filter> filters) {
@@ -20,15 +25,27 @@ namespace Presentation.Controllers {
         }
 
         public Order Create(Order order) {
-            return Service.PlaceOrder(order);
+            return OrderService.PlaceOrder(order);
         }
 
         public Order Update(Order order) {
-            return Service.UpdateOrder(order);
+            return OrderService.UpdateOrder(order);
         }
 
         public void Delete(Order order) {
-            Service.DeleteOrder(order);
+            OrderService.DeleteOrder(order);
+        }
+
+        public void DeepCreate(Order order) {
+            Create(order);
+            order.GetPizzas().ToList().ForEach(pizza => {
+                pizza.SetOrder(order);
+                PizzaService.CreatePizza(pizza);
+            });
+            order.GetBeverages().ToList().ForEach(beverage => {
+                beverage.SetOrder(order);
+                BeverageService.CreateBeverage(beverage);
+            });
         }
     }
 }

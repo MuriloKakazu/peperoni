@@ -81,6 +81,12 @@
     <Compile Include="Components\Windows\BeverageCreationPopup.xaml.cs">
       <DependentUpon>BeverageCreationPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Windows\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderSearch.xaml.cs">
+      <DependentUpon>OrderSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PizzaCreationPopup.xaml.cs">
       <DependentUpon>PizzaCreationPopup.xaml</DependentUpon>
     </Compile>
@@ -123,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\Windows\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrderCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,8 +238,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,6 +22,11 @@ namespace Presentation.Pages
     /// </summary>
     public partial class Home : Page
     {
+        Dictionary<string, Page> menuEventDictionary = new Dictionary<string, Page> {
+            { "OrderCreation", new AccountSelection() },
+            { "OrderSearch", new OrderSearch() }
+
+        };
         public Home() {
             InitializeComponent();
             ShowBanner();
@@ -64,10 +69,6 @@ namespace Presentation.Pages
             label.Visibility = label.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void changeFrameContent(object sender, MouseButtonEventArgs e) {
-            myFrame.NavigationService.Navigate(new AccountSelection());
-        }
-
         private void previousPage(object sender, RoutedEventArgs e) {
             if(myFrame.NavigationService.CanGoBack) {
                 myFrame.NavigationService.GoBack();
@@ -84,6 +85,14 @@ namespace Presentation.Pages
 
         private void SearchAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             myFrame.NavigationService.Navigate(new AccountSelection());
+        }
+
+        private void OrderCreation_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            myFrame.NavigationService.Navigate(new AccountSelection());
+        }
+
+        private void OrderSearch_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            myFrame.NavigationService.Navigate(new OrderSearch());
         }
 
         private void ExploreProducts_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
