@@ -19,7 +19,7 @@
             </Label>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-            <Button  MinWidth="160" Margin="10">
+            <Button x:Name="DeleteItemsButton" MinWidth="160" Margin="10" Click="Button_Click">
                 Remover itens selecionados
             </Button>
             <Button  x:Name="AddBeveragesButton" Margin="10" MinWidth="170px" Click="ShowBeverageCreationPopup">

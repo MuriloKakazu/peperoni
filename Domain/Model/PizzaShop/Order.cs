@@ -87,6 +87,16 @@ namespace Domain.Model.PizzaShop {
             return this;
         }
 
+        public Order ClearPizzas() {
+            this.Pizzas = new List<Pizza>();
+            return this;
+        }
+
+        public Order ClearBeverages() {
+            this.Beverages = new List<Beverage>();
+            return this;
+        }
+
         private void ValidateNewPizza(Pizza pizza) {
             Pizzas.ToList().ForEach(p => {
                 new Validator<Pizza>(pizza)

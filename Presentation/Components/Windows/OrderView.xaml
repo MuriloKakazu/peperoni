@@ -31,10 +31,10 @@
             <ListView x:Name="PizzaListView"  Margin="40 10" DockPanel.Dock="Top" SelectionMode="Single" Height="130">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" >
-                        <GridViewColumn Header="1º Sabor" Width="120" DisplayMemberBinding="{Binding Path=PlaceDate}" />
-                        <GridViewColumn Header="2º Sabor" Width="120" DisplayMemberBinding="{Binding Path=Status}" />
-                        <GridViewColumn Header="Qnt" Width="40" DisplayMemberBinding="{Binding Path=PaymentStatus}" />
-                        <GridViewColumn Header="Valor unit." Width="60" DisplayMemberBinding="{Binding Path=TotalPrice}" />
+                        <GridViewColumn Header="1º Sabor" Width="120" DisplayMemberBinding="{Binding Path=FirstTopping.Name}" />
+                        <GridViewColumn Header="2º Sabor" Width="120" DisplayMemberBinding="{Binding Path=SecondTopping.Name}" />
+                        <GridViewColumn Header="Qnt" Width="40" DisplayMemberBinding="{Binding Path=Quantity}" />
+                        <GridViewColumn Header="Valor unit." Width="60" DisplayMemberBinding="{Binding Path=UnitPrice}" />
                         <GridViewColumn Header="Valor tot." Width="60" DisplayMemberBinding="{Binding Path=TotalPrice}" />
                     </GridView>
                 </ListView.View>
@@ -42,9 +42,9 @@
             <ListView x:Name="BeverageListView"  Margin="55 10" DockPanel.Dock="Top" SelectionMode="Single" >
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" >
-                        <GridViewColumn Header="Produto" Width="160" DisplayMemberBinding="{Binding Path=PlaceDate}" />
-                        <GridViewColumn Header="Qnt" Width="60" DisplayMemberBinding="{Binding Path=PaymentStatus}" />
-                        <GridViewColumn Header="Valor unit." Width="80" DisplayMemberBinding="{Binding Path=TotalPrice}" />
+                        <GridViewColumn Header="Produto" Width="160" DisplayMemberBinding="{Binding Path=Product.Name}" />
+                        <GridViewColumn Header="Qnt" Width="60" DisplayMemberBinding="{Binding Path=Quantity}" />
+                        <GridViewColumn Header="Valor unit." Width="80" DisplayMemberBinding="{Binding Path=UnitPrice}" />
                         <GridViewColumn Header="Valor tot." Width="80" DisplayMemberBinding="{Binding Path=TotalPrice}" />
                     </GridView>
                 </ListView.View>

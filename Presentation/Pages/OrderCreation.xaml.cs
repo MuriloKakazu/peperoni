@@ -85,7 +85,34 @@ namespace Presentation.Pages
             controller.DeepCreate(order);
 
             MessageUtils.ShowMessage("Pedido criado com sucesso!");
-            NavigationService.Navigate(new Overview());
+            NavigationService.Navigate(new AccountSelection());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
+            if(PizzaListView.SelectedItems.Count > 0) {
+                for(int i = 0; i < PizzaListView.SelectedItems.Count; i++) {
+                    Pizza selected = (Pizza)PizzaListView.SelectedItems[i];
+                    foreach(Pizza pizza in pizzas.ToList()) {
+                        if(pizza.IsSimilarTo(selected)) {
+                            pizzas.Remove(pizza);
+                        }
+                    }
+                }
+                builder.ClearPizzas().WithPizzas(pizzas);
+            }
+
+            if(BeveragesListView.SelectedItems.Count > 0) {
+                for(int i = 0; i < BeveragesListView.SelectedItems.Count; i++) {
+                    Beverage selected = (Beverage)PizzaListView.SelectedItems[i];
+                    foreach(Beverage beverage in beverages.ToList()) {
+                        if(beverage.IsSimilarTo(selected)) {
+                            beverages.Remove(beverage);
+                        }
+                    }
+                }
+                builder.ClearBeverages().WithBeverages(beverages);
+            }
         }
     }
 }

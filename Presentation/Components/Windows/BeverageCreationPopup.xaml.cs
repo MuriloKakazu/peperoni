@@ -89,14 +89,24 @@ namespace Presentation.Components.Windows {
         }
 
         private void AddBeverage(object sender, RoutedEventArgs e) {
-            Beverage beverage = builder.Build();
-            if(AlreadyAddedSimilar(beverage)) {
-                MessageUtils.ShowError($"O acompanhamento {beverage} já foi adicionado ao pedido");
-            } else {
-                beverages.Add(builder.Build());
-                builder = new BeverageBuilder().WithQuantity(Int32.Parse(txtQuantity.Text));
-                ResetForm();
+            if(FieldsAreValid()) {
+                Beverage beverage = builder.Build();
+                if(AlreadyAddedSimilar(beverage)) {
+                    MessageUtils.ShowError($"O acompanhamento {beverage} já foi adicionado ao pedido");
+                } else {
+                    beverages.Add(builder.Build());
+                    builder = new BeverageBuilder().WithQuantity(Int32.Parse(txtQuantity.Text));
+                    ResetForm();
+                }
             }
+        }
+
+        private bool FieldsAreValid() {
+            if(cbProduct.SelectedIndex == -1 || String.IsNullOrEmpty(txtQuantity.Text)) {
+                MessageUtils.ShowWarning("Preencha todos os campos para adicionar um acompanhamento");
+                return false;
+            }
+            return true;
         }
 
         private bool AlreadyAddedSimilar(Beverage addedBeverage) {
