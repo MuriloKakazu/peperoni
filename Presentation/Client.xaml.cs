@@ -36,19 +36,19 @@ namespace Presentation {
             InitializeComponent();
 
             /* Account controller example */
-            var accountController = new AccountController();
-            var account = accountController.Retrieve("1a4095c1-d9f2-4546-873e-3993d86371c6");
-            Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
+            //var accountController = new AccountController();
+            //var account = accountController.Retrieve("1a4095c1-d9f2-4546-873e-3993d86371c6");
+            //Console.WriteLine($"Fetched account: {JsonConvert.SerializeObject(account, Formatting.Indented)}");
 
-            //account.Name = "Mr. Winter";
-            //account = accountController.Update(account);
+            ////account.Name = "Mr. Winter";
+            ////account = accountController.Update(account);
 
-            ICollection<Filter> filters = new List<Filter> {
-                new FilterBuilder().WithKey("Name").WithValue("Mr. Winter").Build(),
-                new FilterBuilder().WithKey("Phone").WithValue("119909190").Build(),
-            };
+            //ICollection<Filter> filters = new List<Filter> {
+            //    new FilterBuilder().WithKey("Name").WithValue("Mr. Winter").Build(),
+            //    new FilterBuilder().WithKey("Phone").WithValue("119909190").Build(),
+            //};
 
-            var accountTest = new AccountRepository().Filter(filters);
+            //var accountTest = new AccountRepository().Filter(filters);
 
             ///* Order controller example */
             //var orderController = new OrderExplorerController();

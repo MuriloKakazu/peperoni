@@ -21,7 +21,7 @@ namespace Presentation.Controllers {
         }
 
         public ICollection<Order> Filter(ICollection<Filter> filters) {
-            return Service.FindByFilters(filters);
+            return OrderService.FindByFilters(filters);
         }
 
         public Order Create(Order order) {

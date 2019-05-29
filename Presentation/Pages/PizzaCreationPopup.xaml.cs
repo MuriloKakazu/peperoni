@@ -99,17 +99,27 @@ namespace Presentation.Pages {
         }
 
         private void AddPizza(object sender, RoutedEventArgs e) {
-            Pizza pizza = builder.Build();
-            if(AlreadyAddedSimilar(pizza)) {
-                MessageUtils.ShowError($"A pizza {pizza} já foi adicionada ao pedido");
-            } else {
-                if(pizza.SecondToppingId == null) {
-                    builder.WithSecondTopping(pizza.FirstTopping);
+            if(FieldsAreValid()){
+                Pizza pizza = builder.Build();
+                if(AlreadyAddedSimilar(pizza)) {
+                    MessageUtils.ShowError($"A pizza {pizza} já foi adicionada ao pedido");
+                } else {
+                    if(pizza.SecondToppingId == null) {
+                        builder.WithSecondTopping(pizza.FirstTopping);
+                    }
+                    pizzas.Add(pizza);
+                    builder = new PizzaBuilder().WithQuantity(Int32.Parse(txtQuantity.Text));
+                    ResetForm();
                 }
-                pizzas.Add(pizza);
-                builder = new PizzaBuilder().WithQuantity(Int32.Parse(txtQuantity.Text));
-                ResetForm();
             }
+        }
+
+        private bool FieldsAreValid() {
+            if(cbBorder.SelectedIndex == -1 || cbFirstTopping.SelectedIndex == -1 || String.IsNullOrEmpty(txtQuantity.Text)) {
+                MessageUtils.ShowWarning("Preencha todos os campos para adicionar um pizza");
+                return false;
+            }
+            return true;
         }
 
         private bool AlreadyAddedSimilar(Pizza addedPizza) {

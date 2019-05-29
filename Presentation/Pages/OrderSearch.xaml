@@ -21,13 +21,13 @@
                 <Label VerticalAlignment="Top" Margin="0 0 10 0" FontSize="17px">
                     Status do pagamento
                 </Label>
-                <ComboBox x:Name="ComboPaymentStatus" MinWidth="120" FontSize="16px" HorizontalContentAlignment="Center"  />
+                <ComboBox x:Name="ComboPaymentStatus" MinWidth="120" FontSize="16px" HorizontalContentAlignment="Center"  SelectionChanged="ComboPaymentStatus_SelectionChanged"/>
             </StackPanel>
             <StackPanel Margin="10 0">
                 <Label VerticalAlignment="Top" Margin="0 0 10 0" FontSize="17px">
                     Status do pagamento
                 </Label>
-                <DatePicker x:Name="CreatedDatePicker" MinWidth="140" FontSize="16px"  />
+                <DatePicker x:Name="CreatedDatePicker" MinWidth="140" FontSize="16px" SelectedDateChanged="CreatedDatePicker_SelectedDateChanged"/>
             </StackPanel>
         </DockPanel>
 
@@ -38,11 +38,10 @@
             </Button>
         </DockPanel>
 
-        <ListView x:Name="OrderListView"  Margin="40 0" DockPanel.Dock="Top" SelectionMode="Single">
+        <ListView x:Name="OrderListView"  Margin="80 0" DockPanel.Dock="Top" SelectionMode="Single">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" >
-                    <GridViewColumn Header="Nome da conta" Width="180" DisplayMemberBinding="{Binding Path=Account.Name}" />
-                    <GridViewColumn Header="Data" Width="120" DisplayMemberBinding="{Binding Path=PlaceDate}" />
+                    <GridViewColumn Header="Data" Width="70" DisplayMemberBinding="{Binding Path=PlaceDate}" />
                     <GridViewColumn Header="Status do pedido" Width="120" DisplayMemberBinding="{Binding Path=Status}" />
                     <GridViewColumn Header="Status do pagamento" Width="130" DisplayMemberBinding="{Binding Path=PaymentStatus}" />
                     <GridViewColumn Header="Valor total do pedido" Width="120" DisplayMemberBinding="{Binding Path=TotalPrice}" />

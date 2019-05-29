@@ -84,6 +84,8 @@
     <Compile Include="Components\Windows\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mapper\OrderStatusMapper.cs" />
+    <Compile Include="Mapper\PaymentStatusMapper.cs" />
     <Compile Include="Pages\OrderSearch.xaml.cs">
       <DependentUpon>OrderSearch.xaml</DependentUpon>
     </Compile>

@@ -1,5 +1,7 @@
 ﻿using Domain.Model.PizzaShop;
 using Domain.Service;
+using Infrastructure.Builder;
+using Infrastructure.Data;
 using Presentation.Components.Windows;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,9 @@ namespace Presentation.Pages {
     /// </summary>
     public partial class OrderSearch : Page {
         OrderService service { get; set; }
+        String selectedStatus { get; set; }
+        String selectedPaymentStatus { get; set; }
+        DateTime selectedCreatedDate { get; set; }
         public OrderSearch() {
             service = new OrderService();
             InitializeComponent();
@@ -30,27 +35,44 @@ namespace Presentation.Pages {
 
         private void LoadAvaiableFieldValues() {
             ComboOrderStatus.ItemsSource = new List<string> {
+                "",
                 "Em andamento",
                 "Pronto",
                 "Entregue"
             };
             ComboPaymentStatus.ItemsSource = new List<string> {
+                "",
                 "Pagamento pendente",
                 "Pago"
             };
         }
 
-        private void RefreshOrderGrid(object sender, SelectionChangedEventArgs e) {
+        private void RefreshOrderGrid() {
             List<Order> orders = new List<Order>();
+            List<Filter> filters = new List<Filter>(); 
+
             if(NotEmpty(ComboOrderStatus)) {
-                orders = service.FindOrdersByStatus(ToEnglish(ComboOrderStatus.Text)).ToList();
+                filters.Add(
+                    new FilterBuilder().WithKey("Status")
+                                       .WithValue(ToEnglish(selectedStatus))
+                                       .Build()
+                );
             }
-            if(NotEmpty((sender as ComboBox))) {
-                orders = orders.Where(order =>
-                    order.PaymentStatus == ToEnglish((sender as ComboBox).SelectedItem as string)
-                ).ToList();
+            if(NotEmpty(ComboPaymentStatus)) {
+                filters.Add(
+                    new FilterBuilder().WithKey("PaymentStatus")
+                                       .WithValue(ToEnglish(selectedPaymentStatus))
+                                       .Build()
+                );
             }
-            OrderListView.ItemsSource = orders;
+            if((NotEmpty(CreatedDatePicker))) {
+                filters.Add(
+                    new FilterBuilder().WithKey("PlaceDate")
+                                       .WithValue(CreatedDatePicker.SelectedDate)
+                                       .Build()
+                );
+            }
+            OrderListView.ItemsSource = service.FindByFilters(filters);
         }
 
         private string ToEnglish(string text) {
@@ -65,7 +87,7 @@ namespace Presentation.Pages {
         }
 
         private bool NotEmpty(ComboBox combo) {
-            return combo.SelectedIndex != -1;
+            return combo.SelectedIndex > 0;
         }
 
         private bool NotEmpty(DatePicker picker) {
@@ -73,20 +95,26 @@ namespace Presentation.Pages {
         }
 
         private void ComboOrderStatus_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            List<Order> orders = new List<Order>();
-            if(NotEmpty((sender as ComboBox))) {
-                orders = service.FindOrdersByStatus(ToEnglish((sender as ComboBox).SelectedItem as string)).ToList();
-            }
-            if(NotEmpty(ComboPaymentStatus)) {
-                orders = orders.Where(order =>
-                    order.PaymentStatus == ToEnglish(ComboPaymentStatus.Text)
-                ).ToList();
-            }
-            OrderListView.ItemsSource = orders;
+            selectedStatus = (sender as ComboBox).SelectedItem as string;
+            RefreshOrderGrid();
         }
 
         private void ShowOrderButton_Click(object sender, RoutedEventArgs e) {
             new OrderView((Order)OrderListView.SelectedItem).ShowDialog();
+            RefreshOrderGrid();
+        }
+
+        private void ComboPaymentStatus_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            selectedPaymentStatus = (sender as ComboBox).SelectedItem as string;
+            RefreshOrderGrid();
+        }
+
+        private void CreatedDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
+            if(CreatedDatePicker.SelectedDate != null) {
+                selectedCreatedDate = (DateTime)(CreatedDatePicker.SelectedDate);
+            }
+            
+            RefreshOrderGrid();
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Domain.Builder {
         public OrderBuilder PlacedOn(DateTime? dateTime) {
             Optional.Of(dateTime)
                  .IfPresent(() => {
-                     Order.PlaceDate = dateTime; });
+                     Order.PlaceDate = DateTime.Parse(((DateTime)dateTime).ToShortDateString()); });
             return this;
         }
 
@@ -138,6 +138,16 @@ namespace Domain.Builder {
             foreach (var beverage in beverages) {
                 WithBeverage(beverage);
             }
+            return this;
+        }
+
+        public OrderBuilder ClearPizzas() {
+            Order.ClearPizzas();
+            return this;
+        }
+
+        public OrderBuilder ClearBeverages() {
+            Order.ClearBeverages();
             return this;
         }
 

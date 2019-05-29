@@ -1,5 +1,7 @@
 ﻿using Domain.Model.PizzaShop;
+using Domain.Service;
 using Presentation.Controllers;
+using Presentation.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +25,9 @@ namespace Presentation.Components.Windows {
         OrderController controller { get; set; }
         public OrderView(Order order) : this() {
             this.order = order;
-
+            order.SetAccount(new AccountService().GetAccount(order.AccountId));
             InitializeComponent();
+            LoadAvaiableFieldValues();
 
             if(OrderIsCancelled(order)) {
                 DisableCombosAndButtons();
@@ -32,10 +35,24 @@ namespace Presentation.Components.Windows {
             PizzaListView.ItemsSource = order.GetPizzas();
             BeverageListView.ItemsSource = order.GetBeverages();
             TotalPriceLabel.Content = order.GetTotalPrice();
+            OrderStatusCombo.SelectedItem = OrderStatusMapper.ToPortuguese(order.Status);
+            PaymentStatusCombo.SelectedItem = PaymentStatusMapper.ToPortuguese(order.PaymentStatus);
         }
 
         public OrderView() {
             controller = new OrderController();
+        }
+
+        private void LoadAvaiableFieldValues() {
+            OrderStatusCombo.ItemsSource = new List<string> {
+                "Em andamento",
+                "Pronto",
+                "Entregue"
+            };
+            PaymentStatusCombo.ItemsSource = new List<string> {
+                "Pagamento pendente",
+                "Pago"
+            };
         }
 
         private bool OrderIsCancelled(Order order) {
@@ -52,27 +69,17 @@ namespace Presentation.Components.Windows {
             if(OrderStatusChangedTo("Delivered")) {
                 order.DeliveryDate = DateTime.Now;
             }
-            order.Status = ToEnglish(OrderStatusCombo.Text);
-            order.PaymentStatus = ToEnglish(PaymentStatusCombo.Text);
+            order.Status = OrderStatusMapper.ToEnglish(OrderStatusCombo.Text);
+            order.PaymentStatus = PaymentStatusMapper.ToEnglish(PaymentStatusCombo.Text);
 
             this.controller.Update(order);
+            this.Close();
         }
 
         private bool OrderStatusChangedTo(string targetStatus) {
-            string newStatus = ToEnglish(OrderStatusCombo.Text);
+            string newStatus = OrderStatusMapper.ToEnglish(OrderStatusCombo.Text);
             return order.Status != newStatus   &&
                    newStatus    == targetStatus;
-        }
-
-        private string ToEnglish(string text) {
-            return new Dictionary<string, string> {
-                {"Em andamento", "Ongoing"},
-                {"Pronto", "Ready" },
-                {"Entregue", "Delivered" },
-                {"Cancelado", "Cancelled" },
-                {"Pago", "Paid" },
-                {"Pagamento pendente", "Unpaid" }
-            }[text];
         }
     }
 }
